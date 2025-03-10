@@ -24,19 +24,31 @@ public class HexCalc {
 
     }
     
-    // Method to convert hexa decimal number to decimal number 
-    public int hexToDec(String number){
+    /**
+     * Method to convert hexa decimal number to decimal number 
+     * @param number should be hexadecimal number of String type
+     * @return the decimal value of the given hexadecimal number of int type
+     */
+    public int hexToDec(String number) {
         int num=0;
         for(int i=number.length()-1;i>=0;i--){
+
+            // Gets decimal value from hex hashmap
             int n=hashmap.get(number.charAt(i))*(int)Math.pow(16, (number.length()-1)-i);
             num+=n;
         }
         return num;
     }
 
-    // Method to convert decimal number to hexa decimal number
+    /**
+     * Method to convert decimal number to hexa decimal number
+     * @param number should be decimal number of int type
+     * @return hexadecimal number of the given decimal number of String type
+     */
     public String decToHex(int number){
         String hexNumber="";
+
+        // 15 beacuse base in hex is 16
         while(number>=15){
             hexNumber=(Integer.toHexString(number%16))+hexNumber;
             number/=16;
@@ -47,8 +59,20 @@ public class HexCalc {
         return hexNumber;
     }
 
-    // Method to convert to add two hexa decimal number
+    /**
+     * Method to add two hexa decimal number
+     * @param num1 First number as string
+     * @param num2 Second number as string
+     * @return result after the addition of two hexadecimal number
+     */
     public String hexAddition(String num1, String num2){
+
+        if (num1 == null || num2 == null) {
+            throw new IllegalArgumentException("Null values not accepted.");
+        } else if (num1.isBlank() || num2.isBlank()) {
+            throw new IllegalArgumentException("blank values are not allowed.");
+        }
+
         int n1=hexToDec(num1);
         int n2=hexToDec(num2);
         int sum=n1+n2;
@@ -56,7 +80,12 @@ public class HexCalc {
         return HexSum;
     }
 
-    // Method to convert to subtract two hexa decimal number
+    /**
+     * Method to subtract two hexa decimal number. Subtracts the first hexadecimal number from the second hexadecimal number
+     * @param num1 First number as string
+     * @param num2 Second number as string
+     * @return result after the subtraction of First hexdecimal number from second hexadecimal number
+     */
     public String hexSubtraction(String num1, String num2){
         int n1=hexToDec(num1);
         int n2=hexToDec(num2);
@@ -67,8 +96,13 @@ public class HexCalc {
         return HexSub;
     }
 
-    // Method to convert to multiply two hexa decimal number
-    public String hexMultiply(String num1, String num2){
+    /**
+     * Method to multiply two hexa decimal number
+     * @param num1 First number as string
+     * @param num2 Second number as string
+     * @return result after multiplying the give hexadecimal numbers
+     */
+    public String hexMultiply(String num1, String num2) {
         int n1=hexToDec(num1);
         int n2=hexToDec(num2);
         int sum=n1*n2;
@@ -76,16 +110,31 @@ public class HexCalc {
         return HexSum;
     }
 
-    // Method to convert to divide two hexa decimal number
+    /**
+     * Method to divide two hexa decimal numbers. Divides first number with second.
+     * @param num1 First number as string
+     * @param num2 Second number as string
+     * @return Result after division as string
+     */
     public String hexDivide(String num1, String num2){
+        if (num2 == "0") {
+            throw new IllegalArgumentException("Division by zero.");
+        }
         int n1=hexToDec(num1);
         int n2=hexToDec(num2);
+
+
         int sum=n1/n2;
         String HexSum=decToHex(sum);
         return HexSum;
     }
 
-    // Method to check two hexa decimal numbers are equal
+    /**
+     * Method to check two hexa decimal numbers are equal or not
+     * @param num1 First number as String
+     * @param num2 Second number as String
+     * @return true if the numbers are equal, false if the numbers are different
+     */
     public Boolean isEqual(String num1, String num2){
         if(num1.equals(num2)){
             return true;
@@ -93,7 +142,12 @@ public class HexCalc {
         return false;
     }
 
-    // Method to check first hexa decimal number is greater than second
+    /**
+     * Method to check if the first hexa decimal number is greater than second
+     * @param num1 First number as String
+     * @param num2 Second number as String
+     * @return true if the first number is greater than the second, false if the first number is smaller than second
+     */
     public Boolean isGreater(String num1, String num2){
         int comparisionResult=num1.compareTo(num2);
         if(comparisionResult>0){
@@ -102,7 +156,12 @@ public class HexCalc {
         return false;
     }
 
-    // Method to check first hexa decimal number is smaller than second
+    /**
+     * Method to check first hexa decimal number is smaller than second
+     * @param num1 First number as String
+     * @param num2 Second number as String
+     * @return true if the first number is smaller than the second, false if the first number is greater than second
+     */
     public Boolean isSmaller(String num1, String num2){
         int comparisionResult=num1.compareTo(num2);
         if(comparisionResult<0){
