@@ -7,8 +7,8 @@ public class Main {
 
         HexCalc hexCalculator = new HexCalc();
 
-        int option = 1;
-        while (option != 0) {
+        int selectedOption = 1;
+        while (selectedOption != 0) {
 
             // Providing menu to the user
             System.out.println();
@@ -25,7 +25,7 @@ public class Main {
             System.out.println("0. To exit from the app");
 
             try {
-                option = Integer.parseInt(scan.nextLine());
+                selectedOption = Integer.parseInt(scan.nextLine());
             } catch (Exception e) {
                 System.out.println("Enter a valid input");
                 continue;
@@ -34,7 +34,7 @@ public class Main {
             // Handling the option from
             try {
 
-                switch (option) {
+                switch (selectedOption) {
 
                     // Handling add two hexa decimal numbers
                     case 1:
@@ -44,10 +44,11 @@ public class Main {
                         System.out.println("Enter the Second number");
                         String numToAdd2 = scan.nextLine();
                         System.out.println(
-                                numToAdd1 + " + " + numToAdd2 + " = " + hexCalculator.hexAddition(numToAdd1, numToAdd2));
+                                numToAdd1 + " + " + numToAdd2 + " = "
+                                        + hexCalculator.hexAddition(numToAdd1, numToAdd2));
                         System.out.println();
                         break;
-    
+
                     // Handling subtract two hexa decimal numbers
                     case 2:
                         System.out.println();
@@ -56,10 +57,11 @@ public class Main {
                         System.out.println("Enter the Second number");
                         String numToSub2 = scan.nextLine();
                         System.out.println(
-                                numToSub1 + " - " + numToSub2 + " = " + hexCalculator.hexSubtraction(numToSub1, numToSub2));
+                                numToSub1 + " - " + numToSub2 + " = "
+                                        + hexCalculator.hexSubtraction(numToSub1, numToSub2));
                         System.out.println();
                         break;
-    
+
                     // Handling multiply two hexa decimal numbers
                     case 3:
                         System.out.println();
@@ -68,10 +70,11 @@ public class Main {
                         System.out.println("Enter the Second number");
                         String numToMul2 = scan.nextLine();
                         System.out.println(
-                                numToMul1 + " * " + numToMul2 + " = " + hexCalculator.hexMultiply(numToMul1, numToMul2));
+                                numToMul1 + " * " + numToMul2 + " = "
+                                        + hexCalculator.hexMultiply(numToMul1, numToMul2));
                         System.out.println();
                         break;
-    
+
                     // Handling Divide two hexa decimal numbers
                     case 4:
                         System.out.println();
@@ -83,7 +86,7 @@ public class Main {
                                 numToDiv1 + " / " + numToDiv2 + " = " + hexCalculator.hexDivide(numToDiv1, numToDiv2));
                         System.out.println();
                         break;
-    
+
                     // Handling conversion of a hexadecimal number to decimal number
                     case 5:
                         System.out.println();
@@ -92,16 +95,17 @@ public class Main {
                         System.out.println("Decimal of " + hexToDecNum + " is " + hexCalculator.hexToDec(hexToDecNum));
                         System.out.println();
                         break;
-    
+
                     // Handling conversion of a decimal number hexadecimal number
                     case 6:
                         System.out.println();
                         System.out.println("Enter the number");
                         int decToHexNum = Integer.parseInt(scan.nextLine());
-                        System.out.println("HexaDecimal of " + decToHexNum + " is " + hexCalculator.decToHex(decToHexNum));
+                        System.out.println(
+                                "HexaDecimal of " + decToHexNum + " is " + hexCalculator.decToHex(decToHexNum));
                         System.out.println();
                         break;
-    
+
                     // Handling check wheather two hexadecimal numbers are equal or not
                     case 7:
                         System.out.println();
@@ -117,8 +121,9 @@ public class Main {
                         }
                         System.out.println();
                         break;
-    
-                    // Handling check: the first hexadecimal number is greater than the second hexadecimal
+
+                    // Handling check: the first hexadecimal number is greater than the second
+                    // hexadecimal
                     case 8:
                         System.out.println();
                         System.out.println("Enter the first number");
@@ -133,8 +138,9 @@ public class Main {
                         }
                         System.out.println();
                         break;
-    
-                    // Handling check: the first hexadecimal number is smaller than the second hexadecimal
+
+                    // Handling check: the first hexadecimal number is smaller than the second
+                    // hexadecimal
                     case 9:
                         System.out.println();
                         System.out.println("Enter the first number");
@@ -149,21 +155,21 @@ public class Main {
                         }
                         System.out.println();
                         break;
-    
+
                     // Handling exit from the app
                     case 0:
                         break;
-    
+
                     default:
                         System.out.println("Please select a valid entry");
                         break;
                 }
-                
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-            
+
         }
-        scan.close(); 
+        scan.close();
     }
 }

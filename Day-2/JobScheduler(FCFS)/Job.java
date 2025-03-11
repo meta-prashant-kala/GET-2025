@@ -1,46 +1,47 @@
 
-
 public class Job {
 
     String name;
-    int ArrivalTime;
-    int BurstTime;
+    int arrivalTime;
+    int burstTime;
 
-
-    // Method for completion time
     private int CompletionTime;
+    
+    // Method for completion time
     public void setCompletionTime(int completionTime) {
         this.CompletionTime = completionTime;
     }
+
     public int getCompletionTime() {
         return this.CompletionTime;
     }
-    
+
+    private int totalTurnAroundTime;
     
     // Method for Total Turn Around time
-    private int TotalTurnAroundTime;
     public void setTotalTurnAroundTime(int totalTurnAroundTime) {
-        TotalTurnAroundTime = totalTurnAroundTime;
+        this.totalTurnAroundTime = totalTurnAroundTime;
     }
+
     public int getTotalTurnAroundTime() {
-        return TotalTurnAroundTime;
+        return totalTurnAroundTime;
     }
-    
+
+    private int waitingTime;
     
     // Method for Waiting time
-    private int WaitingTime;
     public void setWaitingTime(int waitingTime) {
-        WaitingTime = waitingTime;
+        this.waitingTime = waitingTime;
     }
+
     public int getWaitingTime() {
-        return WaitingTime;
+        return waitingTime;
     }
-    
-    
+
     // Job class Constructor
-    Job(String name, int ArrivalTime, int BurstTime){
-        this.ArrivalTime=ArrivalTime;
-        this.name=name;
-        this.BurstTime=BurstTime;
+    Job(String name, int arrivalTime, int burstTime) {
+        this.arrivalTime = arrivalTime;
+        this.name = name;
+        this.burstTime = burstTime;
     }
 }

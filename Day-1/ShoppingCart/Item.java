@@ -1,13 +1,13 @@
-public class Item{
-    int ItemId;
-    String Name;
-    String Description;
-    int Price;
-    
-    public Item(int ItemId, String Name, String Description, int Price){
-        this.ItemId=ItemId;
-        this.Name=Name;
-        this.Description=Description;
-        this.Price=Price;
+public class Item {
+    int itemId;
+    String name;
+    String description;
+    int price;
+
+    public Item(int itemId, String name, String description, int price) {
+        this.itemId = itemId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
     }
 }

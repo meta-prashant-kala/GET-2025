@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner sc1 = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
-        ShoppingCart Cart = new ShoppingCart();
-        HashMap<Integer, Item> store = new HashMap<Integer, Item>();
+        ShoppingCart itemToQuantityMap = new ShoppingCart();
+        HashMap<Integer, Item> itemIDToItemsMap = new HashMap<Integer, Item>();
 
         // Setting the items to be provided to the user
         Item item1 = new Item(1, "item1", "This is item 1", 100);
@@ -14,12 +15,11 @@ public class Main {
         Item item3 = new Item(3, "item3", "This is item 3", 300);
         Item item4 = new Item(4, "item4", "This is item 4", 400);
 
-
         // Storring all the items in the store
-        store.put(1, item1);
-        store.put(2, item2);
-        store.put(3, item3);
-        store.put(4, item4);
+        itemIDToItemsMap.put(1, item1);
+        itemIDToItemsMap.put(2, item2);
+        itemIDToItemsMap.put(3, item3);
+        itemIDToItemsMap.put(4, item4);
 
         // Providing Menu to the user
         int option = 1;
@@ -27,9 +27,9 @@ public class Main {
 
             // Showing the available itmes in the store
             System.out.println("Available Items");
-            for (Item item : store.values()) {
-                System.out.println("Item Name: " + item.Name + " Item Price: " + item.Price + " Item Description "
-                        + item.Description);
+            for (Item item : itemIDToItemsMap.values()) {
+                System.out.println("Item Name: " + item.name + " Item Price: " + item.price + " Item Description "
+                        + item.description);
             }
             System.out.println();
             System.out.println("Please Select an option");
@@ -44,31 +44,34 @@ public class Main {
             // Taking the option from the user
             option = sc1.nextInt();
 
-            // Handling the user input 
+            // Handling the user input
             switch (option) {
 
                 // Handling Display cart option
                 case 1:
                     System.out.println();
-                    Cart.displayCart();
+                    itemToQuantityMap.displayCart();
                     System.out.println();
                     break;
 
                 // Handling add an item to the cart option
                 case 2:
                     System.out.println();
+
                     System.out.print("Please enter the name of the item: ");
                     String itemToAdd = sc2.nextLine();
+
                     System.out.print("Please enter the quantity of the item: ");
                     int itemQuantity = sc1.nextInt();
-                    boolean added = false;
-                    for (Item item : store.values()) {
-                        if (item.Name.equals(itemToAdd)) {
-                            Cart.addToCart(item, itemQuantity);
-                            added = true;
+
+                    boolean isAdded = false;
+                    for (Item item : itemIDToItemsMap.values()) {
+                        if (item.name.equals(itemToAdd)) {
+                            itemToQuantityMap.addToCart(item, itemQuantity);
+                            isAdded = true;
                         }
                     }
-                    if (added) {
+                    if (isAdded) {
                         System.out.println();
                         System.out.println(itemToAdd + " added succesfully");
                         System.out.println();
@@ -86,9 +89,9 @@ public class Main {
                     String itemToRemove = sc2.nextLine();
                     boolean removed = false;
 
-                    for (Item item : store.values()) {
-                        if (item.Name.equals(itemToRemove)) {
-                            Cart.deleteItem(item);
+                    for (Item item : itemIDToItemsMap.values()) {
+                        if (item.name.equals(itemToRemove)) {
+                            itemToQuantityMap.deleteItem(item);
                             removed = true;
                         }
                     }
@@ -111,9 +114,9 @@ public class Main {
                     String itemTofind = sc2.nextLine();
                     boolean displayed = false;
 
-                    for (Item item : store.values()) {
-                        if (item.Name.equals(itemTofind)) {
-                            Cart.displayQty(item);
+                    for (Item item : itemIDToItemsMap.values()) {
+                        if (item.name.equals(itemTofind)) {
+                            itemToQuantityMap.displayQty(item);
                             displayed = true;
                         }
                     }
@@ -123,7 +126,7 @@ public class Main {
                         System.out.print(itemTofind + " quantity updated succesfully");
                     }
                     break;
-                
+
                 // Handling update the quantity of an item option
                 case 5:
                     System.out.println();
@@ -133,9 +136,9 @@ public class Main {
                     int newItemQuantity = sc1.nextInt();
                     boolean available = false;
 
-                    for (Item item : store.values()) {
-                        if (item.Name.equals(itemName)) {
-                            Cart.updateQty(item, newItemQuantity);
+                    for (Item item : itemIDToItemsMap.values()) {
+                        if (item.name.equals(itemName)) {
+                            itemToQuantityMap.updateQty(item, newItemQuantity);
                             available = true;
                         }
                     }
@@ -149,11 +152,11 @@ public class Main {
                         System.out.println();
                     }
                     break;
-                
+
                 // Hanlding total cart bill option
                 case 6:
                     System.out.println();
-                    System.out.println("Total Bill: "+Cart.displayBill());
+                    System.out.println("Total Bill: " + itemToQuantityMap.displayBill());
                     System.out.println();
                     break;
 
@@ -167,4 +170,3 @@ public class Main {
         sc2.close();
     }
 }
-

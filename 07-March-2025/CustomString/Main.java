@@ -3,14 +3,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner intInput = new Scanner(System.in);
-        Scanner stringInput = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         CustomString str = new CustomString();
 
-        int option = 1;
+        int selectedOption = 1;
 
         // Providing menu to the user
-        while (option != 0) {
+        while (selectedOption != 0) {
 
             System.out.println();
             System.out.println(" --------- Please Select an option --------- ");
@@ -21,21 +20,21 @@ public class Main {
             System.out.println("0. To exit from the app");
 
             try {
-                option = intInput.nextInt();
+                selectedOption = Integer.parseInt(scan.nextLine());
             } catch (Exception e) {
                 System.out.println("Please select a valid option");
                 continue;
             }
 
             // Hanlding option selected by the user
-            switch (option) {
+            switch (selectedOption) {
 
                 // Handling if two strings are equal check
                 case 1:
                     System.out.println("Enter the first string");
-                    String cmpString1 = stringInput.nextLine();
+                    String cmpString1 = scan.nextLine();
                     System.out.println("Enter the second string");
-                    String cmpString2 = stringInput.nextLine();
+                    String cmpString2 = scan.nextLine();
                     if (str.cmpStrings(cmpString1, cmpString2)) {
                         System.out.println(cmpString1 + " and " + cmpString2 + " are equal");
                     } else {
@@ -46,7 +45,7 @@ public class Main {
                 // Handling To reverse a string check
                 case 2:
                     System.out.println("Enter the string");
-                    String revString = stringInput.nextLine();
+                    String revString = scan.nextLine();
                     String reversedString = str.rverseString(revString);
                     System.out.println(reversedString);
                     break;
@@ -54,7 +53,7 @@ public class Main {
                 // Handling Switch the case of a string check
                 case 3:
                     System.out.println("Enter the string to switch cases");
-                    String toSwitchCaseStr = stringInput.nextLine();
+                    String toSwitchCaseStr = scan.nextLine();
                     String switchedCaseStr = str.stringCaseViceVersa(toSwitchCaseStr);
                     System.out.println(switchedCaseStr);
                     break;
@@ -62,7 +61,7 @@ public class Main {
                 // Handling Switch the case of a string check
                 case 4:
                     System.out.println("Enter the string to get the largest word");
-                    String largestStrWord = stringInput.nextLine();
+                    String largestStrWord = scan.nextLine();
                     String largestWordInStr = str.largestWord(largestStrWord);
                     System.out.println(largestWordInStr);
                     break;
@@ -78,7 +77,6 @@ public class Main {
             }
         }
 
-        intInput.close();
-        stringInput.close();
+        scan.close();
     }
 }

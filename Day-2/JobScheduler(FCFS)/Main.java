@@ -9,20 +9,19 @@ public class Main {
 
         List<Job> jobList = new ArrayList<Job>();
 
-        Scanner intInput = new Scanner(System.in);
-        Scanner stringInput = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         // Program to take Jobs as input
         System.out.println(" ---------- First Come First Server Schedular ---------- ");
         System.out.println("Enter the number of Jobs");
-        int numOfJobs = intInput.nextInt();
+        int numOfJobs = Integer.parseInt(sc.nextLine());
         for (int i = 0; i < numOfJobs; i++) {
             System.out.println("Enter the name of the Job");
-            String jobName = stringInput.nextLine();
+            String jobName = sc.nextLine();
             System.out.println("Enter the ArrivalTime");
-            int arrivalTime = intInput.nextInt();
+            int arrivalTime = Integer.parseInt(sc.nextLine());
             System.out.println("Enter the BurstTime");
-            int burstTime = intInput.nextInt();
+            int burstTime = Integer.parseInt(sc.nextLine());
             Job job = new Job(jobName, arrivalTime, burstTime);
             jobList.add(job);
         }
@@ -30,25 +29,26 @@ public class Main {
         // Sorting the Jobs as per their arrival time
         Collections.sort(jobList, new Comparator<Job>() {
             public int compare(final Job job1, final Job job2) {
-                return Integer.compare(job1.ArrivalTime, job2.ArrivalTime);
+                return Integer.compare(job1.arrivalTime, job2.arrivalTime);
             }
         });
 
-        // Calculation of Completion time, Total Turn around time and waiting time for every job
+        // Calculation of Completion time, Total Turn around time and waiting time for
+        // every job
         int waitTime = 0;
         for (Job job : jobList) {
-            if (job.ArrivalTime > waitTime) {
-                waitTime = waitTime + job.ArrivalTime;
+            if (job.arrivalTime > waitTime) {
+                waitTime = waitTime + job.arrivalTime;
             }
-            job.setCompletionTime(waitTime + job.BurstTime);
-            job.setTotalTurnAroundTime(job.getCompletionTime() - job.ArrivalTime);
-            job.setWaitingTime(job.getTotalTurnAroundTime() - job.BurstTime);
-            waitTime = waitTime + job.BurstTime;
+            job.setCompletionTime(waitTime + job.burstTime);
+            job.setTotalTurnAroundTime(job.getCompletionTime() - job.arrivalTime);
+            job.setWaitingTime(job.getTotalTurnAroundTime() - job.burstTime);
+            waitTime = waitTime + job.burstTime;
         }
 
         // Displaying Available options to the user
-        int option = 1;
-        while (option != 0) {
+        int selectedOption = 1;
+        while (selectedOption != 0) {
             System.out.println();
             System.out.println(" --------- Please Select an option --------- ");
             System.out.println("1. To get the completion time of each Job");
@@ -57,9 +57,15 @@ public class Main {
             System.out.println("4. To get the Average waiting time of every Job");
             System.out.println("5. To check the Maximum waiting time period for a Job in queue");
             System.out.println("0. To exit from the app");
-            option = intInput.nextInt();
 
-            switch (option) {
+            try {
+                selectedOption = Integer.parseInt(sc.nextLine());
+            } catch (Exception e) {
+                System.out.println("Please enter a valid option");
+                continue;
+            }
+
+            switch (selectedOption) {
 
                 // Handling Completion time for each job
                 case 1:
@@ -123,7 +129,6 @@ public class Main {
 
         }
 
-        intInput.close();
-        stringInput.close();
+        sc.close();
     }
 }

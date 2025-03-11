@@ -3,13 +3,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner intInput = new Scanner(System.in);
-        Scanner stringInput = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         AreaCalculator areaCalculator = new AreaCalculator();
 
-        int option = 1;
-        while (option != 0) {
+        int selectedOption = 1;
+        while (selectedOption != 0) {
 
             // Providing menu to the user
             System.out.println();
@@ -21,21 +20,21 @@ public class Main {
             System.out.println("0. To exit from the app");
 
             try {
-                option = intInput.nextInt();
+                selectedOption = Integer.parseInt(scan.nextLine());
             } catch (Exception e) {
                 System.out.println("Plese select a valid option");
             }
 
             // Hanlding option selected by the user
-            switch (option) {
+            switch (selectedOption) {
 
                 // Calculate area of triangle
                 case 1:
                     System.out.println();
                     System.out.println("Enter the height of the triangle");
-                    double triHeight = intInput.nextInt();
+                    double triHeight = Double.parseDouble(scan.nextLine());
                     System.out.println("Enter the base of the triangle");
-                    double triBase = intInput.nextInt();
+                    double triBase = Double.parseDouble(scan.nextLine());
                     System.out.println("Area of triangle: " + areaCalculator.areaOfTriangle(triBase, triHeight));
                     System.out.println();
                     break;
@@ -44,9 +43,9 @@ public class Main {
                 case 2:
                     System.out.println();
                     System.out.println("Enter the height of the rectangle");
-                    double recHeight = intInput.nextInt();
+                    double recHeight = Double.parseDouble(scan.nextLine());
                     System.out.println("Enter the width of the rectangle");
-                    double recWidth = intInput.nextInt();
+                    double recWidth = Double.parseDouble(scan.nextLine());
                     System.out.println("Area of rectangle: " + areaCalculator.areaOfRectangle(recHeight, recWidth));
                     System.out.println();
                     break;
@@ -55,7 +54,7 @@ public class Main {
                 case 3:
                     System.out.println();
                     System.out.println("Enter the width of the Square");
-                    double sqrWidth = intInput.nextInt();
+                    double sqrWidth = Double.parseDouble(scan.nextLine());
                     System.out.println("Area of square: " + areaCalculator.areaOfSquare(sqrWidth));
                     System.out.println();
                     break;
@@ -64,7 +63,7 @@ public class Main {
                 case 4:
                     System.out.println();
                     System.out.println("Enter the readius of circle");
-                    double cirRadius = intInput.nextInt();
+                    double cirRadius = Double.parseDouble(scan.nextLine());
                     System.out.println("Area of square: " + areaCalculator.areaOfCircle(cirRadius));
                     System.out.println();
                     break;
@@ -74,7 +73,6 @@ public class Main {
             }
         }
 
-        intInput.close();
-        stringInput.close();
+        scan.close();
     }
 }
