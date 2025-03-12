@@ -10,13 +10,17 @@ public class Main {
         int num2 = 0;
 
         // Taking the numerbs as input from the user
-        try {
-            System.out.println("Enter the first number");
-            num1 = Integer.parseInt(scanInput.nextLine());
-            System.out.println("Enter the second number");
-            num2 = Integer.parseInt(scanInput.nextLine());
-        } catch (Exception e) {
-            System.out.println("Please enter valid integer");
+        while (true) {
+            try {
+                System.out.println("Enter the first number");
+                num1 = Integer.parseInt(scanInput.nextLine());
+                System.out.println("Enter the second number");
+                num2 = Integer.parseInt(scanInput.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Please enter valid integers");
+                continue;
+            }
         }
 
         int selectedOption = 1;

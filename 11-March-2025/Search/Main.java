@@ -55,6 +55,7 @@ public class Main {
 
                     } catch (Exception e) {
                         System.out.println("Please enter a valid array size");
+                        continue;
                     }
 
                     System.out.println("Enter the array elements");
@@ -65,7 +66,7 @@ public class Main {
                             arrayList.add(Integer.parseInt(scanInput.nextLine()));
                         }
                     } catch (Exception e) {
-                        System.out.println("Please enter a valid optoin");
+                        System.out.println("Please enter valid integers");
                         continue;
                     }
 
@@ -77,6 +78,7 @@ public class Main {
                         keyElement = Integer.parseInt(scanInput.nextLine());
                     } catch (Exception e) {
                         System.out.println("Please enter a valid Integer");
+                        continue;
                     }
 
                     indexOfElementFound = searchObj.linearSearch(arrayList, 0, keyElement);
@@ -111,6 +113,7 @@ public class Main {
                         }
                     } catch (Exception e) {
                         System.out.println("Please enter a valid array size");
+                        continue;
                     }
 
                     System.out.println();
@@ -122,7 +125,7 @@ public class Main {
                             arrayList.add(Integer.parseInt(scanInput.nextLine()));
                         }
                     } catch (Exception e) {
-                        System.out.println("Please enter a valid Integer");
+                        System.out.println("Please enter a valid Integers");
                         continue;
                     }
 
@@ -134,6 +137,7 @@ public class Main {
                         keyElement = Integer.parseInt(scanInput.nextLine());
                     } catch (Exception e) {
                         System.out.println("Please enter a valid Integer");
+                        continue;
                     }
 
                     indexOfElementFound = searchObj.binarySearch(arrayList, 0, arraySize - 1, keyElement);
