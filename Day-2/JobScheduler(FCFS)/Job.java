@@ -5,8 +5,15 @@ public class Job {
     int arrivalTime;
     int burstTime;
 
+    // Job class Constructor
+    Job(String name, int arrivalTime, int burstTime) {
+        this.arrivalTime = arrivalTime;
+        this.name = name;
+        this.burstTime = burstTime;
+    }
+
     int CompletionTime;
-    
+
     // Method for completion time
     public void setCompletionTime(int completionTime) {
         this.CompletionTime = completionTime;
@@ -17,7 +24,7 @@ public class Job {
     }
 
     int totalTurnAroundTime;
-    
+
     // Method for Total Turn Around time
     public void setTotalTurnAroundTime(int totalTurnAroundTime) {
         this.totalTurnAroundTime = totalTurnAroundTime;
@@ -28,7 +35,7 @@ public class Job {
     }
 
     int waitingTime;
-    
+
     // Method for Waiting time
     public void setWaitingTime(int waitingTime) {
         this.waitingTime = waitingTime;
@@ -38,10 +45,4 @@ public class Job {
         return waitingTime;
     }
 
-    // Job class Constructor
-    Job(String name, int arrivalTime, int burstTime) {
-        this.arrivalTime = arrivalTime;
-        this.name = name;
-        this.burstTime = burstTime;
-    }
 }

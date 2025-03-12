@@ -5,7 +5,7 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        HexCalc hexCalculator = new HexCalc();
+        HexCalc hexCalculatorObj = new HexCalc();
 
         int selectedOption = 1;
         while (selectedOption != 0) {
@@ -39,13 +39,17 @@ public class Main {
                     // Handling add two hexa decimal numbers
                     case 1:
                         System.out.println();
+
                         System.out.println("Enter the first number");
                         String numToAdd1 = scan.nextLine();
+
                         System.out.println("Enter the Second number");
                         String numToAdd2 = scan.nextLine();
+
                         System.out.println(
                                 numToAdd1 + " + " + numToAdd2 + " = "
-                                        + hexCalculator.hexAddition(numToAdd1, numToAdd2));
+                                        + hexCalculatorObj.hexAddition(numToAdd1, numToAdd2));
+
                         System.out.println();
                         break;
 
@@ -58,7 +62,7 @@ public class Main {
                         String numToSub2 = scan.nextLine();
                         System.out.println(
                                 numToSub1 + " - " + numToSub2 + " = "
-                                        + hexCalculator.hexSubtraction(numToSub1, numToSub2));
+                                        + hexCalculatorObj.hexSubtraction(numToSub1, numToSub2));
                         System.out.println();
                         break;
 
@@ -71,7 +75,7 @@ public class Main {
                         String numToMul2 = scan.nextLine();
                         System.out.println(
                                 numToMul1 + " * " + numToMul2 + " = "
-                                        + hexCalculator.hexMultiply(numToMul1, numToMul2));
+                                        + hexCalculatorObj.hexMultiply(numToMul1, numToMul2));
                         System.out.println();
                         break;
 
@@ -83,7 +87,8 @@ public class Main {
                         System.out.println("Enter the Second number");
                         String numToDiv2 = scan.nextLine();
                         System.out.println(
-                                numToDiv1 + " / " + numToDiv2 + " = " + hexCalculator.hexDivide(numToDiv1, numToDiv2));
+                                numToDiv1 + " / " + numToDiv2 + " = "
+                                        + hexCalculatorObj.hexDivide(numToDiv1, numToDiv2));
                         System.out.println();
                         break;
 
@@ -92,7 +97,8 @@ public class Main {
                         System.out.println();
                         System.out.println("Enter the number");
                         String hexToDecNum = scan.nextLine();
-                        System.out.println("Decimal of " + hexToDecNum + " is " + hexCalculator.hexToDec(hexToDecNum));
+                        System.out
+                                .println("Decimal of " + hexToDecNum + " is " + hexCalculatorObj.hexToDec(hexToDecNum));
                         System.out.println();
                         break;
 
@@ -102,7 +108,7 @@ public class Main {
                         System.out.println("Enter the number");
                         int decToHexNum = Integer.parseInt(scan.nextLine());
                         System.out.println(
-                                "HexaDecimal of " + decToHexNum + " is " + hexCalculator.decToHex(decToHexNum));
+                                "HexaDecimal of " + decToHexNum + " is " + hexCalculatorObj.decToHex(decToHexNum));
                         System.out.println();
                         break;
 
@@ -113,7 +119,7 @@ public class Main {
                         String equalCheckNum1 = scan.nextLine();
                         System.out.println("Enter the Second number");
                         String equalCheckNum2 = scan.nextLine();
-                        Boolean isEqual = hexCalculator.isEqual(equalCheckNum1, equalCheckNum2);
+                        Boolean isEqual = hexCalculatorObj.isEqual(equalCheckNum1, equalCheckNum2);
                         if (isEqual) {
                             System.out.println(equalCheckNum1 + " and " + equalCheckNum2 + " are equal");
                         } else {
@@ -130,7 +136,7 @@ public class Main {
                         String greaterCheckNum1 = scan.nextLine();
                         System.out.println("Enter the Second number");
                         String greaterCheckNum2 = scan.nextLine();
-                        Boolean isGreater = hexCalculator.isGreater(greaterCheckNum1, greaterCheckNum2);
+                        Boolean isGreater = hexCalculatorObj.isGreater(greaterCheckNum1, greaterCheckNum2);
                         if (isGreater) {
                             System.out.println(greaterCheckNum1 + " is greater than " + greaterCheckNum2);
                         } else {
@@ -147,7 +153,7 @@ public class Main {
                         String smallerCheckNum1 = scan.nextLine();
                         System.out.println("Enter the Second number");
                         String smallerCheckNum2 = scan.nextLine();
-                        Boolean isSmaller = hexCalculator.isSmaller(smallerCheckNum1, smallerCheckNum2);
+                        Boolean isSmaller = hexCalculatorObj.isSmaller(smallerCheckNum1, smallerCheckNum2);
                         if (isSmaller) {
                             System.out.println(smallerCheckNum1 + " is smaller than " + smallerCheckNum2);
                         } else {
