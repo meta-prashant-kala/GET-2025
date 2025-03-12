@@ -8,8 +8,13 @@ public class ShoppingCart {
         if (itemToQuantityMap.isEmpty()) {
             System.out.println("Cart is empty");
         }
+        System.out.println();
+        System.out.println("|   Item Name   |   Item Description    |   Item Price  |   Item Quantity   |");
+        System.out.println("-----------------------------------------------------------------------------");
         for (Item item : itemToQuantityMap.keySet()) {
-            System.out.println(item.name + " : " + itemToQuantityMap.get(item));
+            // System.out.println(item.name + " : " + itemToQuantityMap.get(item));
+            System.out.println("|   " +item.name+"       |   " + item.description + "      |   "
+                        + item.price + "         |         "+itemToQuantityMap.get(item) +"         |");
         }
     }
 
@@ -40,10 +45,14 @@ public class ShoppingCart {
     // Method to display the total bill of the cart
     public Double displayBill() {
         Double totalBill = 0.0;
+        System.out.println();
+        System.out.println(" ----------------------------- Total Cart value ----------------------------- ");
+        System.out.println();
         displayCart();
         for (Item item : itemToQuantityMap.keySet()) {
             totalBill += (item.price) * itemToQuantityMap.get(item);
         }
+        System.out.println();
         return totalBill;
     }
 }

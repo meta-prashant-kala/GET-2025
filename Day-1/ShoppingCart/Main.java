@@ -6,7 +6,7 @@ public class Main {
 
         Scanner sc1 = new Scanner(System.in);
         Scanner sc2 = new Scanner(System.in);
-        ShoppingCart itemToQuantityMap = new ShoppingCart();
+        ShoppingCart shoppingCartObj = new ShoppingCart();
         HashMap<Integer, Item> itemIDToItemsMap = new HashMap<Integer, Item>();
 
         // Setting the items to be provided to the user
@@ -21,15 +21,20 @@ public class Main {
         itemIDToItemsMap.put(3, item3);
         itemIDToItemsMap.put(4, item4);
 
+
         // Providing Menu to the user
         int option = 1;
         while (option != 7) {
 
             // Showing the available itmes in the store
-            System.out.println("Available Items");
+            System.out.println();
+            System.out.println(" ------------------- Available Items ------------------- ");
+            System.out.println();
+            System.out.println("|   Item Name   |   Item Description    |   Item Price  |   ");
+            System.out.println("---------------------------------------------------------");
             for (Item item : itemIDToItemsMap.values()) {
-                System.out.println("Item Name: " + item.name + " Item Price: " + item.price + " Item Description "
-                        + item.description);
+                System.out.println("|   " +item.name+"       |   " + item.description + "      |   "
+                        + item.price + "         |   ");
             }
             System.out.println();
             System.out.println("Please Select an option");
@@ -41,6 +46,7 @@ public class Main {
             System.out.println("6. To see the total bill of the cart");
             System.out.println("7. To exit from the app");
 
+
             // Taking the option from the user
             option = sc1.nextInt();
 
@@ -50,7 +56,7 @@ public class Main {
                 // Handling Display cart option
                 case 1:
                     System.out.println();
-                    itemToQuantityMap.displayCart();
+                    shoppingCartObj.displayCart();
                     System.out.println();
                     break;
 
@@ -67,7 +73,7 @@ public class Main {
                     boolean isAdded = false;
                     for (Item item : itemIDToItemsMap.values()) {
                         if (item.name.equals(itemToAdd)) {
-                            itemToQuantityMap.addToCart(item, itemQuantity);
+                            shoppingCartObj.addToCart(item, itemQuantity);
                             isAdded = true;
                         }
                     }
@@ -91,7 +97,7 @@ public class Main {
 
                     for (Item item : itemIDToItemsMap.values()) {
                         if (item.name.equals(itemToRemove)) {
-                            itemToQuantityMap.deleteItem(item);
+                            shoppingCartObj.deleteItem(item);
                             removed = true;
                         }
                     }
@@ -116,7 +122,7 @@ public class Main {
 
                     for (Item item : itemIDToItemsMap.values()) {
                         if (item.name.equals(itemTofind)) {
-                            itemToQuantityMap.displayQty(item);
+                            shoppingCartObj.displayQty(item);
                             displayed = true;
                         }
                     }
@@ -138,7 +144,7 @@ public class Main {
 
                     for (Item item : itemIDToItemsMap.values()) {
                         if (item.name.equals(itemName)) {
-                            itemToQuantityMap.updateQty(item, newItemQuantity);
+                            shoppingCartObj.updateQty(item, newItemQuantity);
                             available = true;
                         }
                     }
@@ -156,7 +162,7 @@ public class Main {
                 // Hanlding total cart bill option
                 case 6:
                     System.out.println();
-                    System.out.println("Total Bill: " + itemToQuantityMap.displayBill());
+                    System.out.println("Total Bill: " + shoppingCartObj.displayBill());
                     System.out.println();
                     break;
 
