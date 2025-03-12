@@ -21,7 +21,6 @@ public class Main {
         itemIDToItemsMap.put(3, item3);
         itemIDToItemsMap.put(4, item4);
 
-
         // Providing Menu to the user
         int option = 1;
         while (option != 7) {
@@ -33,7 +32,7 @@ public class Main {
             System.out.println("|   Item Name   |   Item Description    |   Item Price  |   ");
             System.out.println("---------------------------------------------------------");
             for (Item item : itemIDToItemsMap.values()) {
-                System.out.println("|   " +item.name+"       |   " + item.description + "      |   "
+                System.out.println("|   " + item.name + "       |   " + item.description + "      |   "
                         + item.price + "         |   ");
             }
             System.out.println();
@@ -45,7 +44,6 @@ public class Main {
             System.out.println("5. To update the quantity of an item");
             System.out.println("6. To see the total bill of the cart");
             System.out.println("7. To exit from the app");
-
 
             // Taking the option from the user
             option = sc1.nextInt();

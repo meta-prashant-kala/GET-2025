@@ -13,8 +13,8 @@ public class ShoppingCart {
         System.out.println("-----------------------------------------------------------------------------");
         for (Item item : itemToQuantityMap.keySet()) {
             // System.out.println(item.name + " : " + itemToQuantityMap.get(item));
-            System.out.println("|   " +item.name+"       |   " + item.description + "      |   "
-                        + item.price + "         |         "+itemToQuantityMap.get(item) +"         |");
+            System.out.println("|   " + item.name + "       |   " + item.description + "      |   "
+                    + item.price + "         |         " + itemToQuantityMap.get(item) + "         |");
         }
     }
 
