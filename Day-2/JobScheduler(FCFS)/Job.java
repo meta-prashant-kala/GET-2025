@@ -5,7 +5,7 @@ public class Job {
     int arrivalTime;
     int burstTime;
 
-    private int CompletionTime;
+    int CompletionTime;
     
     // Method for completion time
     public void setCompletionTime(int completionTime) {
@@ -16,7 +16,7 @@ public class Job {
         return this.CompletionTime;
     }
 
-    private int totalTurnAroundTime;
+    int totalTurnAroundTime;
     
     // Method for Total Turn Around time
     public void setTotalTurnAroundTime(int totalTurnAroundTime) {
@@ -27,7 +27,7 @@ public class Job {
         return totalTurnAroundTime;
     }
 
-    private int waitingTime;
+    int waitingTime;
     
     // Method for Waiting time
     public void setWaitingTime(int waitingTime) {
