@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanInput = new Scanner(System.in);
         int setSize;
         int secondSetSize;
         int[] secondIntSetArr;
         IntSet secondIntSetObj;
 
+        // Taking size of the set as input
         while (true) {
             try {
                 System.out.println("Enter the number of elements to define the set");
@@ -26,9 +28,11 @@ public class Main {
             }
         }
 
+        // Creating an array of the given set size
         int[] setImplementedArray = new int[setSize];
         int iterator = 0;
 
+        // Taking elements of the set as input
         System.out.println("Enter the elements of the set");
         while (iterator < setSize) {
             try {
@@ -40,6 +44,7 @@ public class Main {
             }
         }
 
+        // Creating an immutable set of the inputed numbers using IntSet object
         IntSet customIntSetObj = new IntSet(setImplementedArray);
 
         int selectedOption = 1;
@@ -69,8 +74,9 @@ public class Main {
 
             System.out.println();
             switch (selectedOption) {
-                case 1:
 
+                // Handling if a number is member of the set
+                case 1:
                     try {
                         System.out.println("Enter the number");
                         int x = Integer.parseInt(scanInput.nextLine());
@@ -90,10 +96,12 @@ public class Main {
 
                     break;
 
+                // Handling get the size of the set
                 case 2:
                     System.out.println("Size of the set: " + customIntSetObj.size());
                     break;
 
+                // Handling if a set is subset
                 case 3:
                     try {
                         System.out.println("Enter the size of the subset:");
@@ -113,6 +121,7 @@ public class Main {
                     }
                     break;
 
+                // Handling get the complement of existing set elements
                 case 4:
                     IntSet complementIntSetObj = customIntSetObj.getComplement();
                     System.out.print("Original set : ");
@@ -123,6 +132,7 @@ public class Main {
                     System.out.println();
                     break;
 
+                // Handling get the union of two sets
                 case 5:
                     System.out.println("Enter the size of the second set ");
                     secondSetSize = Integer.parseInt(scanInput.nextLine());
@@ -138,6 +148,7 @@ public class Main {
                     unionIntSetObj.printIntSet();
                     break;
 
+                // Handling get the Intersection of two sets
                 case 6:
                     System.out.println("Enter the size of the second set ");
                     secondSetSize = Integer.parseInt(scanInput.nextLine());
@@ -153,6 +164,7 @@ public class Main {
                     intersectionIntSetObj.printIntSet();
                     break;
 
+                // Handling get the Difference of two sets
                 case 7:
                     System.out.println("Enter the size of the second set ");
                     secondSetSize = Integer.parseInt(scanInput.nextLine());
@@ -168,6 +180,7 @@ public class Main {
                     differenceIntSetObj.printIntSet();
                     break;
 
+                // Handling get the Complement of two sets
                 case 8:
                     System.out.println("Enter the size of the second set ");
                     secondSetSize = Integer.parseInt(scanInput.nextLine());
@@ -183,7 +196,12 @@ public class Main {
                     complementedIntSetObj.printIntSet();
                     break;
 
+                // Handling exit from the app
+                case 0:
+                    System.exit(0);
+
                 default:
+                    System.out.println("Please select a valid option");
                     break;
             }
 

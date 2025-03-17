@@ -1,50 +1,101 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // ArrayList<Poly> poly1ArrayList = new ArrayList<Poly>();
-        // ArrayList<Poly> poly2ArrayList = new ArrayList<Poly>();
+
+        Scanner scanInput = new Scanner(System.in);
 
         int coefficient;
         float x;
-        Scanner scanInput = new Scanner(System.in);
+        int firstPolyHighDeg;
+        int secondPolyHighDeg;
+        int i;
 
+        // Taking highest degree of first polynomial as input
         System.out.println("Enter the highest degree of first polynomial");
-        int firstPolyHighDeg = Integer.parseInt(scanInput.nextLine());
+        while (true) {
+            try {
+                firstPolyHighDeg = Integer.parseInt(scanInput.nextLine());
+                if (firstPolyHighDeg < 0) {
+                    System.out.println("Degree cannot be negetive");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid integer");
+                continue;
+            }
+        }
+
+        // Createing an array of Poly objects that will store a single complete
+        // polynomial
         Poly[] poly1Array = new Poly[firstPolyHighDeg + 1];
 
+        // Taking coeficient as input and creating the Poly objects of each coeficient
         System.out.println("Write Polynomial From hightest polynomial degree to lowest");
-
-        for (int i = 0; i <= firstPolyHighDeg; i++) {
+        i = 0;
+        while (i <= firstPolyHighDeg) {
             System.out.println("Enter the coeficient of degree:" + (firstPolyHighDeg - i));
-            coefficient = Integer.parseInt(scanInput.nextLine());
+
+            try {
+                coefficient = Integer.parseInt(scanInput.nextLine());
+
+            } catch (Exception e) {
+                System.out.println("Please enter a valid Integer");
+                continue;
+            }
 
             Poly polyObj = new Poly(coefficient, firstPolyHighDeg - i);
 
             poly1Array[i] = polyObj;
+
+            i++;
         }
 
+        // Creating a Polynomial object from array of Poly
         Polynomial polynomial1Obj = new Polynomial(poly1Array);
-        polynomial1Obj.highestDegree = firstPolyHighDeg;
 
+        // Taking highest degree of second polynomial as input
         System.out.println("Enter the highest degree of Second polynomial");
-        int secondPolyHighDeg = Integer.parseInt(scanInput.nextLine());
+        while (true) {
+            try {
+                secondPolyHighDeg = Integer.parseInt(scanInput.nextLine());
+                if (secondPolyHighDeg < 0) {
+                    System.out.println("Degree cannot be negetive");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter a valid integer");
+            }
+        }
+
+        // Createing an array of Poly objects that will store a single complete
+        // polynomial
         Poly[] poly2Array = new Poly[secondPolyHighDeg + 1];
 
         System.out.println("Write Polynomial From hightest polynomial degree to lowest");
 
-        for (int i = 0; i <= secondPolyHighDeg; i++) {
+        // Taking coeficient as input and creating the Poly objects of each coeficient
+        while (i <= secondPolyHighDeg) {
             System.out.println("Enter the coeficient of degree:" + (secondPolyHighDeg - i));
-            coefficient = Integer.parseInt(scanInput.nextLine());
+            try {
+                coefficient = Integer.parseInt(scanInput.nextLine());
+
+            } catch (Exception e) {
+                System.out.println("Please enter a valid Integer");
+                continue;
+            }
 
             Poly polyObj = new Poly(coefficient, secondPolyHighDeg - i);
             poly2Array[i] = polyObj;
+
+            i++;
         }
 
+        // Creating a Polynomial object from array of Poly
         Polynomial polynomial2Obj = new Polynomial(poly2Array);
-        polynomial2Obj.highestDegree = secondPolyHighDeg;
 
         int selectedOption = 1;
 
@@ -70,6 +121,8 @@ public class Main {
             }
 
             switch (selectedOption) {
+
+                // Handling evaluate 1st polynomial
                 case 1:
                     System.out.println("Enter the value of x: ");
                     x = Integer.parseInt(scanInput.nextLine());
@@ -79,6 +132,7 @@ public class Main {
                     System.out.println(polynomial1Obj.evaluate(x));
                     break;
 
+                // Handling evaluate 2st polynomial
                 case 2:
                     System.out.println("Enter the value of x: ");
                     x = Integer.parseInt(scanInput.nextLine());
@@ -87,19 +141,24 @@ public class Main {
                     System.out.print(" = ");
                     System.out.println(polynomial2Obj.evaluate(x));
                     break;
+
+                // Hanling get degree of a 1st polynomial
                 case 3:
                     System.out.println("Degree of ");
                     polynomial1Obj.displayPolynomial();
                     System.out.print(" = ");
-                    System.out.println(polynomial1Obj.highestDegree);
+                    System.out.println(polynomial1Obj.degree());
                     break;
+
+                // Hanling get degree of a 2st polynomial
                 case 4:
                     System.out.println("Degree of ");
                     polynomial2Obj.displayPolynomial();
                     System.out.print(" = ");
-                    System.out.println(polynomial2Obj.highestDegree);
+                    System.out.println(polynomial2Obj.degree());
                     break;
 
+                // Handling adding two polynomials
                 case 5:
                     polynomial1Obj.displayPolynomial();
                     System.out.print("    ");
@@ -108,7 +167,23 @@ public class Main {
                     Polynomial addedPolynomial = polynomial1Obj.add(polynomial2Obj);
                     addedPolynomial.displayPolynomial();
                     break;
+
+                // Handling multiplying two polynomials
+                case 6:
+                    polynomial1Obj.displayPolynomial();
+                    System.out.print("  *  ");
+                    polynomial2Obj.displayPolynomial();
+                    System.out.print(" = ");
+                    Polynomial multipliedPolynomial = polynomial1Obj.multiply(polynomial2Obj);
+                    multipliedPolynomial.displayPolynomial();
+                    break;
+
+                // Handling exit from the app
+                case 0:
+                    System.exit(0);
+
                 default:
+                    System.out.println("Please select a valid option");
                     break;
             }
 
