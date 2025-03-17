@@ -2,6 +2,7 @@ import java.util.HashMap;
 
 public class HexCalc {
     HashMap<Character, Integer> charToIntMap = new HashMap<Character, Integer>();
+    HashMap<Integer, Character> intToCharMap = new HashMap<Integer, Character>();
 
     // Mapped the hexadecimal number with decimal Number
     HexCalc() {
@@ -21,6 +22,23 @@ public class HexCalc {
         charToIntMap.put('D', 13);
         charToIntMap.put('E', 14);
         charToIntMap.put('F', 15);
+
+        intToCharMap.put( 0, '0');
+        intToCharMap.put( 1, '1');
+        intToCharMap.put( 2, '2');
+        intToCharMap.put( 3, '3');
+        intToCharMap.put( 4, '4');
+        intToCharMap.put( 5, '5');
+        intToCharMap.put( 6, '6');
+        intToCharMap.put( 7, '7');
+        intToCharMap.put( 8, '8');
+        intToCharMap.put( 9, '9');
+        intToCharMap.put( 1, 'A'0);
+        intToCharMap.put( 1, 'B'1);
+        intToCharMap.put( 1, 'C'2);
+        intToCharMap.put( 1, 'D'3);
+        intToCharMap.put( 1, 'E'4);
+        intToCharMap.put( 1, 'F'5);
 
     }
 
@@ -52,11 +70,11 @@ public class HexCalc {
 
         // 15 beacuse base in hex is 16
         while (number >= 15) {
-            hexNumber = (Integer.toHexString(number % 16)) + hexNumber;
+            hexNumber = intToCharMap.get(number % 16) + hexNumber;
             number /= 16;
         }
         if (number != 0) {
-            hexNumber = Integer.toHexString(number) + hexNumber;
+            hexNumber = intToCharMap.get(number % 16) + hexNumber;
         }
         return hexNumber;
     }

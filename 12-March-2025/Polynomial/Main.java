@@ -68,6 +68,7 @@ public class Main {
                 break;
             } catch (Exception e) {
                 System.out.println("Enter a valid integer");
+                continue;
             }
         }
 
@@ -76,7 +77,7 @@ public class Main {
         Poly[] poly2Array = new Poly[secondPolyHighDeg + 1];
 
         System.out.println("Write Polynomial From hightest polynomial degree to lowest");
-
+        i = 0;
         // Taking coeficient as input and creating the Poly objects of each coeficient
         while (i <= secondPolyHighDeg) {
             System.out.println("Enter the coeficient of degree:" + (secondPolyHighDeg - i));

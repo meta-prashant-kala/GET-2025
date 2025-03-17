@@ -13,6 +13,9 @@ public class Polynomial {
     Polynomial(Poly[] polyArray) {
         int polynomialArraySize = 0;
         for (Poly polyObj : polyArray) {
+            if (polyObj == null) {
+                continue;
+            }
             if (polyObj.coefficient != 0) {
                 polynomialArraySize++;
                 this.highestDegree = Math.max(polyObj.degree, this.highestDegree);
@@ -21,6 +24,9 @@ public class Polynomial {
         polynomialArray = new Poly[polynomialArraySize];
         int polynomialArrayIterator = 0;
         for (Poly polyObj : polyArray) {
+            if (polyObj == null) {
+                continue;
+            }
             if (polyObj.coefficient != 0) {
                 polynomialArray[polynomialArrayIterator] = polyObj;
                 polynomialArrayIterator++;
@@ -132,7 +138,6 @@ public class Polynomial {
         Polynomial multPolynomialObj = new Polynomial(multPolyArray);
         return multPolynomialObj;
     }
-
 
     /**
      * Overriding Equals method to compare the objects
