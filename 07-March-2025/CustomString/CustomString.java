@@ -42,7 +42,7 @@ public class CustomString {
      * @param str should be String type
      * @return returns a string with lowercase char to upper and uppercase to lower
      */
-    public String stringCaseViceVersa(String str) {
+    public String stringCaseSwitch(String str) {
         String switchedCaseStr = "";
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) >= 65 && str.charAt(i) <= 90) {
@@ -68,7 +68,7 @@ public class CustomString {
         String[] wordArry = str.split("\\b");
         for (String word : wordArry) {
             if (maxLen <= word.length()) {
-                maxLen = Math.max(maxLen, word.length());
+                maxLen = max(maxLen, word.length());
                 largestWord = word;
             }
         }

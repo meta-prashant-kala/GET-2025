@@ -54,7 +54,7 @@ public class Main {
                 case 3:
                     System.out.println("Enter the string to switch cases");
                     String toSwitchCaseStr = scan.nextLine();
-                    String switchedCaseStr = str.stringCaseViceVersa(toSwitchCaseStr);
+                    String switchedCaseStr = str.stringCaseSwitch(toSwitchCaseStr);
                     System.out.println(switchedCaseStr);
                     break;
 

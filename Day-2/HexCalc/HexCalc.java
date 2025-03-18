@@ -53,7 +53,7 @@ public class HexCalc {
         for (int i = number.length() - 1; i >= 0; i--) {
 
             // Gets decimal value from hex hashmap
-            int n = charToIntMap.get(number.charAt(i)) * (int) Math.pow(16, (number.length() - 1) - i);
+            int n = charToIntMap.get(number.charAt(i)) * Util.pow(16, (number.length() - 1) - i);
             num += n;
         }
         return num;
