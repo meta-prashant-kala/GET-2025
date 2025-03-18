@@ -48,7 +48,7 @@ public class Main {
 
                         System.out.println(
                                 numToAdd1 + " + " + numToAdd2 + " = "
-                                        + hexCalculatorObj.hexAddition(numToAdd1, numToAdd2));
+                                        + hexCalculatorObj.addition(numToAdd1, numToAdd2));
 
                         System.out.println();
                         break;
@@ -62,7 +62,7 @@ public class Main {
                         String numToSub2 = scan.nextLine();
                         System.out.println(
                                 numToSub1 + " - " + numToSub2 + " = "
-                                        + hexCalculatorObj.hexSubtraction(numToSub1, numToSub2));
+                                        + hexCalculatorObj.subtract(numToSub1, numToSub2));
                         System.out.println();
                         break;
 
@@ -75,7 +75,7 @@ public class Main {
                         String numToMul2 = scan.nextLine();
                         System.out.println(
                                 numToMul1 + " * " + numToMul2 + " = "
-                                        + hexCalculatorObj.hexMultiply(numToMul1, numToMul2));
+                                        + hexCalculatorObj.multiply(numToMul1, numToMul2));
                         System.out.println();
                         break;
 
@@ -88,7 +88,7 @@ public class Main {
                         String numToDiv2 = scan.nextLine();
                         System.out.println(
                                 numToDiv1 + " / " + numToDiv2 + " = "
-                                        + hexCalculatorObj.hexDivide(numToDiv1, numToDiv2));
+                                        + hexCalculatorObj.divide(numToDiv1, numToDiv2));
                         System.out.println();
                         break;
 

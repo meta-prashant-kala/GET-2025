@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        List<Job> jobObjsList = new ArrayList<Job>();
+        // List<Job> jobObjsList = new ArrayList<Job>();
+        Job[] jobObjsArr;
         Scanner sc = new Scanner(System.in);
 
         int numOfJobs;
@@ -30,21 +27,36 @@ public class Main {
             }
         }
 
+        // Creating Job array of number of job size
+        jobObjsArr = new Job[numOfJobs];
+        int jobObjsArrIterator = 0;
+
         // Taking job name, job's arrival time and burst time as input
+
         while (numOfJobs > 0) {
             try {
-                System.out.println("Enter the name of the Job");
-                String jobName = sc.nextLine();
+                String jobName = "Job- " + (jobObjsArrIterator + 1);
 
-                System.out.println("Enter the ArrivalTime");
-                int arrivalTime = Integer.parseInt(sc.nextLine());
+                // Taking whole row as input
+                System.out.println("Enter the Arrival time and BurstTime of Job- " + (jobObjsArrIterator + 1));
 
-                System.out.println("Enter the BurstTime");
-                int burstTime = Integer.parseInt(sc.nextLine());
+                String rowElements = sc.nextLine();
+
+                // Extracting digits of a row from the the string input
+                String[] rowDigits = rowElements.split(" ");
+
+                if (rowDigits.length != 2) {
+                    System.out.println("Do not add redundant digits");
+                    continue;
+                }
+
+                int arrivalTime = Integer.parseInt(rowDigits[0]);
+                int burstTime = Integer.parseInt(rowDigits[1]);
 
                 Job jobObj = new Job(jobName, arrivalTime, burstTime);
-                jobObjsList.add(jobObj);
+                jobObjsArr[jobObjsArrIterator] = jobObj;
 
+                jobObjsArrIterator++;
                 numOfJobs--;
             } catch (Exception e) {
                 System.out.println("Please make valid entries");
@@ -53,16 +65,12 @@ public class Main {
         }
 
         // Sorting the Jobs as per their arrival time
-        Collections.sort(jobObjsList, new Comparator<Job>() {
-            public int compare(final Job job1, final Job job2) {
-                return Integer.compare(job1.arrivalTime, job2.arrivalTime);
-            }
-        });
+        jobObjsArr = Util.sort(jobObjsArr);
 
         // Calculation of Completion time, Total Turn around time and waiting time for
         // every job
         int waitTime = 0;
-        for (Job job : jobObjsList) {
+        for (Job job : jobObjsArr) {
             if (job.arrivalTime > waitTime) {
                 waitTime = waitTime + job.arrivalTime;
             }
@@ -99,8 +107,8 @@ public class Main {
                     System.out.println("Completion Time of each Job:");
                     System.out.println();
                     System.out.println("|   Job Name    |       Completion Time     ");
-                    for (Job job : jobObjsList) {
-                        System.out.println("|      " + job.name + "       |              " + job.getCompletionTime());
+                    for (Job job : jobObjsArr) {
+                        System.out.println("|  " + job.name + "       |              " + job.getCompletionTime());
                     }
                     System.out.println();
                     break;
@@ -111,8 +119,8 @@ public class Main {
                     System.out.println("Waiting Time of each Job:");
                     System.out.println();
                     System.out.println("|   Job Name    |       Waiting Time     ");
-                    for (Job job : jobObjsList) {
-                        System.out.println("|      " + job.name + "       |              " + job.getWaitingTime());
+                    for (Job job : jobObjsArr) {
+                        System.out.println("|  " + job.name + "       |              " + job.getWaitingTime());
                     }
                     System.out.println();
                     break;
@@ -123,18 +131,18 @@ public class Main {
                     System.out.println("Turn Around Time of each Job:");
                     System.out.println();
                     System.out.println("|   Job Name    |       Turn Around Time     ");
-                    for (Job job : jobObjsList) {
+                    for (Job job : jobObjsArr) {
                         System.out.println(
-                                "|      " + job.name + "       |              " + job.getTotalTurnAroundTime());
+                                "|  " + job.name + "       |              " + job.getTotalTurnAroundTime());
                     }
                     System.out.println();
                     break;
 
                 // Handling Average waiting time of every job
                 case 4:
-                    int size = jobObjsList.size();
+                    int size = jobObjsArr.length;
                     int avgWaitTime = 0;
-                    for (Job job : jobObjsList) {
+                    for (Job job : jobObjsArr) {
                         avgWaitTime += job.getWaitingTime();
                     }
                     avgWaitTime = avgWaitTime / size;
@@ -147,7 +155,7 @@ public class Main {
                 case 5:
                     int maxWaitTime = 0;
                     String maxWaitTimeJob = "";
-                    for (Job job : jobObjsList) {
+                    for (Job job : jobObjsArr) {
                         if (maxWaitTime < job.getWaitingTime()) {
                             maxWaitTimeJob = job.name;
                             maxWaitTime = job.getWaitingTime();

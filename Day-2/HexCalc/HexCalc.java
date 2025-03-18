@@ -23,22 +23,22 @@ public class HexCalc {
         charToIntMap.put('E', 14);
         charToIntMap.put('F', 15);
 
-        intToCharMap.put( 0, '0');
-        intToCharMap.put( 1, '1');
-        intToCharMap.put( 2, '2');
-        intToCharMap.put( 3, '3');
-        intToCharMap.put( 4, '4');
-        intToCharMap.put( 5, '5');
-        intToCharMap.put( 6, '6');
-        intToCharMap.put( 7, '7');
-        intToCharMap.put( 8, '8');
-        intToCharMap.put( 9, '9');
-        intToCharMap.put( 1, 'A'0);
-        intToCharMap.put( 1, 'B'1);
-        intToCharMap.put( 1, 'C'2);
-        intToCharMap.put( 1, 'D'3);
-        intToCharMap.put( 1, 'E'4);
-        intToCharMap.put( 1, 'F'5);
+        intToCharMap.put(0, '0');
+        intToCharMap.put(1, '1');
+        intToCharMap.put(2, '2');
+        intToCharMap.put(3, '3');
+        intToCharMap.put(4, '4');
+        intToCharMap.put(5, '5');
+        intToCharMap.put(6, '6');
+        intToCharMap.put(7, '7');
+        intToCharMap.put(8, '8');
+        intToCharMap.put(9, '9');
+        intToCharMap.put(10, 'A');
+        intToCharMap.put(11, 'B');
+        intToCharMap.put(12, 'C');
+        intToCharMap.put(13, 'D');
+        intToCharMap.put(14, 'E');
+        intToCharMap.put(15, 'F');
 
     }
 
@@ -86,7 +86,7 @@ public class HexCalc {
      * @param num2 Second number as string
      * @return result after the addition of two hexadecimal number
      */
-    public String hexAddition(String num1, String num2) {
+    public String addition(String num1, String num2) {
 
         if (num1 == null || num2 == null) {
             throw new IllegalArgumentException("Null values not accepted.");
@@ -110,7 +110,7 @@ public class HexCalc {
      * @return result after the subtraction of First hexdecimal number from second
      *         hexadecimal number
      */
-    public String hexSubtraction(String num1, String num2) {
+    public String subtract(String num1, String num2) {
         int n1 = hexToDec(num1);
         int n2 = hexToDec(num2);
         String HexSub = decToHex(n1 - n2);
@@ -127,7 +127,7 @@ public class HexCalc {
      * @param num2 Second number as string
      * @return result after multiplying the give hexadecimal numbers
      */
-    public String hexMultiply(String num1, String num2) {
+    public String multiply(String num1, String num2) {
         int n1 = hexToDec(num1);
         int n2 = hexToDec(num2);
         int sum = n1 * n2;
@@ -142,7 +142,7 @@ public class HexCalc {
      * @param num2 Second number as string
      * @return Result after division as string
      */
-    public String hexDivide(String num1, String num2) {
+    public String divide(String num1, String num2) {
         if (num2 == "0") {
             throw new IllegalArgumentException("Division by zero.");
         }
@@ -162,10 +162,20 @@ public class HexCalc {
      * @return true if the numbers are equal, false if the numbers are different
      */
     public Boolean isEqual(String num1, String num2) {
-        if (num1.equals(num2)) {
-            return true;
+        String n1 = Util.removeLeadingZeros(num1);
+        String n2 = Util.removeLeadingZeros(num2);
+        if (n1.length() > n2.length()) {
+            return false;
         }
-        return false;
+        if (n2.length() > n1.length()) {
+            return false;
+        }
+        for (int i = 0; i < n1.length(); i++) {
+            if (n1.charAt(i) != n2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -177,9 +187,18 @@ public class HexCalc {
      *         first number is smaller than second
      */
     public Boolean isGreater(String num1, String num2) {
-        int comparisionResult = num1.compareTo(num2);
-        if (comparisionResult > 0) {
+        String n1 = Util.removeLeadingZeros(num1);
+        String n2 = Util.removeLeadingZeros(num2);
+        if (n1.length() > n2.length()) {
             return true;
+        }
+        if (n2.length() > n1.length()) {
+            return false;
+        }
+        for (int i = 0; i < n1.length(); i++) {
+            if (n1.charAt(i) > n2.charAt(i)) {
+                return true;
+            }
         }
         return false;
     }
@@ -193,9 +212,18 @@ public class HexCalc {
      *         first number is greater than second
      */
     public Boolean isSmaller(String num1, String num2) {
-        int comparisionResult = num1.compareTo(num2);
-        if (comparisionResult < 0) {
+        String n1 = Util.removeLeadingZeros(num1);
+        String n2 = Util.removeLeadingZeros(num2);
+        if (n1.length() < n2.length()) {
             return true;
+        }
+        if (n2.length() < n1.length()) {
+            return false;
+        }
+        for (int i = 0; i < n1.length(); i++) {
+            if (n1.charAt(i) < n2.charAt(i)) {
+                return true;
+            }
         }
         return false;
     }
