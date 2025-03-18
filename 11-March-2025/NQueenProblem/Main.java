@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        ArrayList<ArrayList<Integer>> placedQueensChessBoardArrayList = new ArrayList<ArrayList<Integer>>();
+        int[][] placedQueensChessBoardArray;
 
         Scanner scanInput = new Scanner(System.in);
         NQueenProblem nQueenObj = new NQueenProblem();
@@ -31,6 +31,8 @@ class Main {
             }
         }
 
+        placedQueensChessBoardArray = new int[dimension][dimension];
+
         while (true) {
             // Taking starting index as input
             System.out.println("Enter the starting row");
@@ -53,10 +55,10 @@ class Main {
         System.out.println();
 
         // Calling to check if possibe to place queen in every row
-        if (nQueenObj.getQueenPlacedArrayList(placedQueensChessBoardArrayList, startIndex, dimension)) {
+        if (nQueenObj.getQueenPlacedArray(placedQueensChessBoardArray, startIndex, dimension)) {
             System.out.println("Queen is placed in every row succesfully");
-            for (ArrayList<Integer> temp : placedQueensChessBoardArrayList) {
-                System.out.println(temp);
+            for (int[] eachRow : placedQueensChessBoardArray) {
+                System.out.println(eachRow);
             }
         } else {
             System.out.println("Cannot place Queen in every row");

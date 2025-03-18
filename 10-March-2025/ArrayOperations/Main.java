@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,26 +6,31 @@ public class Main {
     public static void main(String[] args) {
 
         ArrOperation arrOperation = new ArrOperation();
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        int[] array;
         Scanner sc = new Scanner(System.in);
 
-        int arrListSize = 0;
+        int arraySize = 0;
+        int arrayIterator = 0;
 
         // Taking the size of the array as input
         System.out.println("Enter the size of the array");
         try {
-            arrListSize = Integer.parseInt(sc.nextLine());
+            arraySize = Integer.parseInt(sc.nextLine());
         } catch (Exception e) {
             System.out.println("Please enter a valid integer");
             System.exit(0);
         }
 
+        array = new int[arraySize];
+        arrayIterator = 0;
+
         // Taking the array elements as input
         System.out.println("Enter the array elements");
-        while (arrListSize > 0) {
+        while (arraySize > 0) {
             try {
-                arrayList.add(Integer.parseInt(sc.nextLine()));
-                arrListSize--;
+                array[arrayIterator] = Integer.parseInt(sc.nextLine());
+                arraySize--;
+                arrayIterator++;
             } catch (Exception e) {
                 System.out.println("Please enter a valid integer");
                 continue;
@@ -58,7 +63,7 @@ public class Main {
                     // Handling the count of largest mirror section option
                     case 1:
                         System.out.println();
-                        int largestMirrorSection = arrOperation.mirrorSection(arrayList);
+                        int largestMirrorSection = arrOperation.mirrorSection(array);
                         System.out.println("The size of the largest mirror section is " + largestMirrorSection);
                         System.out.println();
                         break;
@@ -66,7 +71,7 @@ public class Main {
                     // Handling the count of cumps present in the array
                     case 2:
                         System.out.println();
-                        int clumpSize = arrOperation.clumpsInArray(arrayList);
+                        int clumpSize = arrOperation.clumpsInArray(array);
                         System.out.println("The number of clumps present in the array is " + clumpSize);
                         System.out.println();
                         break;
@@ -78,7 +83,7 @@ public class Main {
                         int valueOfX = Integer.parseInt(sc.nextLine());
                         System.out.println("Enter the value of Y: ");
                         int valueOfY = Integer.parseInt(sc.nextLine());
-                        ArrayList<Integer> xYFixedArray = arrOperation.fixXY(arrayList, valueOfX, valueOfY);
+                        int[] xYFixedArray = arrOperation.fixXY(array, valueOfX, valueOfY);
                         System.out.println(valueOfX + " and " + valueOfY + " fixed array " + xYFixedArray);
                         System.out.println();
                         break;
@@ -86,16 +91,16 @@ public class Main {
                     // Handling the split index in the array
                     case 4:
                         System.out.println();
-                        int splitIndex = arrOperation.splitArray(arrayList);
+                        int splitIndex = arrOperation.splitArray(array);
                         System.out.println("The split index of the array is " + splitIndex);
                         System.out.println();
                         break;
-                        
-                        // Handling the exit from the app
-                        case 0:
+
+                    // Handling the exit from the app
+                    case 0:
                         System.exit(0);
-                        
-                        default:
+
+                    default:
                         System.out.println("Please select a valid option");
                         break;
                 }

@@ -68,7 +68,7 @@ public class CustomString {
         String[] wordArry = str.split("\\b");
         for (String word : wordArry) {
             if (maxLen <= word.length()) {
-                maxLen = max(maxLen, word.length());
+                maxLen = Util.max(maxLen, word.length());
                 largestWord = word;
             }
         }

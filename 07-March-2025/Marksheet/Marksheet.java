@@ -1,68 +1,67 @@
-import java.util.ArrayList;
 
 public class Marksheet {
 
     /**
-     * Method takes an arraylist of marks of all students and returns the average
+     * Method takes an array of marks of all students and returns the average
      * marks of all students
      * 
-     * @param marksList should be an arraylist of Float
+     * @param marksList should be an array of Float
      * @return return the average of marks of all students
      */
-    public float getAvgMarks(ArrayList<Float> marksList) {
-        int marksListSize = marksList.size();
+    public float getAvgMarks(Float[] marksList) {
+        int marksListSize = marksList.length;
         float avgMarks = 0f;
         for (int i = 0; i < marksListSize; i++) {
-            avgMarks += marksList.get(i);
+            avgMarks += marksList[i];
         }
         avgMarks = avgMarks / marksListSize;
         return avgMarks;
     }
 
     /**
-     * Method takes an arraylist of marks of all students and returns the Minimum
-     * marks from the arraylist
+     * Method takes an array of marks of all students and returns the Minimum
+     * marks from the array
      * 
-     * @param marksList should be an arraylist of Float
+     * @param marksList should be an array of Float
      * @return return the minimum of marks of all students
      */
-    public float getMinMarks(ArrayList<Float> marksList) {
-        int marksListSize = marksList.size();
+    public float getMinMarks(Float[] marksList) {
+        int marksListSize = marksList.length;
         float minMarks = 101;
         for (int i = 0; i < marksListSize; i++) {
-            minMarks = Math.min(minMarks, marksList.get(i));
+            minMarks = Util.min(minMarks, marksList[i]);
         }
         return minMarks;
     }
 
     /**
-     * Method takes an arraylist of marks of all students and returns the maximum
-     * marks from the arraylist
+     * Method takes an array of marks of all students and returns the maximum
+     * marks from the array
      * 
-     * @param marksList should be an arraylist of Float
+     * @param marksList should be an array of Float
      * @return return the maximum of marks of all students
      */
-    public float getMaxMarks(ArrayList<Float> marksList) {
-        int marksListSize = marksList.size();
+    public float getMaxMarks(Float[] marksList) {
+        int marksListSize = marksList.length;
         float maxMarks = 0;
-        for (int i = 0; i < marksListsize; i++) {
-            maxMarks = Math.max(maxMarks, marksList.get(i));
+        for (int i = 0; i < marksListSize; i++) {
+            maxMarks = Util.max(maxMarks, marksList[i]);
         }
         return maxMarks;
     }
 
     /**
-     * Method takes an arraylist of marks of all students and returns the percentage
+     * Method takes an array of marks of all students and returns the percentage
      * of marks of passed students(marks>=40)
      * 
-     * @param marksList should be an arraylist of Float
+     * @param marksList should be an array of Float
      * @return return the percentage of marks of passed students(marks>=40)
      */
-    public float getPercentage(ArrayList<Float> marksList) {
-        int marksListSize = marksList.size();
+    public float getPercentage(Float[] marksList) {
+        int marksListSize = marksList.length;
         int passedStudentCount = 0;
         for (int i = 0; i < marksListSize; i++) {
-            if (marksList.get(i) >= 40) {
+            if (marksList[i] >= 40) {
                 passedStudentCount++;
             }
         }

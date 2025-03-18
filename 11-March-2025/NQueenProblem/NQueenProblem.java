@@ -1,8 +1,7 @@
-import java.util.ArrayList;
 
 public class NQueenProblem {
 
-    ArrayList<ArrayList<Integer>> nQueenBoardArrayList = new ArrayList<ArrayList<Integer>>();
+    int[][] nQueenBoardArray;
 
     /**
      * Method to initialise the NQueen Board
@@ -10,14 +9,7 @@ public class NQueenProblem {
      * @param dimension should be of type integer
      */
     public void initialiseNQueenBoard(int dimension) {
-        for (int i = 0; i < dimension; i++) {
-            ArrayList<Integer> eachRowNQueenBoardArrayList = new ArrayList<Integer>();
-            for (int j = 0; j < dimension; j++) {
-                eachRowNQueenBoardArrayList.add(0);
-            }
-            nQueenBoardArrayList.add(eachRowNQueenBoardArrayList);
-        }
-
+        nQueenBoardArray = new int[dimension][dimension];
     }
 
     /**
@@ -33,7 +25,7 @@ public class NQueenProblem {
         if (row < 0) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isUpRowPossible(row - 1, column);
         } else {
             return false;
@@ -49,10 +41,10 @@ public class NQueenProblem {
      *         queen is placed in one of next row of same colun
      */
     boolean isDownRowPossible(int row, int column) {
-        if (row == nQueenBoardArrayList.size()) {
+        if (row == nQueenBoardArray.length) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isDownRowPossible(row + 1, column);
         } else {
             return false;
@@ -70,10 +62,10 @@ public class NQueenProblem {
      *         if queen is placed in one of the next right column of same row
      */
     boolean isRightColumnPossible(int row, int column) {
-        if (column == nQueenBoardArrayList.size()) {
+        if (column == nQueenBoardArray.length) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isRightColumnPossible(row, column + 1);
         } else {
             return false;
@@ -92,7 +84,7 @@ public class NQueenProblem {
         if (column < 0) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isLeftColumnPossible(row, column - 1);
         } else {
             return false;
@@ -111,7 +103,7 @@ public class NQueenProblem {
         if (column < 0 || row < 0) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isLeftUpDiagonalPossible(row - 1, column - 1);
         } else {
             return false;
@@ -127,10 +119,10 @@ public class NQueenProblem {
      *         is placed in any of the lower left diagonal
      */
     boolean isLeftDownDiagonalPossible(int row, int column) {
-        if (column < 0 || row == nQueenBoardArrayList.size()) {
+        if (column < 0 || row == nQueenBoardArray.length) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isLeftDownDiagonalPossible(row + 1, column - 1);
         } else {
             return false;
@@ -146,10 +138,10 @@ public class NQueenProblem {
      *         queen is placed in any of the upper right diagonal
      */
     boolean isRightUpDiagonalPossible(int row, int column) {
-        if (column == nQueenBoardArrayList.size() || row < 0) {
+        if (column == nQueenBoardArray.length || row < 0) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isRightUpDiagonalPossible(row - 1, column + 1);
         } else {
             return false;
@@ -165,10 +157,10 @@ public class NQueenProblem {
      *         queen is placed in any of the lower right diagonal
      */
     boolean isRightDownDiagonalPossible(int row, int column) {
-        if (column == nQueenBoardArrayList.size() || row == nQueenBoardArrayList.size()) {
+        if (column == nQueenBoardArray.length || row == nQueenBoardArray.length) {
             return true;
         }
-        if ((nQueenBoardArrayList.get(row)).get(column) == 0) {
+        if (nQueenBoardArray[row][column] == 0) {
             return isRightDownDiagonalPossible(row + 1, column + 1);
         } else {
             return false;
@@ -197,9 +189,9 @@ public class NQueenProblem {
     /**
      * Method to traverse every column of each row, staring from the startRow row
      * index. If it is possible to place queen in every row, the method updates the
-     * input arraylist with placed queen indexes
+     * input Array with placed queen indexes
      * 
-     * @param placedQueensChessBoardArrayList input ArrayList<Integer> in which
+     * @param placedQueensChessBoardArray input Array of int type in which
      *                                        queen should be placed
      * @param startRow                        index of the starting row
      * @param rowsCovered                     count of rows covered
@@ -208,13 +200,15 @@ public class NQueenProblem {
      *                                        we found an answer
      * @return
      */
-    boolean placeQueens(ArrayList<ArrayList<Integer>> placedQueensBoardArrayList, int startRow,
+    boolean placeQueens(int[][] placedQueensBoardArray, int startRow,
             int rowsCovered, int dimension, boolean isAllRowsCovered) {
 
         // Base case if all the rows covered push the array in the input array
         if (rowsCovered == dimension) {
-            for (ArrayList<Integer> eachRowOfNQueenBoard : nQueenBoardArrayList) {
-                placedQueensBoardArrayList.add(eachRowOfNQueenBoard);
+            for (int i = 0; i < nQueenBoardArray.length; i++) {
+                for (int j = 0; j < nQueenBoardArray.length; j++) {
+                    placedQueensBoardArray[i][j] = nQueenBoardArray[i][j];
+                }
             }
             return true;
         }
@@ -222,13 +216,13 @@ public class NQueenProblem {
         // Checking for every column of possible rows
         for (int column = 0; column < dimension; column++) {
             if (isSafe(startRow, column)) {
-                (nQueenBoardArrayList.get(startRow)).set(column, 1);
-                isAllRowsCovered = placeQueens(placedQueensBoardArrayList, (startRow + 1) % dimension,
+                nQueenBoardArray[startRow][column] = 1;
+                isAllRowsCovered = placeQueens(placedQueensBoardArray, (startRow + 1) % dimension,
                         rowsCovered + 1, dimension, isAllRowsCovered);
                 if (isAllRowsCovered) {
                     return true;
                 }
-                (nQueenBoardArrayList.get(startRow)).set(column, 0);
+                nQueenBoardArray[startRow][column] = 0;
             }
 
         }
@@ -236,21 +230,21 @@ public class NQueenProblem {
     }
 
     /**
-     * Method that fills the input arraylistboard with queen places if possible
+     * Method that fills the input Array board with queen places if possible
      * 
-     * @param placedQueensBoardArrayList input ArrayList<Integer> in which queen
+     * @param placedQueensBoardArray input Array of int type in which queen
      *                                   should be placed
      * @param startRow                   index of the starting row
      * @param dimension                  is the size of the board
      * @return return true if queen is placed in every row with updated input
-     *         placedQueenArrayList with queen places and false if queen is not
+     *         placedQueenArray with queen places and false if queen is not
      *         placed in every row
      */
-    public boolean getQueenPlacedArrayList(ArrayList<ArrayList<Integer>> placedQueensBoardArrayList, int startIndex,
+    public boolean getQueenPlacedArray(int[][] placedQueensBoardArray, int startIndex,
             int dimension) {
         int rowsCovered = 0;
         boolean isAllRowsCovered = false;
-        isAllRowsCovered = placeQueens(placedQueensBoardArrayList, startIndex, rowsCovered, dimension,
+        isAllRowsCovered = placeQueens(placedQueensBoardArray, startIndex, rowsCovered, dimension,
                 isAllRowsCovered);
         return isAllRowsCovered;
     }

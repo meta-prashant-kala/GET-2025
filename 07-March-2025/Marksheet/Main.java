@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +8,7 @@ public class Main {
         int studentCount = 0;
         Scanner sc = new Scanner(System.in);
         Marksheet marksheet = new Marksheet();
+        Float[] studentsArr;
 
         // Taking number of students input
         System.out.println("Enter the number of students");
@@ -22,13 +23,16 @@ public class Main {
             System.exit(0);
         }
 
+        studentsArr = new Float[studentCount];
+        int studentsArrIterator = 0;
+
         // Taking makrs input
         System.out.println("Enter the marks of students");
-        ArrayList<Float> studentsMarks = new ArrayList<Float>();
         while (studentCount > 0) {
             try {
-                studentsMarks.add(Float.parseFloat(sc.nextLine()));
+                studentsArr[studentsArrIterator] = Float.parseFloat(sc.nextLine());
                 studentCount--;
+                studentsArrIterator++;
             } catch (Exception e) {
                 System.out.println("Please enter a valid integer");
                 continue;
@@ -60,7 +64,7 @@ public class Main {
                     // to handle the average marks case
                     case 1:
                         System.out.println();
-                        float avgMarks = marksheet.getAvgMarks(studentsMarks);
+                        float avgMarks = marksheet.getAvgMarks(studentsArr);
                         System.out.println("Average marks of all students: " + avgMarks);
                         System.out.println();
                         break;
@@ -68,7 +72,7 @@ public class Main {
                     // to handle the maximum marks case
                     case 2:
                         System.out.println();
-                        float maxMarks = marksheet.getMaxMarks(studentsMarks);
+                        float maxMarks = marksheet.getMaxMarks(studentsArr);
                         System.out.println("Maximum marks: " + maxMarks);
                         System.out.println();
                         break;
@@ -76,7 +80,7 @@ public class Main {
                     // to handle the minimum marks case
                     case 3:
                         System.out.println();
-                        float minMarks = marksheet.getMinMarks(studentsMarks);
+                        float minMarks = marksheet.getMinMarks(studentsArr);
                         System.out.println("Minimum marks: " + minMarks);
                         System.out.println();
                         break;
@@ -84,7 +88,7 @@ public class Main {
                     // Method to handle the percentage marks case
                     case 4:
                         System.out.println();
-                        float perOfPassedStud = marksheet.getPercentage(studentsMarks);
+                        float perOfPassedStud = marksheet.getPercentage(studentsArr);
                         System.out.println("Percentage of passed students: " + perOfPassedStud);
                         System.out.println();
                         break;

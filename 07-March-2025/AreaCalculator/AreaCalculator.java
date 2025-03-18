@@ -39,6 +39,6 @@ public class AreaCalculator {
      * @return the area of circle
      */
     public double areaOfCircle(double radius) {
-        return Math.PI * radius * radius;
+        return 3.14 * radius * radius;
     }
 }

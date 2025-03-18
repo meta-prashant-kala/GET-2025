@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +6,7 @@ public class Main {
 
         Search searchObj = new Search();
         Scanner scanInput = new Scanner(System.in);
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        int[] inputArray;
 
         int arraySize = 0;
         int keyElement = -1;
@@ -58,12 +58,14 @@ public class Main {
                         continue;
                     }
 
+                    inputArray = new int[arraySize];
+                    int inputArrayIterator = 0;
                     System.out.println("Enter the array elements");
 
                     // Taking array elements as input
                     try {
                         for (int i = 0; i < arraySize; i++) {
-                            arrayList.add(Integer.parseInt(scanInput.nextLine()));
+                            inputArray[inputArrayIterator] = (Integer.parseInt(scanInput.nextLine()));
                         }
                     } catch (Exception e) {
                         System.out.println("Please enter valid integers");
@@ -81,7 +83,7 @@ public class Main {
                         continue;
                     }
 
-                    indexOfElementFound = searchObj.linearSearch(arrayList, 0, keyElement);
+                    indexOfElementFound = searchObj.linearSearch(inputArray, 0, keyElement);
 
                     if (indexOfElementFound == -1) {
                         System.out.println("Element do not exist");
@@ -119,10 +121,12 @@ public class Main {
                     System.out.println();
                     System.out.println("Enter the array elements");
 
+                    inputArray = new int[arraySize];
+                    inputArrayIterator = 0;
                     // Taking array elements as input
                     try {
                         for (int i = 0; i < arraySize; i++) {
-                            arrayList.add(Integer.parseInt(scanInput.nextLine()));
+                            inputArray[inputArrayIterator] = (Integer.parseInt(scanInput.nextLine()));
                         }
                     } catch (Exception e) {
                         System.out.println("Please enter a valid Integers");
@@ -140,7 +144,7 @@ public class Main {
                         continue;
                     }
 
-                    indexOfElementFound = searchObj.binarySearch(arrayList, 0, arraySize - 1, keyElement);
+                    indexOfElementFound = searchObj.binarySearch(inputArray, 0, arraySize - 1, keyElement);
 
                     if (indexOfElementFound == -1) {
                         System.out.println("Element do not exist");

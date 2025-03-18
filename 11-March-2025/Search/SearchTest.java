@@ -11,9 +11,9 @@ public class SearchTest {
     public void linearSearch() {
         Search testObj = new Search();
 
-        ArrayList<Integer> input1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
-        ArrayList<Integer> input2 = new ArrayList<Integer>(Arrays.asList(6, 2, 8, 4, 5));
-        ArrayList<Integer> input3 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+        int[] input1 = { 1, 2, 3, 4, 5 };
+        int[] input2 = { 6, 2, 8, 4, 5 };
+        int[] input3 = { 1, 2, 3, 4, 5 };
 
         assertEquals(0, testObj.linearSearch(input1, 0, 1));
         assertEquals(4, testObj.linearSearch(input2, 0, 5));
@@ -24,9 +24,9 @@ public class SearchTest {
     public void binarySearch() {
         Search testObj = new Search();
 
-        ArrayList<Integer> input1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
-        ArrayList<Integer> input2 = new ArrayList<Integer>(Arrays.asList(6, 7, 8, 9, 10));
-        ArrayList<Integer> input3 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+        int[] input1 = { 1, 2, 3, 4, 5 };
+        int[] input2 = { 6, 7, 8, 9, 10 };
+        int[] input3 = { 1, 2, 3, 4, 5 };
 
         assertEquals(0, testObj.binarySearch(input1, 0, 4, 1));
         assertEquals(4, testObj.binarySearch(input2, 0, 4, 10));
