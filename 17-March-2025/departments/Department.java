@@ -1,10 +1,19 @@
-import java.util.ArrayList;
+package departments;
+
+import employees.Employee;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Department {
-    public List<Employee> employeeList=new ArrayList<Employee>();
 
-    public boolean join(Employee employee){
+    public String departmentName;
+    public List<Employee> employeeList = new ArrayList<Employee>();
+
+    public Department(String departmentName) {
+        this.depdepartmentName = departmentName;
+    }
+
+    public boolean join(Employee employee) {
         try {
             employeeList.add(employee);
             return true;
@@ -13,7 +22,8 @@ public class Department {
             return false;
         }
     }
-    boolean relieve(Employee employee){
+
+    boolean relieve(Employee employee) {
         try {
             employeeList.remove(employee);
             return true;
@@ -22,7 +32,8 @@ public class Department {
             return false;
         }
     }
-    List<Employee> getEmployees(){
+
+    List<Employee> getEmployees() {
         return employeeList;
     }
 

@@ -98,7 +98,7 @@ public class ArrOperation {
             arrIndexStackForX.pop();
             arrIndexStackForY.pop();
             if (indexOfX + 1 != indexOfY) {
-                int nextElementOfIndexX = array.get[indexOfX + 1];
+                int nextElementOfIndexX = array[indexOfX + 1];
                 array[indexOfX + 1] = y;
                 array[indexOfY] = nextElementOfIndexX;
             } else if (indexOfY + 1 == indexOfX) {

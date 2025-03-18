@@ -45,8 +45,12 @@ public class Main {
                 // Extracting digits of a row from the the string input
                 String[] rowDigits = rowElements.split(" ");
 
-                if (rowDigits.length != 2) {
+                if (rowDigits.length > 2) {
                     System.out.println("Do not add redundant digits");
+                    continue;
+                }
+                if (rowDigits.length < 2) {
+                    System.out.println("Please provide sufficient Data");
                     continue;
                 }
 

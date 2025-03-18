@@ -1,3 +1,5 @@
+import employees.Employee;
+
 public class Payroll {
     public int calculateTax(Employee employee){
 
