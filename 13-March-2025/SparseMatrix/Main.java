@@ -159,12 +159,18 @@ public class Main {
                         row++;
                     }
                     sparseMatrixObj2 = new SparseMatrix(inputMatrix2);
-                    SparseMatrix addedSparseMatrixObj = sparseMatrixObj1.add(sparseMatrixObj2);
-                    System.out.println();
-                    System.out.println("Added Matrix");
-                    System.out.println();
-                    addedSparseMatrixObj.displayMatrix();
-                    System.out.println();
+                    try {
+                        SparseMatrix addedSparseMatrixObj = sparseMatrixObj1.add(sparseMatrixObj2);
+                        System.out.println();
+                        System.out.println("Added Matrix");
+                        System.out.println();
+                        addedSparseMatrixObj.displayMatrix();
+                        System.out.println();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Given matrix cannot be multiplied");
+                    } catch (Exception e) {
+                        System.out.println("Multiplication cannot be possible");
+                    }
                     break;
 
                 case 4:
@@ -214,12 +220,18 @@ public class Main {
                         row++;
                     }
                     sparseMatrixObj2 = new SparseMatrix(inputMatrix2);
-                    SparseMatrix multipliedSparseMatrixObj = sparseMatrixObj1.multiply(sparseMatrixObj2);
-                    System.out.println();
-                    System.out.println("Multiplied Matrix");
-                    System.out.println();
-                    multipliedSparseMatrixObj.displayMatrix();
-                    System.out.println();
+                    try {
+                        SparseMatrix multipliedSparseMatrixObj = sparseMatrixObj1.multiply(sparseMatrixObj2);
+                        System.out.println();
+                        System.out.println("Multiplied Matrix");
+                        System.out.println();
+                        multipliedSparseMatrixObj.displayMatrix();
+                        System.out.println();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Given matrix cannot be multiplied");
+                    } catch (Exception e) {
+                        System.out.println("Multiplication cannot be possible");
+                    }
                     break;
 
                 default:

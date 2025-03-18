@@ -91,7 +91,7 @@ public class SparseMatrix {
      * @return object of Sparsematrix type holding the transposed sparse matrix
      */
     public SparseMatrix transposeMatrix() {
-        int[][] transposeMatrix = new int[this.originalMatrixRows][this.originalMatrixColumns];
+        int[][] transposeMatrix = new int[this.originalMatrixColumns][this.originalMatrixRows];
         for (int col = 0; col < this.sparseMatrix[0].length; col++) {
             transposeMatrix[this.sparseMatrix[1][col]][this.sparseMatrix[0][col]] += this.sparseMatrix[2][col];
         }
@@ -107,15 +107,14 @@ public class SparseMatrix {
      */
     public boolean isSymetric() {
         SparseMatrix trasposedSparseMatrixObj = this.transposeMatrix();
-        int[][] transposedSparseMatrix = trasposedSparseMatrixObj.getSparseMatrix();
-        for (int col = 0; col < transposedSparseMatrix[0].length; col++) {
-            if (this.sparseMatrix[0][col] != transposedSparseMatrix[1][col]) {
+        for (int col = 0; col < this.sparseMatrix.length; col++) {
+            if (this.sparseMatrix[0][col] != trasposedSparseMatrixObj.sparseMatrix[0][col]) {
                 return false;
             }
-            if (this.sparseMatrix[1][col] != transposedSparseMatrix[0][col]) {
+            if (this.sparseMatrix[1][col] != trasposedSparseMatrixObj.sparseMatrix[1][col]) {
                 return false;
             }
-            if (this.sparseMatrix[2][col] != transposedSparseMatrix[2][col]) {
+            if (this.sparseMatrix[2][col] != trasposedSparseMatrixObj.sparseMatrix[2][col]) {
                 return false;
             }
         }
@@ -165,7 +164,7 @@ public class SparseMatrix {
         int[][] matrix1 = this.constructMatrix();
         int[][] matrix2 = secondSparseMatrixObj.constructMatrix();
 
-        if (matrix1.length != matrix2[0].length) {
+        if (matrix1[0].length != matrix2.length) {
             throw new IllegalArgumentException("Matrix cannot be multiplied");
         }
 
@@ -186,6 +185,27 @@ public class SparseMatrix {
 
         SparseMatrix multiplySparseMatrixObj = new SparseMatrix(multipliedMatrix);
         return multiplySparseMatrixObj;
+    }
+
+
+    @Override
+    public boolean equals(Object o){
+        SparseMatrix secondObj=(SparseMatrix)o;
+        if(this.sparseMatrix.length!=secondObj.sparseMatrix.length){
+            return false;
+        }
+        if(this.sparseMatrix[0].length!=secondObj.sparseMatrix[0].length){
+            return false;
+        }
+
+        for(int i=0;i<this.sparseMatrix.length;i++){
+            for(int j=0;j<secondObj.sparseMatrix[0].length;j++){
+                if(this.sparseMatrix[i][j]!=secondObj.sparseMatrix[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
