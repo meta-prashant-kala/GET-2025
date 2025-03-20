@@ -1,7 +1,5 @@
 
 import java.util.Scanner;
-
-import departments.Department;
 import employees.Designer;
 import employees.Developer;
 import employees.Employee;
@@ -12,43 +10,58 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanInput = new Scanner(System.in);
 
-        Scanner scanInput=new Scanner(System.in);
+        List<Employee> allEmployeeList;
+        String empName;
+        String selectedDepartmentName;
+        Department foundDepartmentObj;
+        boolean isAdded = false;
 
-        Organization metacube = new Organization();
+        // Initialising organisation
+        Organization organizationObj = new Organization("Metacube");
 
-        Department iTDepartment = new Department("IT-Department");
-        Department humanResourceDepartment = new Department("HR-Department");
+        // Initialising Departments
+        Department departmentObj1 = new Department("IT-Department");
+        Department departmentObj2 = new Department("HR-Department");
 
-        metacube.addDepartment(iTDepartment);
-        metacube.addDepartment(humanResourceDepartment);
+        // Adding Departments to the department list of organisation
+        organizationObj.addDepartment(departmentObj1);
+        organizationObj.addDepartment(departmentObj2);
 
-        Employee prashantObj = new Developer("Prashant", "Developer");
-        Employee ankitObj = new Developer("Ankit", "Developer");
+        // Initialising employee of each type
+        Employee developerObj1 = new Developer("Prashant", "Developer");
+        Employee developerObj2 = new Developer("Ankit", "Developer");
 
-        Employee gauravObj = new Designer("Gaurav", "Designer");
-        Employee digemberObj = new Designer("Digember","Designer");
+        Employee designerObj1 = new Designer("Gaurav", "Designer");
+        Employee designerObj2 = new Designer("Digember", "Designer");
 
-        Employee piyushObj = new HRManager("Piyush", "HRManager");
-        Employee shreyanshObj = new HRManager("Shreyansh", "HRManager");
+        Employee hrManagerObj1 = new HRManager("Piyush", "HRManager");
+        Employee hrManagerObj2 = new HRManager("Shreyansh", "HRManager");
 
-        Employee rahulObj = new HR("Rahul", "HR");
-        Employee palashObj = new HR("Palash","HR");
+        Employee hrObj1 = new HR("Rahul", "HR");
+        Employee hrObj2 = new HR("Palash", "HR");
 
-        iTDepartment.join(prashantObj);
-        iTDepartment.join(ankitObj);
-        iTDepartment.join(gauravObj);
-        iTDepartment.join(digemberObj);
+        // Adding Employee objects to the emloyee list of each department
+        departmentObj1.join(developerObj1);
+        departmentObj1.join(developerObj2);
+        departmentObj1.join(designerObj1);
+        departmentObj1.join(designerObj2);
 
-        humanResourceDepartment.join(piyushObj);
-        humanResourceDepartment.join(shreyanshObj);
-        humanResourceDepartment.join(rahulObj);
-        humanResourceDepartment.join(palashObj);
+        departmentObj2.join(hrManagerObj1);
+        departmentObj2.join(hrManagerObj2);
+        departmentObj2.join(hrObj1);
+        departmentObj2.join(hrObj2);
 
+        // Providing menu to the user
         int selectedOption = 1;
         while (selectedOption != 0) {
             System.out.println("1. To see all the employees of a departments");
-            System.out.println("2. To see all the emeployees of all departments");
+            System.out.println("2. To see all the emeployees of an organisation");
+            System.out.println("3. To add a department in the organisation");
+            System.out.println("4. To add an employee to a department");
+            System.out.println("5. To get the pay slip of an employee");
+            System.out.println("0. To exit from the app");
 
             // Taking selected option as input from the user
             try {
@@ -58,28 +71,122 @@ public class Main {
                 continue;
             }
 
-
             switch (selectedOption) {
+
+                // Handling see all the employees of a departments
                 case 1:
-                    metacube.displayAllDepartments();
+                    organizationObj.displayAllDepartments();
+                    System.out.println();
                     System.out.println("Enter the name of the department");
-                    String selectedDepartment=scanInput.nextLine();
-                    if(metacube.isDepartment(selectedDepartment)){
-                        List<Employee> employeeList=metacube.getAllEmployees();
-                        for(Employee employee:employeeList){
-                            System.out.print(employee.employeeName);
-                            System.out.println("    ");
-                            System.out.print(employee.employeeRole);
-                            System.out.println();
-                        }
+                    selectedDepartmentName = scanInput.nextLine();
+                    foundDepartmentObj = organizationObj.getDepartment(selectedDepartmentName);
+                    System.out.println();
+                    if (foundDepartmentObj != null) {
+                        foundDepartmentObj.displayEmployeeList();
+                    } else {
+                        System.out.println(
+                                selectedDepartmentName + " does not exist in " + organizationObj.organisationName);
                     }
+                    System.out.println();
                     break;
-            
+
+                // Handling see all the emeployees in an organisation
+                case 2:
+                    System.out.println();
+                    System.out.println("List of all employees");
+                    allEmployeeList = organizationObj.getAllEmployees();
+                    System.out.println();
+                    for (Employee employee : allEmployeeList) {
+                        System.out.print(employee.employeeName);
+                        System.out.print("  -> ");
+                        System.out.print(employee.employeeRole);
+                        System.out.println();
+                    }
+                    System.out.println();
+                    break;
+
+                // Handling add a department in the organisation
+                case 3:
+                    System.out.println();
+                    System.out.println("Enter the name of the department");
+                    String deptName = scanInput.nextLine();
+                    Department departmentObj = new Department(deptName);
+                    System.out.println();
+                    isAdded = organizationObj.addDepartment(departmentObj);
+                    if (isAdded) {
+                        System.out.println(deptName + " added succesfully");
+                    } else {
+                        System.out.println("Cannot add this department");
+                    }
+                    System.out.println();
+                    break;
+
+                // Handling add an employee to a department
+                case 4:
+                    System.out.println();
+                    System.out.println("Enter the name of the employee");
+                    empName = scanInput.nextLine();
+                    System.out.println();
+                    System.out.println("------------Select the role of the employee------------");
+                    System.out.println();
+                    System.out.println("------Available roles------");
+                    System.out.println();
+                    organizationObj.displayRoles();
+                    String selectedRole;
+                    while (true) {
+                        selectedRole = scanInput.nextLine();
+                        boolean isFound = organizationObj.isRoleAvailable(selectedRole);
+                        if (isFound) {
+                            break;
+                        }
+                        System.out.println();
+                        System.out.println("Please enter a valid role");
+                        System.out.println();
+                    }
+                    Employee employeeObj = organizationObj.createEmployee(empName, selectedRole);
+                    organizationObj.displayAllDepartments();
+                    System.out.println();
+                    System.out.println("------------Enter the name of the department------------");
+                    selectedDepartmentName = scanInput.nextLine();
+                    System.out.println();
+                    foundDepartmentObj = organizationObj.getDepartment(selectedDepartmentName);
+                    isAdded = foundDepartmentObj.join(employeeObj);
+                    if (isAdded) {
+                        System.out.println("Employee added successfully");
+                    } else {
+                        System.err.println("There's an error occured");
+                    }
+                    System.out.println();
+                    break;
+
+                // Handling get the payslip of an employee
+                case 5:
+                    System.out.println();
+                    System.out.println("Enter the name of the employee");
+                    empName = scanInput.nextLine();
+                    Employee employeeFound = organizationObj.getEmployee(empName);
+                    System.out.println();
+                    if (employeeFound != null) {
+                        Payroll payrollObj = new Payroll();
+                        payrollObj.printSalary(employeeFound);
+                    } else {
+                        System.out.println("Employee does not belongs to " + organizationObj.organisationName);
+                    }
+                    System.out.println();
+
+                    break;
+
+                // Handling exit from the app
+                case 0:
+                    System.exit(0);
+                    break;
+
+                // Handling unnecessory option
                 default:
+                    System.out.println("Please select a valid option");
                     break;
             }
         }
-
 
         scanInput.close();
     }
