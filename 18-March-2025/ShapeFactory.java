@@ -18,11 +18,11 @@ public class ShapeFactory {
                 shapeObj = new Square(shapeDataList.get(0), originPointObj);
                 break;
 
-            case Triangle:  
+            case TRIANGLE:  
                 shapeObj = new Triangle(shapeDataList.get(0), originPointObj);
                 break;
             case POLYGON:
-                shapeObj = new Polygon(shapeDataList.get(0), originPointObj);
+                shapeObj = new Polygon(shapeDataList.get(0), shapeDataList.get(1), originPointObj);
 
                 break;
 

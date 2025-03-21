@@ -68,10 +68,12 @@ public class OrgDepEmpTest {
     public void joinEmployee() {
         Department dep1 = new Department("IT-Deparment");
         Department dep2 = new Department("HR-Deparment");
+
         Employee emp1 = new Developer("Prashant", "Developer");
         Employee emp2 = new Designer("Palash", "Designer");
         Employee emp3 = new HR("Piyush", "HR");
         Employee emp4 = new HRManager("Pawan", "HRManager");
+        
         assertEquals(true, dep1.join(emp1));
         assertEquals(true, dep1.join(emp2));
         assertEquals(true, dep2.join(emp3));

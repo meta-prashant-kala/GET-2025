@@ -1,5 +1,5 @@
 
-public class Polynomial {
+public final class Polynomial {
     private final Poly[] polynomialArray;
 
     private int highestDegree;

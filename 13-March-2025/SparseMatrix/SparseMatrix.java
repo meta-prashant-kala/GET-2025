@@ -107,7 +107,7 @@ public class SparseMatrix {
      */
     public boolean isSymetric() {
         SparseMatrix trasposedSparseMatrixObj = this.transposeMatrix();
-        for (int col = 0; col < this.sparseMatrix.length; col++) {
+        for (int col = 0; col < this.sparseMatrix[0].length; col++) {
             if (this.sparseMatrix[0][col] != trasposedSparseMatrixObj.sparseMatrix[0][col]) {
                 return false;
             }
@@ -175,9 +175,7 @@ public class SparseMatrix {
                 int sum = 0;
                 for (int k = 0; k < this.originalMatrixColumns; k++) {
                     System.out.println(this.sparseMatrix[row][k] + " " + secondSparseMatrixObj.sparseMatrix[k][column]);
-                    sum += (matrix1[row][k]
-                            * matrix2[k][column]);
-
+                    sum += (matrix1[row][k] * matrix2[k][column]);
                 }
                 multipliedMatrix[row][column] = sum;
             }

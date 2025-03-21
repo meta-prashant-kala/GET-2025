@@ -1,6 +1,6 @@
 package IntSet;
 
-public class IntSet {
+public final class IntSet {
     private final boolean[] customSetArray = new boolean[1000];
 
     /**

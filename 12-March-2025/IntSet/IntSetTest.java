@@ -53,6 +53,7 @@ public class IntSetTest {
         IntSet testIntSetObj1 = new IntSet(inputArr1);
         int[] expectedOutputArr1 = new int[995];
         int j = 0;
+        // j=6,7,
         for (int i = 1; i <= 1000; i++) {
             if (!testIntSetObj1.isMember(i)) {
                 expectedOutputArr1[j] = i;
@@ -60,7 +61,7 @@ public class IntSetTest {
             }
         }
 
-        int[] inputArr2 = { 1, 2, 3, 4, 5, 12, 325, 435, 312, 1, 2, 3, 423, };
+        int[] inputArr2 = { 1, 2, 3, 4, 5, 12, 325, 435, 312, 1, 2, 3, 423 };
         IntSet testIntSetObj2 = new IntSet(inputArr2);
         int[] expectedOutputArr2 = new int[990];
         j = 0;

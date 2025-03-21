@@ -45,6 +45,6 @@ public class Developer extends Employee {
      * @return role of the employee with String type
      */
     public String getRole() {
-        return this.employeeRole;
+        return "Developer";
     }
 }
