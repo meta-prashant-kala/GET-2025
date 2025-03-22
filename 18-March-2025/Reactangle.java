@@ -26,12 +26,21 @@ public class Reactangle implements Shape {
         this.allPointsList = generateAllPointsList();
     }
 
-
-    public long getTimeStamp(){
+    /**
+     * Method to get the time at which the shape is created
+     * 
+     * @return the time stamp at which the shape is created
+     */
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-    public ShapeType getShapeName(){
+    /**
+     * Method to get the name of shape
+     * 
+     * @return the shape name of the shape object
+     */
+    public ShapeType getShapeName() {
         return ShapeType.valueOf("RECTANGLE");
     }
 
@@ -44,10 +53,16 @@ public class Reactangle implements Shape {
         return (this.length * this.breadth);
     }
 
-
-    public List<Point> getAllPointsList(){
+    /**
+     * Method to get the list of point object, where each point is holding the
+     * coordinates of a shape, and the list holding all the coordinates of the shape
+     * 
+     * @return the list of point object holding all the coordinates of the shape
+     */
+    public List<Point> getAllPointsList() {
         return this.allPointsList;
     }
+
     /**
      * Method to calculate all the points of the rectangle Order: Origin Coordinate,
      * Top Coordinate, Right Cordinate, Diagonal Cordinate
@@ -56,14 +71,14 @@ public class Reactangle implements Shape {
      */
     List<Point> generateAllPointsList() {
         List<Point> allPointsList = new ArrayList<Point>();
-        double topXCordinate = this.originPoint.xCordinate + length;
+        double topXCordinate = this.originPoint.xCordinate;
         double topYCordinate = this.originPoint.yCordinate + length;
         Point topPointObj = new Point(topXCordinate, topYCordinate);
         double rightXCordinate = this.originPoint.xCordinate + breadth;
-        double rightYCordinate = this.originPoint.yCordinate + breadth;
+        double rightYCordinate = this.originPoint.yCordinate;
         Point rightPointObj = new Point(rightXCordinate, rightYCordinate);
         double digonalXCordinate = this.originPoint.xCordinate + breadth;
-        double digonalYCordinate = this.originPoint.yCordinate + breadth;
+        double digonalYCordinate = this.originPoint.yCordinate + length;
         Point digonalPointObj = new Point(digonalXCordinate, digonalYCordinate);
         allPointsList.add(this.originPoint);
         allPointsList.add(topPointObj);
@@ -91,5 +106,4 @@ public class Reactangle implements Shape {
         return this.originPoint;
     };
 
-    
 }

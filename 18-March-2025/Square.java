@@ -22,15 +22,30 @@ public class Square implements Shape {
         this.allPointsList = generateAllPointsList();
     }
 
-    public long getTimeStamp(){
+    /**
+     * Method to get the time at which the shape is created
+     * 
+     * @return the time stamp at which the shape is created
+     */
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-
-    public ShapeType getShapeName(){
+    /**
+     * Method to get the name of shape
+     * 
+     * @return the shape name of the shape object
+     */
+    public ShapeType getShapeName() {
         return ShapeType.valueOf("SQUARE");
     }
 
+    /**
+     * Method to get the list of point object, where each point is holding the
+     * coordinates of a shape, and the list holding all the coordinates of the shape
+     * 
+     * @return the list of point object holding all the coordinates of the shape
+     */
     public List<Point> getAllPointsList() {
         return this.allPointsList;
     }
@@ -71,11 +86,11 @@ public class Square implements Shape {
      */
     List<Point> generateAllPointsList() {
         List<Point> allPointsList = new ArrayList<Point>();
-        double topXCordinate = this.originPoint.xCordinate + sideLength;
+        double topXCordinate = this.originPoint.xCordinate;
         double topYCordinate = this.originPoint.yCordinate + sideLength;
         Point topPointObj = new Point(topXCordinate, topYCordinate);
         double rightXCordinate = this.originPoint.xCordinate + sideLength;
-        double rightYCordinate = this.originPoint.yCordinate + sideLength;
+        double rightYCordinate = this.originPoint.yCordinate;
         Point rightPointObj = new Point(rightXCordinate, rightYCordinate);
         double digonalXCordinate = this.originPoint.xCordinate + sideLength;
         double digonalYCordinate = this.originPoint.yCordinate + sideLength;
@@ -86,7 +101,5 @@ public class Square implements Shape {
         allPointsList.add(digonalPointObj);
         return allPointsList;
     }
-
-    // public int isPointEnclosed();
 
 }

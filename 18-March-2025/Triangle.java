@@ -22,18 +22,34 @@ public class Triangle implements Shape {
 
     }
 
-    public long getTimeStamp(){
+    /**
+     * Method to get the time at which the shape is created
+     * 
+     * @return the time stamp at which the shape is created
+     */
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-
-    public ShapeType getShapeName(){
+        /**
+     * Method to get the name of shape  
+     * @return the shape name of the shape object
+     */
+    public ShapeType getShapeName() {
         return ShapeType.valueOf("TRIANGLE");
     }
 
-    public List<Point> getAllPointsList(){
+
+
+    /**
+     * Method to get the list of point object, where each point is holding the
+     * coordinates of a shape, and the list holding all the coordinates of the shape
+     * @return the list of point object holding all the coordinates of the shape
+     */
+    public List<Point> getAllPointsList() {
         return this.allPointsList;
     }
+
     /**
      * Method to get the area of triangle
      * 
@@ -70,11 +86,11 @@ public class Triangle implements Shape {
      */
     List<Point> generateAllPointsList() {
         List<Point> allPointsList = new ArrayList<Point>();
-        double topXCordinate = this.originPoint.xCordinate + (sideLength/2);
-        double topYCordinate = this.originPoint.yCordinate + (sideLength/2);
+        double topXCordinate = this.originPoint.xCordinate + (sideLength / 2);
+        double topYCordinate = this.originPoint.yCordinate + sideLength;
         Point topPointObj = new Point(topXCordinate, topYCordinate);
         double rightXCordinate = this.originPoint.xCordinate + sideLength;
-        double rightYCordinate = this.originPoint.yCordinate + sideLength;
+        double rightYCordinate = this.originPoint.yCordinate;
         Point rightPointObj = new Point(rightXCordinate, rightYCordinate);
         allPointsList.add(this.originPoint);
         allPointsList.add(topPointObj);

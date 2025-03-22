@@ -1,9 +1,10 @@
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Circle implements Shape {
     public double radius;
     public Point originPoint;
+    public Point centerPoint;
     public long timeStamp;
     List<Point> allPointsList;
 
@@ -18,19 +19,28 @@ public class Circle implements Shape {
         this.radius = radius;
         this.originPoint = originPoint;
         this.timeStamp = System.currentTimeMillis();
-        this.allPointsList=generateAllPointsList();
+        this.centerPoint = this.getCenterPoint();
     }
 
-    public long getTimeStamp(){
+    /**
+     * Method to get the time at which the shape is created
+     * 
+     * @return the time stamp at which the shape is created
+     */
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-
-    public ShapeType getShapeName(){
+    /**
+     * Method to get the name of shape
+     * 
+     * @return the shape name of the shape object
+     */
+    public ShapeType getShapeName() {
         return ShapeType.valueOf("CIRCLE");
     }
 
-    public List<Point> getAllPointsList(){
+    public List<Point> getAllPointsList() {
         return this.allPointsList;
     }
 
@@ -62,11 +72,17 @@ public class Circle implements Shape {
         return this.originPoint;
     };
 
-    List<Point> generateAllPointsList() {
-        List<Point> allPointsList = new ArrayList<Point>();
-        return allPointsList;
+    /**
+     * Method to generate the point of a circle using the given coordinates
+     * 
+     * @return Point object holding the center coordinates of the circle
+     */
+    public Point getCenterPoint() {
+        double angle = Math.atan(originPoint.yCordinate / originPoint.xCordinate);
+        double xCenter = this.radius + (radius * Math.cos(angle));
+        double yCenter = this.radius + (radius * Math.sin(angle));
+        Point centerPoint = new Point(xCenter, yCenter);
+        return centerPoint;
     }
-
-
 
 }

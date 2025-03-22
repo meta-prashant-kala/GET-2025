@@ -29,7 +29,7 @@ public class Polygon implements Shape {
      * @return area of the polygon
      */
     public double getArea() {
-        return ((this.sideLength*this.sideLength*this.numberOfSides)/4*Math.tan(Math.PI/this.numberOfSides));
+        return ((this.sideLength * this.sideLength * this.numberOfSides) / 4 * Math.tan(Math.PI / this.numberOfSides));
     }
 
     /**
@@ -38,13 +38,19 @@ public class Polygon implements Shape {
      * @return perimeter of the polygon
      */
     public double getPerimeter() {
-        return (2*this.sideLength*this.numberOfSides);
+        return (2 * this.sideLength * this.numberOfSides);
     }
 
-
-    public List<Point> getAllPointsList(){
+    /**
+     * Method to get the list of point object, where each point is holding the
+     * coordinates of a shape, and the list holding all the coordinates of the shape
+     * 
+     * @return the list of point object holding all the coordinates of the shape
+     */
+    public List<Point> getAllPointsList() {
         return this.allPointsList;
     }
+
     /**
      * Method to get the Point object of a shape which holds the x and y coordinates
      * of a shape
@@ -55,15 +61,30 @@ public class Polygon implements Shape {
         return this.originPoint;
     };
 
-
-    public long getTimeStamp(){
+    /**
+     * Method to get the time at which the shape is created
+     * 
+     * @return the time stamp at which the shape is created
+     */
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-    public ShapeType getShapeName(){
+    /**
+     * Method to get the name of shape
+     * 
+     * @return the shape name of the shape object
+     */
+    public ShapeType getShapeName() {
         return ShapeType.valueOf("POLYGON");
     }
 
+    /**
+     * Method to generate all the coordinates of a Shape
+     * 
+     * @return List of Point objects where each point object is holding a coordinate
+     *         of a shape
+     */
     List<Point> generateAllPointsList() {
         List<Point> allPointsList = new ArrayList<Point>();
         double hypotenuse = this.sideLength / (2 * Math.sin(Math.PI / this.numberOfSides));
@@ -86,5 +107,4 @@ public class Polygon implements Shape {
         return allPointsList;
     }
 
-    // public int isPointEnclosed();
 }
