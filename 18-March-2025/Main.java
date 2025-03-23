@@ -323,10 +323,10 @@ public class Main {
         Shape rectangleShape = createInitialShapeRectangle();
         Shape squareShape = createInitialShapeSquare();
         Shape triangleShape = createInitialShapeTriangle();
-        screenObj.addShape(triangleShape);
-        screenObj.addShape(circleShape);
         screenObj.addShape(rectangleShape);
+        screenObj.addShape(circleShape);
         screenObj.addShape(squareShape);
+        screenObj.addShape(triangleShape);
 
         // Showing the initiall shapes on the screen to the user
         screenObj.displayShapes();

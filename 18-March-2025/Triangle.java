@@ -31,19 +31,19 @@ public class Triangle implements Shape {
         return this.timeStamp;
     }
 
-        /**
-     * Method to get the name of shape  
+    /**
+     * Method to get the name of shape
+     * 
      * @return the shape name of the shape object
      */
     public ShapeType getShapeName() {
         return ShapeType.valueOf("TRIANGLE");
     }
 
-
-
     /**
      * Method to get the list of point object, where each point is holding the
      * coordinates of a shape, and the list holding all the coordinates of the shape
+     * 
      * @return the list of point object holding all the coordinates of the shape
      */
     public List<Point> getAllPointsList() {
