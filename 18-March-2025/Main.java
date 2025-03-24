@@ -267,7 +267,15 @@ public class Main {
         Point originPointObj = new Point(xCordinate, yCordinate);
 
         for (Shape shapeObj : screenObj.shapesOnScreenList) {
-            if (shapeObj.isPointEnclosed(originPointObj)) {
+            if (shapeObj.getShapeName() == ShapeType.CIRCLE) {
+                Circle circleObj = (Circle) shapeObj;
+                double distance = Math
+                        .sqrt(Math.pow(circleObj.getCenterPoint().yCordinate - originPointObj.yCordinate, 2)
+                                * Math.pow(circleObj.getCenterPoint().xCordinate - originPointObj.xCordinate, 2));
+                if (circleObj.getRadius() >= distance) {
+                    enclosedShapesList.add(shapeObj);
+                }
+            } else if (shapeObj.isPointEnclosed(originPointObj)) {
                 enclosedShapesList.add(shapeObj);
             }
         }
@@ -285,6 +293,7 @@ public class Main {
 
         while (true) {
             try {
+                System.out.println("Enter the shape");
                 String shapeType = scanInput.nextLine();
                 shapeName = ShapeType.valueOf(shapeType);
                 break;
@@ -345,9 +354,8 @@ public class Main {
             System.out.println("3. To delete all shapes of same type from the screen");
             System.out.println("4. To get the shapes in specific order");
             System.out.println("5. To get the list of shape objects enclosing a specified point");
-            System.out.println("6. To check if a point is enclosed by a specific shape");
-            System.out.println("7. To get the list of shapes on the screen");
-            System.out.println("8. To get the list of coordinates of all shapes on the screen");
+            System.out.println("6. To get the list of shapes on the screen");
+            System.out.println("7. To get the list of coordinates of all shapes on the screen");
             System.out.println("0. To exit from the app");
             System.out.println();
 
@@ -424,28 +432,13 @@ public class Main {
                     screenObj.displayShapes(enclosedShapeList);
                     break;
 
-                // Handling check if a point is enclosed by a specific shape
-                case 6:
-                    Shape shapeObj = getShape(screenObj);
-                    if (shapeObj != null) {
-                        boolean isExist = shapeObj.isPointEnclosed(shapeObj.getOrigin());
-                        if (isExist) {
-                            System.out.println("This point is enclosed by " + shapeObj.getShapeName());
-                        } else {
-                            System.out.println("This point is not enclosed by " + shapeObj.getShapeName());
-                        }
-                    } else {
-                        System.out.println("Shape does not exist on the screen");
-                    }
-                    break;
-
                 // Handling get the list of shapes on the screen
-                case 7:
+                case 6:
                     screenObj.displayShapes();
                     break;
 
                 // Handling get the list of coordinates of all shapes on the screen
-                case 8:
+                case 7:
                     screenObj.showAllCoordinates();
                     break;
 

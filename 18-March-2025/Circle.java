@@ -23,6 +23,15 @@ public class Circle implements Shape {
     }
 
     /**
+     * Method to get the radius of the circle
+     * 
+     * @return radius of the circle
+     */
+    public double getRadius() {
+        return this.radius;
+    }
+
+    /**
      * Method to get the time at which the shape is created
      * 
      * @return the time stamp at which the shape is created
