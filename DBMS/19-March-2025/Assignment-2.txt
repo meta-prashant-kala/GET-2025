@@ -2,8 +2,78 @@
 
 Normalisation is basically a systematic method of breaking down tables and arrange the data in database in order to remove duplicate data. Normalisation also helps in removal of unwanted anomalies including insert, update, and delete.
 Normalization types: 
-1. 1st Normal Form: Each table cell should contain only a single value, and each column should have a unique name.
-2. 2nd Normal Form: Each column should be directly related to the primary key, and not to other columns.
-3. 3rd Normal Form: All non-key attributes are independent of each other.
-4. BCNF: It ensures that each non-key attribute is dependent only on the candidate key
 
+1. 1st Normal Form: Each table cell should contain only a single value, and each column should have a unique name.
+Example:
+	studentId	name	subjects
+	1		John	Math, Science
+	2		Alice	English, History
+
+	1NF Conversion:
+​
+	studentID	name	subject
+	1		John	Math
+	1		John	Science
+	2		Alice	English
+	2		Alice	History
+
+2. 2nd Normal Form: Each column should be directly related to the primary key, and not to other columns.
+Example:
+​
+	orderID		productID	productName	orderDate
+	1		P1		Laptop		2025-03-10
+	1		P2		Mouse		2025-03-10
+​
+2NF Conversion: 
+	Orders Table:
+​
+	orderID		orderDate
+	1		2024-03-10
+
+	Products Table:
+​
+	productID	productName
+	P1		Laptop
+	P2		Mouse
+​
+	orderID		productID
+	1		P1
+	1		P2
+
+3. 3rd Normal Form: All non-key attributes are independent of each other.
+Example:
+	studentID	Name	deptID	deptName
+	101		John	D1	CS
+	102		Alice	D2	Math
+​
+	3NF Conversion:
+​
+	studentID	name	deptID
+	101		John	D1
+	102		Alice	D2
+​
+	deptID	deptName
+	D1	CS
+	D2	Math
+
+4. BCNF: It ensures that each non-key attribute is dependent only on the candidate key.
+Example:
+	studentID	courseID	professor
+	101		C1		Prof1
+	102		C1		Prof1
+	103		C2		Prof2
+	104		C2		Prof2
+
+	Courses Table:
+
+	Course_ID	Instructor
+	C1		Prof1
+	C2		Prof2
+
+	Student Courses Table:
+
+	Student_ID	Course_ID
+	101		C1
+	102		C1
+	103		C2
+	104		C2
