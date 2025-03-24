@@ -1,0 +1,9 @@
+							Assignment-2
+
+Normalisation is basically a systematic method of breaking down tables and arrange the data in database in order to remove duplicate data. Normalisation also helps in removal of unwanted anomalies including insert, update, and delete.
+Normalization types: 
+1. 1st Normal Form: Each table cell should contain only a single value, and each column should have a unique name.
+2. 2nd Normal Form: Each column should be directly related to the primary key, and not to other columns.
+3. 3rd Normal Form: All non-key attributes are independent of each other.
+4. BCNF: It ensures that each non-key attribute is dependent only on the candidate key
+

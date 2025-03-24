@@ -1,0 +1,30 @@
+							Assignment-1
+
+Ans-1: Entities
+1. Product.
+2. Category.
+3. Image.
+4. User.
+5. Shopper.
+6. Administrator.
+7. Order.
+8. Order Item.
+9. Shipping Address.
+
+Ans-2: Relation
+1. Category - Product: Many-to-many
+2. Product - Images: One-to-many
+3. Shopper - Order: One-to-many
+4. Order - Products: Many-to-many
+5. Shopper - Shipping Address: One to many
+
+ANs-3. Attributes
+1. Product : productID, productName, productDesc, productStock, productPrice, productCategoryID.
+2. Category: categoryID,categoryName, categoryDesc.
+3. Image: imageID, productid, imageUrl.
+4. User : roleType, roleID.
+5. Shopper: username, userID, roleID, password, email, phone, gender.
+6. Administrator : adminID, roleID, adminPassword.
+7. Order: orderID, deleiverData, orderDate, orderStatus.
+8. Order Item : orderItemID, orderID, productid, orderItemName, orderItemQuantity, orderItemStatus.
+9. Shipping Address : addressID, userID, address.
