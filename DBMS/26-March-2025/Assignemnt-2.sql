@@ -48,6 +48,8 @@ SELECT ProductID, COUNT(CategoryID) AS CategoryCount
 	GROUP BY ProductID
     HAVING CategoryCount > 1;
     
+-- Display Count of products as per below price range:
+
     
 -- Display the Categories along with number of products under each category.
 SELECT CategoryID , COUNT(ProductID) AS ProductCount
