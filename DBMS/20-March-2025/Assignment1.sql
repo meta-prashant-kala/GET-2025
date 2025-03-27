@@ -15,13 +15,13 @@ CREATE TABLE category(
 CREATE TABLE product(
 	ProductID INT PRIMARY KEY,
     CategoryID INT ,
-    ProductName VARCHAR(20),
+    ProductName VARCHAR(20) NOT NULL,
     ProductDesc VARCHAR(50),
-    ProductPrice INT,
+    ProductPrice INT NOT NULL,
     ProductStock INT,
     isActive BOOLEAN,
     CreatedAt DATE,
-    FOREIGN KEY (categoryID) REFERENCES category(categoryID)
+    FOREIGN KEY (CategoryID) REFERENCES category(CategoryID)
 );
 
 CREATE TABLE image(
@@ -55,7 +55,7 @@ CREATE TABLE orders(
     UserID INT,
     PaymentID INT,
     OrderDate DATE,
-    DeleiverDate DATE,
+    DeleiverDate DATE ,
     OrderStatus VARCHAR(20),
     ShippingAddress VARCHAR(50),
     FOREIGN KEY (UserID) REFERENCES users(UserID),
@@ -77,11 +77,11 @@ CREATE TABLE orderItem(
 CREATE TABLE shippingAdrress(
 	AddressID INT PRIMARY KEY,
     UserID INT,
-    City VARCHAR(20),
-    State VARCHAR(20),
-	Pincode INT,
-    Country VARCHAR(20),
-    Address VARCHAR(50),
+    City VARCHAR(20) NOT NULL,
+    State VARCHAR(20) NOT NULL,
+	Pincode INT NOT NULL,
+    Country VARCHAR(20) NOT NULL,
+    Address VARCHAR(50) NOT NULL,
     FOREIGN KEY (UserID) REFERENCES users(UserID)
 );
 

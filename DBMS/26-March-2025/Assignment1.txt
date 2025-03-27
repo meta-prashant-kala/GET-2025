@@ -1,0 +1,94 @@
+Table Columns with Constraints :- 
+​
+
+Category Table
+
+ParentId : INT,
+CategoryId  :   INT PRIMARY KEY,
+CategoryName :  VARCHAR(20) NOT NULL,
+CategoryDesc: VARCHAR(50)
+​
+
+Products Table 
+
+ProductId : INT PRIMARY KEY,
+CategoryId : INT,
+ProductName : VARCHAR(20) NOT NULL,
+ProductDesc : VARCHAR(50),
+ProductPrice : INT NOT NULL,
+ProductStock : INT,
+isActive : BOOLEAN ,
+CreatedAt : DATETIME DEFAULT NOW(),
+FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+​
+
+CategoryJunction
+ ProductId : INT,
+ CategoryId : INT,
+ PRIMARY KEY (ProductId, CategoryId),
+ FOREIGN KEY (ProductId) REFERENCES    Products(ProductId),
+ FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+​
+
+Image Table
+
+ImageId  : INT PRIMARY KEY,
+ProductId  : INT ,
+ImageData: VARCHAR(50),
+ImageUrl  : VARCHAR(100) NOT NULL,
+FOREIGN KEY (ProductId) REFERENCES product(ProductId)
+ 
+
+Orders Table
+
+OrderId  : INT PRIMARY KEY AUTO_INCREMENT,
+UserID: INT,
+PaymentID: INT,
+OrderDate: DATE,
+DeleiverDate: DATE,
+OrderStatus: VARCHAR(20),
+ShippingAddress: VARCHAR(50),
+FOREIGN KEY (UserID) REFERENCES users(UserID),
+FOREIGN KEY (PaymentID) REFERENCES payment(PaymentID)
+​
+
+OrderItems Table 
+
+ OrderItemID  : INT PRIMARY KEY,
+ OrderId  : INT ,
+ ProductId  : INT ,
+ OrderItemName: VARCHAR(20),
+ OrderItemQuantity: INT,
+ OrderItemStatus: VARCHAR(20),
+ OrderItemPrice: INT,
+ FOREIGN KEY (ProductID) REFERENCES product(productID),
+ FOREIGN KEY (OrderID) REFERENCES orders(OrderID)
+​
+
+users Table
+UserId  : INT PRIMARY KEY ,
+RoleID: INT,
+UserName: VARCHAR(20),
+Password  :  VARCHAR(20),
+Email  : VARCHAR(30),
+PhoneNumber: VARCHAR(10),
+Gender: CHAR(1)
+​
+​
+payment Table
+
+PaymentID: INT PRIMARY KEY,
+PaymentMode: VARCHAR(10),
+PaymentTime: DATE,
+PaymentAmount: INT
+
+
+ShippingAddress :- 
+AddressId  : INT PRIMARY KEY,
+UserId : INT,
+City: VARCHAR(20) NOT NLL,
+State: VARCHAR(20) NOT NULL,
+Pincode: INT NOT NULL,
+Country: VARCHAR(20) NOT NULL,
+Address: VARCHAR(50) NOT NULL,
+FOREIGN KEY (UserID) REFERENCES users(UserID)
