@@ -49,8 +49,17 @@ SELECT ProductID, COUNT(CategoryID) AS CategoryCount
     HAVING CategoryCount > 1;
     
 -- Display Count of products as per below price range:
-
+SELECT 
+	CASE
+		WHEN ProductPrice >= 0 AND ProductPrice <= 5000 THEN '0-5000'
+		WHEN ProductPrice >= 5000 AND ProductPrice <= 10000 THEN '5000-10000'
+		WHEN ProductPrice >= 10000  THEN 'Above 10000'
+	END AS PriceRange,
+    COUNT(ProductID) as ProductCount 
+    FROM product
+    GROUP BY PriceRange;
     
+
 -- Display the Categories along with number of products under each category.
 SELECT CategoryID , COUNT(ProductID) AS ProductCount
 	FROM prodAndCatJunction
