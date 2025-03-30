@@ -43,23 +43,23 @@ CREATE TABLE users(
     Gender CHAR(1)
 );
 
-CREATE TABLE payment(
-	PaymentID INT PRIMARY KEY,
-    PaymentMode VARCHAR(10),
-	PaymentTime DATE,
-    PaymentAmount INT
-);
-
 CREATE TABLE orders(
 	OrderID INT PRIMARY KEY,
     UserID INT,
-    PaymentID INT,
     OrderDate DATE,
     DeleiverDate DATE ,
     OrderStatus VARCHAR(20),
     ShippingAddress VARCHAR(50),
-    FOREIGN KEY (UserID) REFERENCES users(UserID),
-    FOREIGN KEY (PaymentID) REFERENCES payment(PaymentID)
+    FOREIGN KEY (UserID) REFERENCES users(UserID)
+);
+
+CREATE TABLE payment(
+	PaymentID INT PRIMARY KEY,
+    OrderID INT,
+    PaymentMode VARCHAR(10),
+	PaymentTime DATE,
+    PaymentAmount INT,
+    FOREIGN KEY (OrderID) REFERENCES orders(OrderID)
 );
 
 CREATE TABLE orderItem(

@@ -35,39 +35,35 @@ SELECT p.ProductName, p.ProductPrice, p.ProductDesc, c.CategoryName AS ProductCa
 -- Display the list of Products whose Quantity on hand (Inventory) is under 50.    
 SELECT * FROM product WHERE product.ProductStock<50;
 
--- Display Recent 50 (since we have 50 orders total so we are taking recent 30 orders)alter
--- Orders placed (Id, Order Date, Order Total).
-SELECT o.OrderID, o.OrderDate, p.PaymentAmount from orders o
-	LEFT JOIN payment p ON p.PaymentID=o.PaymentID
+-- Display Recent 50 Orders placed (Id, Order Date, Order Total).
+SELECT o.OrderID, o.OrderDate, oi.OrderItemQuantity*oi.OrderItemPrice as OrderTotal FROM orders o
+	LEFT JOIN orderItem oi ON oi.OrderID=o.OrderID
     ORDER BY o.OrderDate DESC
-    LIMIT 30;
+    LIMIT 50;
 
 -- Display 10 most expensive Orders.
-SELECT o.OrderID, o.OrderDate, p.PaymentAmount FROM orders o
-	LEFT JOIN payment p ON p.PaymentID=o.PaymentID
-    ORDER BY p.PaymentAmount DESC
+SELECT o.OrderID, o.OrderDate, oi.OrderItemQuantity*oi.OrderItemPrice as OrderTotal FROM orders o
+	LEFT JOIN orderItem oi ON oi.OrderID=o.OrderID
+    ORDER BY OrderTotal DESC
     LIMIT 10;
    
    
--- Display list of shoppers which haven't ordered anything since last 
--- (Since we have data where orders are before 2 months so we'll interval of 3 month)
---  month.
+-- Display list of shoppers which haven't ordered anything since last month.
 SELECT u.UserID, u.UserName, o.OrderID, o.OrderDate FROM users u
 	RIGHT JOIN orders o ON o.UserID=u.UserID
-    WHERE NOT o.OrderDate>NOW()-INTERVAL 3 MONTH;
+    WHERE u.RoleID=1 AND NOT o.OrderDate>NOW()-INTERVAL 2 MONTH;
     
     
--- Display all the Orders which are placed more than 10 (Taking 75 Days) days old 
+-- Display all the Orders which are placed more than 10 days old 
 -- and one or more items from those orders are still not shipped.
 SELECT OrderID, OrderStatus FROM orders 
-	WHERE orderDate> NOW()-INTERVAL 75 DAY
+	WHERE orderDate> NOW()-INTERVAL 10 DAY
 	AND OrderStatus<>'Shipped';
     
 -- Display list of shopper along with orders placed by them in last 15 days
--- (Since we have data where orders are before 2 months so we'll interval of 75 month)
 SELECT u.UserID, u.UserName, o.OrderID, o.OrderDate FROM users u
 	RIGHT JOIN orders o ON o.UserID=u.UserID
-    WHERE o.OrderDate > NOW() - INTERVAL 75 DAY;
+    WHERE u.RoleID=1 AND o.OrderDate > NOW() - INTERVAL 15 DAY;
     
     
 -- Display list of order items along with order placed date 
@@ -76,7 +72,7 @@ SELECT oi.OrderItemID, oi.OrderItemStatus, o.OrderDate , oi.OrderItemPrice
 	FROM orderItem oi LEFT JOIN orders o
     ON oi.OrderID=o.OrderID
 	WHERE oi.OrderItemStatus='Shipped'
-    AND oi.OrderItemPrice >= 500 
-    AND oi.OrderItemPrice <= 5000;
+    AND oi.OrderItemPrice >= 20
+    AND oi.OrderItemPrice <= 50;
     
     
