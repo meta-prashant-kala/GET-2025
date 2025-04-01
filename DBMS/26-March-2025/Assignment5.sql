@@ -5,7 +5,7 @@ USE storeFront;
 -- with latest ordered items should be displayed first for last 60 days.
 
 CREATE VIEW OrderInformation AS
-
+ -- Previous Version
 SELECT jt4.OrderID, jt4.ProductName, jt4.ProductPrice, jt5.UserName, jt5.Email, jt5.OrderDate, jt5.OrderStatus
 	FROM (SELECT jt1.OrderID, p.ProductName, p.ProductPrice FROM product p 
     JOIN (SELECT o.OrderID , oi.ProductID FROM orders o 
@@ -19,12 +19,14 @@ SELECT jt4.OrderID, jt4.ProductName, jt4.ProductPrice, jt5.UserName, jt5.Email, 
     ON u.UserID=jt2.UserID) jt5 ON jt4.OrderID=jt5.OrderID
     WHERE jt5.OrderDate > NOW() - INTERVAL 90 DAY;
     
--- improved Version
+-- Improved Version
 SELECT opj.OrderID, opj.ProductName, opj.OrderPrice, ouj.UserName, ouj.Email, ouj.OrderDate, opj.OrderStatus
 	FROM (SELECT oi.OrderID, p.ProductName, oi.OrderItemPrice*oi.OrderItemQuantity AS OrderPrice,
 	oi.OrderItemStatus AS OrderStatus FROM orderItem oi 
     LEFT JOIN product p ON oi.ProductID=p.ProductID) opj 
-    JOIN (SELECT u.UserName, u.Email, o.OrderDate, o.OrderID FROM users u JOIN orders o ON u.UserID=o.UserID) ouj
+    JOIN (SELECT u.UserName, u.Email, o.OrderDate, o.OrderID FROM users u 
+    JOIN orders o ON u.UserID=o.UserID
+	WHERE u.RoleID=1) ouj
     ON opj.OrderID=ouj.OrderID;
 
 -- Use the above view to display the Products(Items) which are in ‘shipped’ state.

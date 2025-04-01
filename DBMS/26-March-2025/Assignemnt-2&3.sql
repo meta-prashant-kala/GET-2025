@@ -66,28 +66,31 @@ SELECT CategoryID , COUNT(ProductID) AS ProductCount
 	GROUP BY CategoryID;
     
     
-INSERT INTO payment (PaymentID, PaymentMode, PaymentTime, PaymentAmount)
-VALUES
-(351, 'CreditCard', '2025-02-26', 70000);
-    
-INSERT INTO orders (OrderID, UserID, PaymentID, OrderDate, DeleiverDate, orderStatus, ShippingAddress)
-VALUES
-(451, 650, 351, '2025-02-26', '2025-02-27', 'Shipped', '123, ABC Street, Jaipur');
 
+    
+INSERT INTO orders (OrderID, UserID, OrderDate, DeleiverDate, orderStatus, ShippingAddress)
+VALUES
+(451, 650, '2025-02-26', '2025-02-27', 'Shipped', '123, ABC Street, Jaipur');
+
+
+INSERT INTO payment (PaymentID, OrderID, PaymentMode, PaymentTime, PaymentAmount)
+VALUES
+(351, 451,'CreditCard', '2025-02-26', 70000);
 
 -- Display Shopper’s information along with number of orders 
 -- he/she placed during last 30 days.
 SELECT u.UserID, u.UserName, COUNT(o.OrderID) FROM users u
 	JOIN orders o ON u.UserID=o.UserID
-    WHERE o.OrderDate > NOW() - INTERVAL 90 DAY
+    WHERE u.RoleID=1 AND o.OrderDate > NOW() - INTERVAL 90 DAY 
     GROUP BY o.UserID;
     
 -- Display the top 10 Shoppers who generated maximum number of revenue in last 30 days.
 SELECT u.UserID, u.UserName, jt.Revenue 
 	FROM users u 
     JOIN (SELECT o.UserID, SUM(p.PaymentAmount) AS Revenue
-	FROM orders o JOIN payment p ON o.PaymentID=p.PaymentID
+	FROM orders o JOIN payment p ON o.OrderID=p.OrderID
     GROUP BY o.UserID) jt ON  jt.UserID=u.UserID
+    WHERE u.RoleID=1
     ORDER BY jt.Revenue DESC
     LIMIT 10 ;
     
@@ -126,6 +129,4 @@ SELECT oi.ProductID, COUNT(oi.OrderItemStatus) AS CancelCount from orderItem oi
 	WHERE oi.OrderItemStatus='Cancelled'
     GROUP BY oi.ProductID
     LIMIT 10;
-    
-
     

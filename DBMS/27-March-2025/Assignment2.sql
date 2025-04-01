@@ -1,5 +1,5 @@
+-- Create a Stored procedure to retrieve average sales of each product in a month. Month and year will be input parameter to function.
 DELIMITER //
-
 CREATE PROCEDURE USP_avgMonthSale (inputMonth INT, inputYear INT)
        BEGIN
          SELECT p.ProductID, AVG(p.ProductPrice*jt.OrderItemQuantity) AS AverageSale
@@ -12,8 +12,6 @@ CREATE PROCEDURE USP_avgMonthSale (inputMonth INT, inputYear INT)
 			GROUP BY p.ProductID;
        END//
 DELIMITER ;
-    
-DROP PROCEDURE avgMonthSale;
 
 CALL USP_avgMonthSale(11,2024);
 
