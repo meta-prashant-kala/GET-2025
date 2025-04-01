@@ -30,6 +30,4 @@ BEGIN
 END $$
 DELIMITER ;
 
-DROP FUNCTION getMaxOrderInYear;
-
 SELECT getMaxOrderInYear(2025) AS MaxOrders;
