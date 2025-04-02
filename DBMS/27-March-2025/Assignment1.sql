@@ -30,4 +30,4 @@ BEGIN
 END $$
 DELIMITER ;
 
-SELECT getMaxOrderInYear(2025) AS MaxOrders;
+SELECT storeFront.getMaxOrderInYear(2025) AS MaxOrders;

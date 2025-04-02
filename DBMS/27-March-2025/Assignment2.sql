@@ -13,7 +13,7 @@ CREATE PROCEDURE USP_avgMonthSale (inputMonth INT, inputYear INT)
        END//
 DELIMITER ;
 
-CALL USP_avgMonthSale(11,2024);
+CALL storeFront.USP_avgMonthSale(11,2024);
 
 -- Create a stored procedure to retrieve table having order detail with status for a given period. 
 -- Start date and end date will be input parameter. 
@@ -31,6 +31,6 @@ CREATE PROCEDURE USP_OrderDetails(startDate DATE, endDate DATE)
     END//
 DELIMITER ;
 
-CALL USP_OrderDetails('2024-11-26','2024-11-29');
+CALL storeFront.USP_OrderDetails('2024-11-26','2024-11-29');
     
     

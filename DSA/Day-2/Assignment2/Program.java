@@ -5,10 +5,18 @@ public class Program {
     int totalCapacity;
     int currentCapacity;
 
-    public Program(String progName, int totCapacity){
-        this.programName=progName;
-        this.totalCapacity=totCapacity;
-        this.currentCapacity=totCapacity;
+    public Program(String progName, int totCapacity) {
+        this.programName = progName;
+        this.totalCapacity = totCapacity;
+        this.currentCapacity = totCapacity;
+    }
+
+    public void reduceProgramCapacity() {
+        this.currentCapacity--;
+    }
+
+    public String getProgramName() {
+        return programName;
     }
 
 }
