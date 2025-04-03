@@ -60,7 +60,9 @@ class Main {
             switch (selectedOption) {
 
                 case 1:
-                    ResultSet resultSet1 = queryObj.getOrderDetails(connection, 601);
+                    System.out.println("Enter the userID");
+                    int userID=Integer.parseInt(scanInput.nextLine());
+                    ResultSet resultSet1 = queryObj.getOrderDetails(connection, userID);
                     Order orderDetails = new Order(resultSet1);
                     orderDetails.displayOrderDetails();
                     break;

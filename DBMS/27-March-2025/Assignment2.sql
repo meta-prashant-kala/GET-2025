@@ -30,11 +30,11 @@ CREATE PROCEDURE storeFront.USP_OrderDetails(startDate DATE, endDate DATE)
         AND OrderDate <= endDate ;
     END//
 DELIMITER ;
-
 -- if date 2024-03-23 and 2024-01-03 , then date will be set on 2024-03-01 
 DROP PROCEDURE storeFront.USP_OrderDetails;
 SHOW FUNCTION STATUS;
 
-CALL storeFront.USP_OrderDetails('2024-11-29','2024-11-28');
+CALL storeFront.USP_OrderDetails('2024-11-29','2024-11-27');
+
     
     

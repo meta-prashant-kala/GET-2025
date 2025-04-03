@@ -152,7 +152,7 @@ public class ExpressionEvaluator {
         Stack<String> customStack = new CustomStack<String>(infixExpressionList.size());
         for (String str : infixExpressionList) {
             if (this.isNumber(str)) {
-                postfixExpression += str + " ";
+                postfixExpression += str + " "; 
             } else if ("(".equals(str)) {
                 customStack.push(str);
             } else if (")".equals(str)) {
@@ -194,7 +194,7 @@ public class ExpressionEvaluator {
         List<String> postFixExpList = getExpressionList(postfixExpression);
 
         Stack<String> customStack = new CustomStack<String>(postFixExpList.size());
-
+        // 5 7 *
         for (String str : postFixExpList) {
             if (isNumber(str)) {
                 customStack.push(str);

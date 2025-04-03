@@ -1,97 +1,106 @@
-public class LinkedList{
-    Node head=null;
-    Node tail=null;
+public class LinkedList {
+    Node head = null;
+    Node tail = null;
 
+    public Node getHead(){
+        return head;
+    }
 
-
-    public boolean insertNode(int val){
-        Node node=new Node(val);
-        if(tail==null){
-            head=node;
-            tail=node;
-        }else{
-            tail.next=node;
-            tail=node;
+    public boolean insertNode(int val) {
+        Node node = new Node(val);
+        if (tail == null) {
+            head = node;
+            tail = node;
+        } else {
+            tail.next = node;
+            tail = node;
         }
         return true;
     }
 
-    public Node reverseLinkedList(Node startNode){
-        Node prevNode=null;
-        Node currNode=startNode;
-        Node nextNode=startNode;
-        while (currNode!=null) {
-            currNode=nextNode.next;
-            nextNode.next=prevNode;
-            prevNode=nextNode;
-            nextNode=currNode;
+    public int getSize(){
+        Node linkedListIterator=this.head;
+        int size=0;
+        while (linkedListIterator!=null) {
+            size++;
+            linkedListIterator=linkedListIterator.next;
         }
-        return nextNode;
+        return size;
     }
 
-    public boolean isLoop(){
-        Node slow=this.head;
-        Node fast=this.tail;
-        while (fast.next !=null && slow!=fast) {
-            slow=slow.next;
-            fast=fast.next.next;
+    public boolean isLoop() {
+        Node slow = this.head;
+        Node fast = this.tail;
+        while (fast.next != null && slow != fast) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        if(slow==fast){
+        if (slow == fast) {
             return true;
         }
         return false;
     }
 
-    public void rotateSublist(int left, int right, int n){
-        Node linkListIterator=this.head;
-        Node leftListStart=null;
-        Node leftListEnd=null;
-        Node midListEnd=null;
-        Node rightListStart=null;
-        Node headNode=new Node(-1);
-        while (linkListIterator!=null) {
-            if(left==2 && n!=-1){
-                headNode=linkListIterator;
-            }
-            if(left==1 && n!=-1){
-                leftListStart=linkListIterator;
-                left=n;
-                n=-1;
-            }
-            if(left==1 && n==-1){
-                leftListEnd=linkListIterator;
-                left=0;
-            }
-            if(right==1){
-                midListEnd=linkListIterator;
-                rightListStart=linkListIterator.next;
-                right=0;
-            }
-            if(left>1){
-                left--;
-            }
-            if(right>1){
-                right --;
-            }
-            if(right==0 && left==0){
-                break;
-            }
-            linkListIterator=linkListIterator.next;
+    public void rotateSublist(int left, int right, int n) {
+        
+        if(left==right){
+            return;
+        }
+        if(right<left){
+            throw new IllegalAccessError("left cannot be greater than right");
         }
 
-        headNode.next=leftListEnd.next;
-        midListEnd.next=leftListStart;
-        leftListEnd.next=rightListStart;
-    }
+        n=n%getSize();
 
-    public void displayLinkedList(){
-        Node linkedListIterator=this.head;
-        while (linkedListIterator!=null) {
-            System.out.print(linkedListIterator.data+" -> ");
-            linkedListIterator=linkedListIterator.next;
+        Node leftListStart = null;
+        Node midListStart = null;
+        Node midListEnd = null;
+        Node rightListStart = null;
+        Node linkedListIterator = this.head;
+        int headNodeCheck=left;
+
+        while (linkedListIterator != null ) {
+            if (left == 2) {
+                leftListStart = linkedListIterator;
+                midListStart = linkedListIterator.next;
+            }
+
+            if (right == 1) {
+                midListEnd = linkedListIterator;
+                rightListStart = linkedListIterator.next;
+            }
+            left--;
+            right--;
+            linkedListIterator = linkedListIterator.next;
         }
-    
+        if(headNodeCheck==1){
+            leftListStart=new Node(-1);
+            midListStart=this.head;
+        }
+        while (n > 0) {
+
+            leftListStart.next = midListStart.next;
+            midListStart.next = rightListStart;
+            midListEnd.next = midListStart;
+
+            midListEnd = midListStart;
+            midListStart = leftListStart.next;
+
+            n--;
+        }
+        if(headNodeCheck==1){
+            this.head=leftListStart.next;
+        }
+
     }
 
+    public void displayLinkedList() {
+        Node linkedListIterator = this.head;
+        while (linkedListIterator != null) {
+            System.out.print(linkedListIterator.data + " -> ");
+            linkedListIterator = linkedListIterator.next;
+        }
+
+    }
 
 }
