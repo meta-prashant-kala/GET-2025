@@ -29,5 +29,7 @@ BEGIN
     RETURN maxOrderMonth;
 END $$
 DELIMITER ;
+USE storeFront;
+SELECT * FROM orders;
 
-SELECT storeFront.getMaxOrderInYear(2025) AS MaxOrders;
+SELECT storeFront.getMaxOrderInYear(2024) AS MaxOrders;

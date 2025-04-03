@@ -20,10 +20,10 @@ CALL storeFront.USP_avgMonthSale(11,2024);
 -- Put validation on input dates like start date is less than end date. 
 -- If start date is greater than end date take first date of month as start date.
 DELIMITER //
-CREATE PROCEDURE USP_OrderDetails(startDate DATE, endDate DATE)
+CREATE PROCEDURE storeFront.USP_OrderDetails(startDate DATE, endDate DATE)
 	BEGIN
 		IF startDate>endDate THEN 
-			SET startDate = DATE_FORMAT(endDate, '%Y -%m - 01');
+			SET startDate = endDate - INTERVAL (DAY(endDate) - 1) DAY;
 		END IF;
 		SELECT OrderID, OrderDate, OrderStatus FROM orders
         WHERE OrderDate >= startDate
@@ -31,6 +31,10 @@ CREATE PROCEDURE USP_OrderDetails(startDate DATE, endDate DATE)
     END//
 DELIMITER ;
 
-CALL storeFront.USP_OrderDetails('2024-11-26','2024-11-29');
+-- if date 2024-03-23 and 2024-01-03 , then date will be set on 2024-03-01 
+DROP PROCEDURE storeFront.USP_OrderDetails;
+SHOW FUNCTION STATUS;
+
+CALL storeFront.USP_OrderDetails('2024-11-29','2024-11-28');
     
     

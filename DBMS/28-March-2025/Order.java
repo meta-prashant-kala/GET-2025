@@ -9,23 +9,19 @@ public class Order {
     List<String> orderDate = new ArrayList<String>();
     List<Integer> orderTotal = new ArrayList<Integer>();
 
-    public void setOrderDetails(ResultSet resultSet) {
-        if (resultSet == null) {
-            System.out.println("No data found");
-        } else {
-            try {
-                while (resultSet.next()) {
-                    orderID.add(resultSet.getInt("OrderID"));
-                    orderDate.add(resultSet.getString("OrderDate"));
-                    orderTotal.add(resultSet.getInt("PaymentAmount"));
-                }
-            } catch (SQLException e) {
-                System.out.println("SQL Error: " + e.getMessage());
+    public Order(ResultSet resultSet){
+        try {
+            while (resultSet.next()) {
+                orderID.add(resultSet.getInt("OrderID"));
+                orderDate.add(resultSet.getString("OrderDate"));
+                orderTotal.add(resultSet.getInt("PaymentAmount"));
             }
+        } catch (SQLException e) {
+            System.out.println("SQL Error: " + e.getMessage());
         }
     }
 
-    public void displayOrderDetails(ResultSet resultSet) {
+    public void displayOrderDetails() {
         if (orderID.size() <= 0) {
             System.out.println("Nothing to display");
         } else {

@@ -1,9 +1,11 @@
-public interface Stack <T> {
+public interface Stack<T> {
+    public boolean push(T val);
 
-    public void push();
-    public void pop();
-    public void peek();
-    public void top();
+    public T pop();
+
+    public T peek();
+
     public boolean isEmpty();
+
     public boolean isFull();
 }
