@@ -1,4 +1,4 @@
-package Assignment1;
+package Assignment3;
 
 public interface Queue<T> {
     public boolean isFull();

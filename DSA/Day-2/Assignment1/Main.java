@@ -1,29 +1,20 @@
 package Assignment1;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String args[]) {
-        Queue<Integer> queueObj = new CircularQueue<>(5);
+    public static Scanner scanInput = new Scanner(System.in);
+    public static void main(String[] args) {
 
-        queueObj.push(1);
-        queueObj.push(2);
-        queueObj.push(3);
-        queueObj.push(4);
-        queueObj.push(5);
-        queueObj.pop();
-        queueObj.pop();
-        queueObj.pop();
-        queueObj.pop();
-        queueObj.pop();
-        if (!queueObj.pop()) {
-            System.out.println("Empty-1");
+        System.out.println("Enter the expression you want to evaluate");
+        String expression = scanInput.nextLine();
+
+        try {
+            ExpressionEvaluator expEvaluatorObj = new ExpressionEvaluator();
+            int evaluatedValue = expEvaluatorObj.evaluateExpression(expression);
+            System.out.println(evaluatedValue);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        if (queueObj.isEmpty()) {
-            System.out.println("Empty");
-        }
-        while (!queueObj.isEmpty()) {
-            System.out.println(queueObj.peek());
-            queueObj.pop();
-        }
     }
 }
