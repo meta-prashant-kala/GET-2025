@@ -22,6 +22,9 @@ public class ExpressionEvaluator {
                 value = operand1 - operand2;
                 break;
             case "/":
+                if(operand2==0){
+                    throw new UnsupportedOperationException("Division by zero exception");
+                }
                 value = operand1 / operand2;
                 break;
             case "*":
@@ -133,6 +136,7 @@ public class ExpressionEvaluator {
      */
     public boolean isNumber(String str) {
         try {
+            @SuppressWarnings("unused")
             int num = Integer.parseInt(str);
             return true;
         } catch (Exception e) {
@@ -194,7 +198,7 @@ public class ExpressionEvaluator {
         List<String> postFixExpList = getExpressionList(postfixExpression);
 
         Stack<String> customStack = new CustomStack<String>(postFixExpList.size());
-        // 5 7 *
+        
         for (String str : postFixExpList) {
             if (isNumber(str)) {
                 customStack.push(str);

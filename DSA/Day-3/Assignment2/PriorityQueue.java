@@ -1,8 +1,10 @@
-public interface PriorityQueue {
+package Assignment2;
+
+public interface PriorityQueue <T extends Comparable<T>> {
     public boolean isEmpty();
     public boolean isFull();
-    public int pop();
-    public boolean push(int val);
-    public int peek();
+    public T pop();
+    public boolean push(T val);
+    public T peek();
     public void displayQueue();
 } 

@@ -1,16 +1,18 @@
-public class CustomPriorityQueue implements PriorityQueue {
-    int[] queue;
+package Assignment2;
+
+public class CustomPriorityQueue<T extends Comparable<T>> implements PriorityQueue<T> {
+    Object[] queue;
 
     int front;
     int rear;
 
     /**
-     * Constructor to initialise a Circular queue
+     * Constructor to initialise a queue
      * 
      * @param size
      */
     public CustomPriorityQueue(int size) {
-        queue = new int[size+1];
+        queue = new Object[size + 1];
         front = 0;
         rear = 0;
     }
@@ -44,7 +46,7 @@ public class CustomPriorityQueue implements PriorityQueue {
      * 
      * @return if the value is pushed succesfully, otherwise false
      */
-    public boolean push(int val) {
+    public boolean push(T val) {
         if (!this.isFull()) {
             rear++;
             queue[rear] = val;
@@ -61,20 +63,19 @@ public class CustomPriorityQueue implements PriorityQueue {
     /**
      * Method to pop out the front value of a queue if the queue is not empty;
      * 
-     * @return true if the element at the front is poped, otherwise false
+     * @return the element from the front, otherwise throw error
      */
-    public int pop() {
+    public T pop() {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Queue is empty");
         } else {
-            int val = queue[front];
+            T val = getValueByIndex(front);
             queue[front] = queue[rear];
             rear--;
-            if (rear == front ) {
-                front = 0;
-                rear = 0;
-            }
             sortFromRoot(front);
+            if(rear==0){
+                front=0;
+            }
             return val;
         }
     };
@@ -84,46 +85,69 @@ public class CustomPriorityQueue implements PriorityQueue {
      * 
      * @return front element of the queue
      */
-    public int peek() {
-        int peek = queue[front];
+    public T peek() {
+        T peek = getValueByIndex(front);
         return peek;
     }
 
+    /**
+     * Method to get the value at the given index from the queue
+     * @param index should be of int type
+     * @return value present at the index of queue
+     */
+    @SuppressWarnings("unchecked")
+    public T getValueByIndex(int index) {
+        return (T) queue[index];
+    }
+
+
+    /**
+     * Method to sort the queue from the bottom using the heap sort algorithm 
+     * @param childIndex should be of int type
+     */
     void sortFromLeaf(int childIndex) {
         int parentIndex = childIndex / 2;
-        if (childIndex <= front || queue[parentIndex] >= queue[childIndex]) {
+        if (childIndex <= front || getValueByIndex(parentIndex).compareTo(getValueByIndex(childIndex)) >= 0) {
             return;
         }
-        int temp = queue[childIndex];
+        T temp = getValueByIndex(childIndex);
         queue[childIndex] = queue[parentIndex];
         queue[parentIndex] = temp;
         sortFromLeaf(parentIndex);
     }
 
-    void sortFromRoot(int parentIndex){
-        if(parentIndex >= rear){
+
+    /**
+     * Method to sort the queue from the top node using heap sort algorithm
+     * @param parentIndex should be of int type
+     */
+    void sortFromRoot(int parentIndex) {
+        if (parentIndex >= rear) {
             return;
         }
-        int leftChildIndex=2*parentIndex;
-        int rightChildIndex=2*parentIndex+1;
-        if(leftChildIndex<=rear && queue[leftChildIndex]>queue[rightChildIndex]){
-            int temp=queue[leftChildIndex];
-            queue[leftChildIndex]=queue[parentIndex];
-            queue[parentIndex]=temp;
+        int leftChildIndex = 2 * parentIndex;
+        int rightChildIndex = 2 * parentIndex + 1;
+        if (leftChildIndex <= rear && getValueByIndex(leftChildIndex).compareTo(getValueByIndex(rightChildIndex)) > 0) {
+            T temp = getValueByIndex(leftChildIndex);
+            queue[leftChildIndex] = queue[parentIndex];
+            queue[parentIndex] = temp;
             sortFromRoot(leftChildIndex);
-        }
-        else if(rightChildIndex<=rear){
-            int temp=queue[rightChildIndex];
-            queue[rightChildIndex]=queue[parentIndex];
-            queue[parentIndex]=temp;
+        } else if (rightChildIndex <= rear) {
+            T temp = getValueByIndex(rightChildIndex);
+            queue[rightChildIndex] = queue[parentIndex];
+            queue[parentIndex] = temp;
             sortFromRoot(rightChildIndex);
         }
     }
 
+
+    /**
+     * Method to display the queue
+     */
     public void displayQueue() {
         int left = front;
         while (left <= rear) {
-            System.out.print(left+"->> ");
+            System.out.print(left + "->> ");
             System.out.println(queue[left]);
             left++;
         }
