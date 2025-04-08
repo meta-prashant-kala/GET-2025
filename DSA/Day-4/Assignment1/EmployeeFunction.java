@@ -10,11 +10,19 @@ public class EmployeeFunction {
     List<Employee> employeeList;
     Set<Integer> employeeIdSet;
 
+    /**
+     * Constructor to initialise the list of the class
+     */
     public EmployeeFunction(){
         employeeList=new ArrayList<Employee>();
         employeeIdSet=new HashSet<Integer>();
     }
 
+    /**
+     * Method to add the employee to the list if previously not exists
+     * @param empObj should be of Employee type
+     * @return true if the employee added succesfully, otherwise false
+     */
     public boolean addEmployee(Employee empObj) {
         if(!employeeIdSet.contains(empObj.employeeID)){
             employeeIdSet.add(empObj.employeeID);
@@ -24,6 +32,10 @@ public class EmployeeFunction {
         return false;
     }
 
+
+    /**
+     * Method to display the employee details
+     */
     public void displayList() {
         System.out.println(" ------------------ Employee details ------------------ ");
         for (Employee empObj : employeeList) {
@@ -34,10 +46,16 @@ public class EmployeeFunction {
         }
     }
 
+
+    /**
+     * Method to sort the employee list on the basis of employee id
+     */
     public void sortByID() {
         Collections.sort(employeeList);
     }
 
+
+    // Overriding the comparator method
     class EmployeeComparatorByName implements Comparator<Employee> {
         @Override
         public int compare(Employee empObj1, Employee empObj2){
@@ -46,6 +64,9 @@ public class EmployeeFunction {
         }
     }
 
+    /**
+     * Method to sort the employee list on the basis of employee name
+     */
     public void sortByName() {
         Collections.sort(employeeList, new EmployeeComparatorByName());
     }
