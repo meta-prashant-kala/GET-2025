@@ -165,9 +165,7 @@ public class OrganicChemistry {
             }
             return multiplier * calculateMolecularWeight(start + 1, leftEnd, inputString)
                     + calculateMolecularWeight(rightStart, end, inputString);
-        }
-        // We'll simply look for first '(' and divide the string from this
-        else {
+        } else {
             for (int i = start; i <= end; i++) {
                 if (inputString.charAt(i) == '(') {
                     leftEnd = i - 1;

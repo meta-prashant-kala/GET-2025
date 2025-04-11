@@ -7,13 +7,6 @@ public class Main {
 
         LinkedList linkedListObj = new LinkedList();
         int selectedOption;
-        // linkedListObj.insertNode(1);
-        // linkedListObj.insertNode(2);
-        // linkedListObj.insertNode(3);
-        // linkedListObj.insertNode(4);
-        // linkedListObj.insertNode(5);
-        // linkedListObj.insertNode(6);
-        // linkedListObj.insertNode(7);
 
         while (true) {
             System.out.println();
