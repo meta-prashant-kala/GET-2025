@@ -4,8 +4,7 @@ public class Node <K extends Comparable<K>,V>{
     private Node<K, V> rightNode;
 
     public Node(K key, V value){
-        data.setKey(key);
-        data.setValue(value);
+        data=new Pair<K,V>(key, value);
         leftNode=null;
         rightNode=null;
     }

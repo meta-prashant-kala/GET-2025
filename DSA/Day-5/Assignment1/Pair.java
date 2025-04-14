@@ -1,4 +1,4 @@
-public class Pair <K extends Comparable<K>, V> {
+public class Pair <K extends Comparable<K>, V> implements Comparable<Pair<K,V>> { 
     private K key;
     private V value;
 
@@ -23,5 +23,14 @@ public class Pair <K extends Comparable<K>, V> {
         this.value=value;
     }
 
+
+    @Override
+    public int compareTo(Pair<K,V> secondPairObj){
+        return this.getKey().compareTo(secondPairObj.getKey());
+    }
     
+    @Override
+    public String toString(){
+        return (this.getKey() + " : "+ this.getValue());
+    }
 }
