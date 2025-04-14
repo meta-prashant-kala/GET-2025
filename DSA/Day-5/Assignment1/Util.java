@@ -8,7 +8,7 @@ public class Util {
         return json;
     }
 
-    public static void displayList(List<Pair<Integer, String>> sortedKeyValueList){
+    public static void displayList(List<Pair<Integer, String>> sortedKeyValueList) {
         for (Pair<Integer, String> pairObj : sortedKeyValueList) {
             System.out.println(pairObj.getKey() + " : " + pairObj.getValue());
         }
