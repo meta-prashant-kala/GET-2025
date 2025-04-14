@@ -6,6 +6,12 @@ public class LinkedList {
         return head;
     }
 
+    /**
+     * Method to add a node to the linked list
+     * 
+     * @param employee should be of Employee type
+     * @return true if added successfully, otherwise false
+     */
     public boolean addNode(Employee employee) {
         Node node = new Node(employee);
         if (head == null && tail == null) {
@@ -18,6 +24,12 @@ public class LinkedList {
         return true;
     }
 
+    /**
+     * Method to sort the Linked list of employees based on there salary and if
+     * salary is equal then sort on the bases of age
+     * 
+     * @return true after sorting the linked list
+     */
     public boolean sort() {
         Employee tempEmp = new Employee();
         Node headPointer = new Node(tempEmp);
@@ -49,6 +61,9 @@ public class LinkedList {
         return true;
     }
 
+    /**
+     * Method to display the Linked list
+     */
     public void displayLinkedList() {
         Node linekedListIterator = head;
         while (linekedListIterator != null) {

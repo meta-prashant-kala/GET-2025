@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-    public static Scanner scanInput=new Scanner(System.in);
-     public static void main(String[] args){
+    public static Scanner scanInput = new Scanner(System.in);
+
+    public static void main(String[] args) {
 
         LinkedList linkedListObj = new LinkedList();
         int selectedOption;
@@ -14,7 +15,7 @@ public class Main {
             System.out.println("0. To exit from the app");
             System.out.println();
             try {
-                selectedOption=Integer.parseInt(scanInput.nextLine());
+                selectedOption = Integer.parseInt(scanInput.nextLine());
                 System.out.println();
             } catch (Exception e) {
                 System.out.println("Please select a valid option");
@@ -24,24 +25,23 @@ public class Main {
                 case 1:
                     try {
                         System.out.println("Enter the name of the employee");
-                        String empName=scanInput.nextLine();
+                        String empName = scanInput.nextLine();
                         System.out.println("Enter the salary of the employee");
-                        int salary=Integer.parseInt(scanInput.nextLine());
+                        int salary = Integer.parseInt(scanInput.nextLine());
                         System.out.println("Enter the age of the employee");
-                        int age=Integer.parseInt(scanInput.nextLine());
-                        Employee employeeObj=new Employee(empName, salary, age);
+                        int age = Integer.parseInt(scanInput.nextLine());
+                        Employee employeeObj = new Employee(empName, salary, age);
                         linkedListObj.addNode(employeeObj);
-                        System.out.println(empName+" added to the linked list succesfully");
+                        System.out.println(empName + " added to the linked list succesfully");
                     } catch (Exception e) {
                         System.out.println("Enter valid integers");
                         continue;
                     }
                     break;
                 case 2:
-                    if(linkedListObj.getHead()==null){
+                    if (linkedListObj.getHead() == null) {
                         System.out.println("LinkedList is empty");
-                    }
-                    else{
+                    } else {
                         linkedListObj.displayLinkedList();
                     }
                     break;
@@ -55,7 +55,5 @@ public class Main {
 
         }
 
-
-
-     }
+    }
 }
