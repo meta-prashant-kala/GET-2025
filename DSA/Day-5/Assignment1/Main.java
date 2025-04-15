@@ -7,11 +7,13 @@ public class Main {
 
     public static void main(String[] args) {
         int selectedOption = 1;
-        List<Pair<Integer, String>> sortedKeyValueList;
+        String key;
+        String value;
+        List<Pair<String, String>> sortedKeyValueList;
 
         String json = Util.getInitialJson();
 
-        BinarySearchTree<Integer, String> binarySearchTreeObj = new BinarySearchTree<Integer, String>(json);
+        BinarySearchTree<String, String> binarySearchTreeObj = new BinarySearchTree<String, String>(json);
 
         while (true) {
 
@@ -40,20 +42,12 @@ public class Main {
                     break;
                 case 2:
                     boolean isAdded;
-                    while (true) {
-                        try {
-                            System.out.println("Enter the key");
-                            int key = Integer.parseInt(scanInput.nextLine());
-                            System.out.println("Enter the value");
-                            String value = scanInput.nextLine();
-                            Pair<Integer, String> pairObj = new Pair<Integer, String>(key, value);
-                            isAdded = binarySearchTreeObj.addValue(pairObj);
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Enter a valid integer");
-                            continue;
-                        }
-                    }
+                    System.out.println("Enter the key");
+                    key = scanInput.nextLine();
+                    System.out.println("Enter the value");
+                    value = scanInput.nextLine();
+                    Pair<String, String> pairObj = new Pair<String, String>(key, value);
+                    isAdded = binarySearchTreeObj.addValue(pairObj);
                     if (isAdded) {
                         System.out.println("Key and value added succesfully to the dictionary");
                         binarySearchTreeObj.displayTree(binarySearchTreeObj.rootNode);
@@ -64,17 +58,9 @@ public class Main {
                     break;
                 case 3:
                     boolean isDeleted;
-                    while (true) {
-                        try {
-                            System.out.println("Enter the key");
-                            int key = Integer.parseInt(scanInput.nextLine());
-                            isDeleted = binarySearchTreeObj.deleteValue(key);
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Enter a valid integer");
-                            continue;
-                        }
-                    }
+                    System.out.println("Enter the key");
+                    key = scanInput.nextLine();
+                    isDeleted = binarySearchTreeObj.deleteValue(key);
                     if (isDeleted) {
                         System.out.println("Value to the corrosponding key deleted succesfully");
                     } else {
@@ -82,19 +68,10 @@ public class Main {
                     }
                     break;
                 case 4:
-                    int key;
-                    String value;
-                    while (true) {
-                        try {
-                            System.out.println("Enter the key");
-                            key = Integer.parseInt(scanInput.nextLine());
-                            value = binarySearchTreeObj.getValue(key);
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Enter a valid integer");
-                            continue;
-                        }
-                    }
+
+                    System.out.println("Enter the key");
+                    key = scanInput.nextLine();
+                    value = binarySearchTreeObj.getValue(key);
                     if (value != null) {
                         System.out.println(key + " : " + value);
                     } else {
@@ -109,20 +86,12 @@ public class Main {
                     break;
 
                 case 6:
-                    int startKey;
-                    int endKey;
-                    while (true) {
-                        try {
-                            System.out.println("Enter the key");
-                            startKey = Integer.parseInt(scanInput.nextLine());
-                            System.out.println("Enter the key");
-                            endKey = Integer.parseInt(scanInput.nextLine());
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Enter a valid integer");
-                            continue;
-                        }
-                    }
+                    String startKey;
+                    String endKey;
+                    System.out.println("Enter the key");
+                    startKey = scanInput.nextLine();
+                    System.out.println("Enter the key");
+                    endKey = scanInput.nextLine();
                     System.out.println("Sorted key value list");
                     sortedKeyValueList = binarySearchTreeObj.getSortedListBetweenInRange(startKey, endKey);
                     Util.displayList(sortedKeyValueList);

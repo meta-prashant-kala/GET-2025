@@ -98,6 +98,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements Dictionary<
      * @param treeNodeIterator shuould be of Node type
      * @return next node after deleting the node
      */
+
+
     public Node<K, V> deleteNode(Node<K, V> treeNodeIterator) {
         if (treeNodeIterator.getLeftNode() == null && treeNodeIterator.getRightNode() == null) {
             return null;
@@ -120,6 +122,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements Dictionary<
         return leftTreeRoot;
     }
 
+
+    //        5
+    //      1   7
+    //    2     
+    //  3   4
+    //   5
     /**
      * Method to delete a value from the that corrosponds to the input key
      * 

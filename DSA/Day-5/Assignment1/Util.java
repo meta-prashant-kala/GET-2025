@@ -5,11 +5,13 @@ public class Util {
         String json = " [ {9:Ankit}, {8:Prashant}, {12:Binod}," +
                 "{5:Piyush}, {10:Manish}, {11:Rishabh}, {3:Digamber}," +
                 "{4:Manav}, {2:Rahul}, {1:Nishant}, {5:Palash} ] ";
-        return json;
+        String json2 = "[  { M : mangoo}, { A: apple}]";        
+        
+        return json2;
     }
 
-    public static void displayList(List<Pair<Integer, String>> sortedKeyValueList) {
-        for (Pair<Integer, String> pairObj : sortedKeyValueList) {
+    public static void displayList(List<Pair<String, String>> sortedKeyValueList) {
+        for (Pair<String, String> pairObj : sortedKeyValueList) {
             System.out.println(pairObj.getKey() + " : " + pairObj.getValue());
         }
     }
