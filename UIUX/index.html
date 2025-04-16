@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav style="display: flex; justify-content: center;">
+            <ul style="list-style: none; display: flex; gap: 50px;">
+                <li><a style="text-decoration: none;" href="#employee-section">Add Employee</a></li>
+                <li><a style="text-decoration: none;" href="#vehicle-section">Add Vehicle</a></li>
+                <li><a style="text-decoration: none;" href="#feedback-section">Give Feedback</a></li>
+                <li><a style="text-decoration: none;" href="#price-section">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <img src="/images/coverImg.jpg"  alt="">
+    </section>
+    <section id="employee-section">   
+        <h2>Employee Section</h2>
+        <form action="">
+            <div class="employee-data" >
+                <label for="">Full Name</label>
+                <input placeholder="Enter your full name" type="text"/>
+            </div>
+            <div class="employee-data" >
+                <span>Gender</span>
+                <input name="gender" type="radio"/>
+                <label for="">Male</label>
+                <input name="gender" type="radio"/>
+                <label for="">Female</label>
+            </div>
+            <div class="employee-data" >
+                <label for="">Email ID</label>
+                <input placeholder="Enter your email id" type="email"/>
+            </div>
+            <div class="employee-data" >
+                <label for="">Password</label>
+                <input placeholder="Enter Password" type="password"/>
+            </div>
+            <div class="employee-data" >
+                <label for="">Confirm Password</label>
+                <input placeholder="Confirm your Password" type="password"/>
+            </div>
+            <div class="employee-data" >
+                <label for="">Contact number</label>
+                <input placeholder="Enter phone number" type="password"/>
+            </div>
+        </form>
+    </section>
+    <section id="vehicle-section">
+        <h2>Add Vehicle</h2>
+        <form action="">
+            <div class="vehicle-data">
+                <label for="vName">Vehicle Company</label>
+                <input id="vName" type="text">
+            </div>
+            <div class="vehicle-data">
+                <label for="vType">Vehicle Type</label>
+                <select name="vModel" id="vType">
+                    <option value="model-1">Cycle </option>
+                    <option value="model-2">MotorCycle </option>
+                    <option value="model-3">Four Wheelers</option>
+                </select>
+            </div>
+            <div class="vehicle-data">
+                <label for="vModel">Vehicle Model</label>
+                <input id="vModel" type="text">
+            </div>
+            <div class="vehicle-data">
+                <label for="vNumber">Vehicle Number</label>
+                <input id="vNumber" type="text">
+            </div>
+            <div class="vehicle-data">
+                <label for="vEmpId">Employee Id</label>
+                <input id="vEmpId" type="number">
+            </div>
+            <div class="vehicle-data">
+                <label for="Identification ">Identification</label>
+                <textarea name="Identification" id="Identification"></textarea>
+            </div>
+            <button>Submit</button>
+        </form>
+    </section>
+    <section id="feedback-section">
+        <h2>Feedback</h2>
+        <form action="">
+            <div class="Feedback-input">
+                <label for="">Name</label>
+                <input type="text" name="name" id=""/>
+            </div>
+            <div class="Feedback-input">
+                <label for="">Eamil</label>
+                <input type="text" name="email" id=""/>
+            </div>
+            <div class="Feedback-input">
+                <label for="">Subject</label>
+                <input type="text" name="subject" id=""/>
+            </div>
+            <div class="Feedback-input">
+                <label for="">Feedback</label>
+                <textarea name="feedback" id=""></textarea>
+            </div>
+            <button>Submit</button>
+        </form>
+    </section>
+    <section id="price-section">
+        <h2>Pricing</h2>
+        <div>
+            <h3>Cycle</h3>
+            <div>
+                <p>$100/month</p>
+            </div>
+            <ul style="list-style: none;">
+                <li>$5 Daily</li>
+                <li>$100 Monthly</li>
+                <li>$500 Yearly</li>
+            </ul>
+            <button>Purchase Now</button>
+        </div>
+        <div>
+            <h3>MotorCycle</h3>
+            <div>
+                <p>$200/month</p>
+            </div>
+            <ul style="list-style: none;">
+                <li>$10 Daily</li>
+                <li>$200 Monthly</li>
+                <li>$1000 Yearly</li>
+            </ul>
+            <button>Purchase Now</button>
+        </div>
+        <div>
+            <h3>Four Wheelers</h3>
+            <div>
+                <p>$500/month</p>
+            </div>
+            <ul style="list-style: none;">
+                <li>$20 Daily</li>
+                <li>$500 Monthly</li>
+                <li>$3500 Yearly</li>
+            </ul>
+            <button>Purchase Now</button>
+        </div>
+
+    </section>
+</body>
+</html>
