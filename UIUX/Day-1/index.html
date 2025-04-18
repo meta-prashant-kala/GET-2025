@@ -1,151 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header>
-        <nav style="display: flex; justify-content: center;">
+        <nav class="navbar">
             <ul style="list-style: none; display: flex; gap: 50px;">
-                <li><a style="text-decoration: none;" href="#employee-section">Add Employee</a></li>
-                <li><a style="text-decoration: none;" href="#vehicle-section">Add Vehicle</a></li>
-                <li><a style="text-decoration: none;" href="#feedback-section">Give Feedback</a></li>
-                <li><a style="text-decoration: none;" href="#price-section">Pricing</a></li>
+                <li><a href="#employee-section">Add Employee</a></li>
+                <li><a href="#vehicle-section">Add Vehicle</a></li>
+                <li><a href="#feedback-section">Give Feedback</a></li>
+                <li><a href="#price-section">Pricing</a></li>
             </ul>
         </nav>
     </header>
-    <section>
-        <img src="/images/coverImg.jpg"  alt="">
+    <section class="hero-section">
+        <h1>Metacube Parking</h1>
+        <img src="./images//coverImg.jpg" alt="image">
+        <div class="opacity-cover"></div>
     </section>
-    <section id="employee-section">   
-        <h2>Employee Section</h2>
+    <section id="employee-section" class="form-section">
+        <h2 class="section-head">Employee Section</h2>
         <form action="">
-            <div class="employee-data" >
-                <label for="">Full Name</label>
-                <input placeholder="Enter your full name" type="text"/>
+            <div class="employee-data input-field">
+                <label for="fullName">Full Name</label>
+                <input placeholder="Enter your full name" type="text" id="fullName" />
             </div>
-            <div class="employee-data" >
-                <span>Gender</span>
-                <input name="gender" type="radio"/>
-                <label for="">Male</label>
-                <input name="gender" type="radio"/>
-                <label for="">Female</label>
+            <div class="employee-data input-field">
+                <p>Gender</p>
+                <div class="gender-input">
+                    <input name="gender" type="radio" id="male" />
+                    <label for="male">Male</label>
+                    <input name="gender" type="radio" id="male/">
+                    <label for="male">Female</label>
+                </div>
             </div>
-            <div class="employee-data" >
-                <label for="">Email ID</label>
-                <input placeholder="Enter your email id" type="email"/>
+            <div class="employee-data input-field">
+                <label for="email">Email ID</label>
+                <input placeholder="Enter your email id" type="email" id="email" />
             </div>
-            <div class="employee-data" >
-                <label for="">Password</label>
-                <input placeholder="Enter Password" type="password"/>
+            <div class="employee-data input-field">
+                <label for="password">Password</label>
+                <input placeholder="Enter Password" type="password" id="password" />
             </div>
-            <div class="employee-data" >
-                <label for="">Confirm Password</label>
-                <input placeholder="Confirm your Password" type="password"/>
+            <div class="employee-data input-field">
+                <label for="confirmPassword">Confirm Password</label>
+                <input placeholder="Confirm your Password" type="password" id="confirmPassword" />
             </div>
-            <div class="employee-data" >
-                <label for="">Contact number</label>
-                <input placeholder="Enter phone number" type="password"/>
+            <div class="employee-data input-field">
+                <label for="contact-number">Contact number</label>
+                <input placeholder="Enter phone number" type="number" id="contactNumber" />
             </div>
+            <button>Submit</button>
         </form>
     </section>
-    <section id="vehicle-section">
-        <h2>Add Vehicle</h2>
+    <section id="vehicle-section" class="form-section">
+        <h2 class="section-head">Add Vehicle</h2>
         <form action="">
-            <div class="vehicle-data">
-                <label for="vName">Vehicle Company</label>
+            <div class="vehicle-data input-field">
+                <label for="vName">Vehicle Make</label>
                 <input id="vName" type="text">
             </div>
-            <div class="vehicle-data">
+            <div class="vehicle-data input-field">
                 <label for="vType">Vehicle Type</label>
                 <select name="vModel" id="vType">
+                    <option></option>
                     <option value="model-1">Cycle </option>
                     <option value="model-2">MotorCycle </option>
                     <option value="model-3">Four Wheelers</option>
                 </select>
             </div>
-            <div class="vehicle-data">
+            <div class="vehicle-data input-field">
                 <label for="vModel">Vehicle Model</label>
                 <input id="vModel" type="text">
             </div>
-            <div class="vehicle-data">
+            <div class="vehicle-data input-field">
                 <label for="vNumber">Vehicle Number</label>
                 <input id="vNumber" type="text">
             </div>
-            <div class="vehicle-data">
+            <div class="vehicle-data input-field">
                 <label for="vEmpId">Employee Id</label>
                 <input id="vEmpId" type="number">
             </div>
-            <div class="vehicle-data">
-                <label for="Identification ">Identification</label>
-                <textarea name="Identification" id="Identification"></textarea>
+            <div class="vehicle-data input-field">
+                <label for="identification ">Identification</label>
+                <textarea name="identification" id="identification"></textarea>
             </div>
             <button>Submit</button>
         </form>
     </section>
-    <section id="feedback-section">
-        <h2>Feedback</h2>
+    <section id="feedback-section" class="form-section">
+        <h2 class="section-head">Feedback</h2>
         <form action="">
-            <div class="Feedback-input">
-                <label for="">Name</label>
-                <input type="text" name="name" id=""/>
+            <div class="Feedback-input input-field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" />
             </div>
-            <div class="Feedback-input">
-                <label for="">Eamil</label>
-                <input type="text" name="email" id=""/>
+            <div class="Feedback-input input-field">
+                <label for="email">Eamil</label>
+                <input type="text" name="email" id="email" />
             </div>
-            <div class="Feedback-input">
-                <label for="">Subject</label>
-                <input type="text" name="subject" id=""/>
+            <div class="Feedback-input input-field">
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject" />
             </div>
-            <div class="Feedback-input">
-                <label for="">Feedback</label>
-                <textarea name="feedback" id=""></textarea>
+            <div class="Feedback-input input-field">
+                <label for="feedback">Feedback</label>
+                <textarea name="feedback" id="feedback"></textarea>
             </div>
             <button>Submit</button>
         </form>
     </section>
-    <section id="price-section">
-        <h2>Pricing</h2>
-        <div>
-            <h3>Cycle</h3>
-            <div>
-                <p>$100/month</p>
+    <section id="price-section" class="form-section">
+        <h2 class="section-head">Pricing</h2>
+        <div class="pricing-list">
+            <div class="individual-price">
+                <h3>Cycle</h3>
+                <div class="monthly-price">
+                    <span class="per-month-price">$100</span>
+                    <span>/month</span>
+                </div>
+                <ul style="list-style: none;">
+                    <li>$5 Daily</li>
+                    <li>$100 Monthly</li>
+                    <li>$500 Yearly</li>
+                </ul>
+                <button>Purchase Now</button>
             </div>
-            <ul style="list-style: none;">
-                <li>$5 Daily</li>
-                <li>$100 Monthly</li>
-                <li>$500 Yearly</li>
-            </ul>
-            <button>Purchase Now</button>
-        </div>
-        <div>
-            <h3>MotorCycle</h3>
-            <div>
-                <p>$200/month</p>
+            <div class="individual-price">
+                <h3>MotorCycle</h3>
+                <div class="monthly-price">
+                    <span class="per-month-price">$200</span>
+                    <span>/month</span>
+                </div>
+                <ul style="list-style: none;">
+                    <li>$10 Daily</li>
+                    <li>$200 Monthly</li>
+                    <li>$1000 Yearly</li>
+                </ul>
+                <button>Purchase Now</button>
             </div>
-            <ul style="list-style: none;">
-                <li>$10 Daily</li>
-                <li>$200 Monthly</li>
-                <li>$1000 Yearly</li>
-            </ul>
-            <button>Purchase Now</button>
-        </div>
-        <div>
-            <h3>Four Wheelers</h3>
-            <div>
-                <p>$500/month</p>
+            <div class="individual-price">
+                <h3>Four Wheelers</h3>
+                <div class="monthly-price">
+                    <span class="per-month-price">$500</span>
+                    <span>/month</span>
+                </div>
+                <ul style="list-style: none;">
+                    <li>$20 Daily</li>
+                    <li>$500 Monthly</li>
+                    <li>$3500 Yearly</li>
+                </ul>
+                <button>Purchase Now</button>
             </div>
-            <ul style="list-style: none;">
-                <li>$20 Daily</li>
-                <li>$500 Monthly</li>
-                <li>$3500 Yearly</li>
-            </ul>
-            <button>Purchase Now</button>
         </div>
 
     </section>
 </body>
+
 </html>

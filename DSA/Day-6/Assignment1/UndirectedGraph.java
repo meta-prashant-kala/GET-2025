@@ -1,12 +1,16 @@
 package Assignment1;
 
 import java.util.List;
+import java.util.Set;
 
-import org.w3c.dom.Node;
+import Assignment2.Edge;
 
-public interface UndirectedGraph <V>{
+public interface UndirectedGraph<V> {
     public boolean isConnected();
-    public List<V> reachable(Node a);
-    public int mst();
-    public int shortestPath(Node a,Node b);
-} 
+
+    public Set<V> reachable(V vertex);
+
+    public List<Edge<V>> mst();
+
+    public List<V> shortestPath(V source, V destination);
+}

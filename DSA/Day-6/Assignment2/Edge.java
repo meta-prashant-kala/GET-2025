@@ -1,6 +1,6 @@
 package Assignment2;
 
-public class Edge<V> {
+public class Edge<V> implements Comparable<Edge<V>> {
     V source;
     V destination;
     int weight;
@@ -19,5 +19,10 @@ public class Edge<V> {
     }
     public int getWeight() {
         return weight;
+    }
+
+    @Override
+    public int compareTo(Edge<V> o) {
+        return this.weight - o.weight;
     }
 }

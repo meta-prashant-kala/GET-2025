@@ -31,7 +31,7 @@ public class LinkedListTest {
         linkedList.addNode(emp3);
         linkedList.addNode(emp4);
 
-        linkedList.quickSort(linkedList.getHead());
+        linkedList.quickSort();
 
         assertEquals(linkedList.head.employeeData.name, "Diana");
         assertEquals(linkedList.head.next.employeeData.name, "Bob");
