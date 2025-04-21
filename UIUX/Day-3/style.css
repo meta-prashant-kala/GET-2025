@@ -1,0 +1,288 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url('/images/bodybg.png');
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    background-color: #648cff;
+    padding: 20px;
+}
+
+.hero-section{
+    display: flex;
+    /* justify-content: space-around; */
+    justify-content: space-evenly;
+    background-image: url('/images/homebg.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.navbar ul{
+    display: flex;
+    gap: 20px;
+
+    list-style: none;
+}
+
+
+/* Hero section */
+
+.hero-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    padding-top: 100px;
+}
+
+.hero-left h1{
+    font-size: 2rem;
+    font-weight: bolder;
+
+    color: white;
+}
+
+.hero-left-buttons{
+    padding-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-left-buttons button{
+    padding: 10px;
+}
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 10px solid black; */
+}
+
+.hero-right img{
+    height: 80%;
+    object-fit: contain;
+}
+
+
+/* perfect-features-section */
+
+
+.perfect-features-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px  ;
+}
+
+.perfect-features-section span{
+    padding-bottom: 50px;
+}
+
+
+.features{
+    display: flex;
+    padding: 0px 100px;
+}
+
+.feature{
+    display: flex;
+}
+
+.feature-details{
+    padding: 10px;
+}
+
+.feature-desc{
+    font-size: .8rem;
+    color: gray;
+    padding-top: 10px;
+}
+
+
+.feature-img {
+    padding: 10px;
+}
+
+.caraousel-img{
+    display: flex;
+    justify-content: center;
+    /* flex: 1; */
+    padding-top: 100px ;
+}
+
+.caraousel-img img{
+    width: 80%;
+}
+
+
+
+/* Screenshot section */
+
+.screenshots-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 100px 0px 100px;
+}
+
+.screenshots{
+    padding-top: 100px;
+}
+
+.screenshot{
+    display: flex;
+}
+
+.screenshot-img img {
+    width: 150px;
+}
+
+.screenshot-img {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    position: relative;
+}
+
+.screenshot-img span{
+    position: absolute;
+    rotate: 90deg;
+    font-size: 120px;
+    z-index: -1;
+    color: gray;
+}
+.cloudy-img span{
+    transform: translateX(20%);
+    right: -25px;
+}
+.sunny-image span{
+    transform: translateX(20%);
+    right: -10px;
+}
+.rainy-img span{
+    transform: translateX(30%);
+    right: 0px;
+    rotate: 90deg;
+}
+
+.screenshot-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.screenshot div{
+    flex: 1;
+}
+
+
+/* Review Section */
+
+
+
+.review-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 150px;
+}
+
+.reviews{
+    padding-top: 50px;
+}
+
+.review-rows{
+    gap: 100px;
+    display: flex;
+    padding: 30px 0px;
+}
+
+.review{
+    flex: 1;
+}
+
+.review p{
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.review span{
+    font-size: small;
+    /* font-weight: 500; */
+}
+
+/* Download section */
+
+.download-section{
+    display: flex;
+    justify-content: center;
+    background-color: #648cff;
+    padding: 0px 100px;
+
+}
+
+.download-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 0px 100px;
+    color: white;
+}
+
+.store-images img{
+    
+}
+
+.download-left h3{
+    font-size: 2rem;
+}
+
+.download-left p{
+    width: 90%;
+    padding: 20px 0px;
+    font-size: .9rem;
+       
+}
+
+.download-right{
+    flex: 1;
+    height: 100%;
+    padding: 100px 100px 0px 0px;
+}
+
+.download-right img{
+    height: 200px;
+}
+
+
+
+
+/* Footer section */
+
+.footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #403c54;
+}
+
+.footer-nav{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.footer p{
+    padding: 20px;
+}
