@@ -257,7 +257,24 @@ body{
 }
 
 .review{
+    display: flex;
+    flex-direction: column;
     flex: 1;
+}
+
+.review span:first-child{
+    align-self: flex-start;
+    color: #648cff;
+    font-size: 3rem;
+    font-weight: bolder;
+    rotate: 180deg;
+}
+
+.review span:last-child{
+    align-self: flex-end;
+    color: #648cff;
+    font-size: 3rem;
+    font-weight: bolder;
 }
 
 .review p{
