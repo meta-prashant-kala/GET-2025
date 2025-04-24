@@ -1,0 +1,32 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.hero-section{
+    background-color: #e9ecef;
+}
+
+.navbar-ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.navbar-ul-li-a{
+    text-decoration: none;
+    color: black;    
+}
+
+
+.posts-section-right{
+    top: 0px;
+    position: sticky;
+    height: 100vh;
+}
+
+.footer{
+    background-color: #f8f9fa;
+    height: 30vh;
+}
