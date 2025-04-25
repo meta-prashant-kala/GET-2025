@@ -1,0 +1,13 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.wrapper-right-navbar-ul1{
+    list-style: none;
+}
+
+.card{
+    flex: 1;
+}

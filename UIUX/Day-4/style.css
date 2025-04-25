@@ -5,16 +5,10 @@
 
 :root{
     font-size: 15px;
-
 }
 
-.hero-section{
-    background-color: #e9ecef;
-}
 
 .navbar-ul{
-    display: flex;
-    justify-content: center;
     list-style-type: none;
     padding: 0px;
     gap: 2rem;
@@ -25,19 +19,7 @@
     display: none;
 }
 
-.navbar-ul-li-a{
-    text-decoration: none;
-    color: black;    
-}
 
-
-.posts-section-right{
-    top: 0px;
-}
-
-.footer{
-    background-color: #f8f9fa;
-}
 
 .trending-post-rigth img{
     border-radius: 0px 5px 5px 0px;
@@ -59,10 +41,6 @@
 .archives-list-ul, .elsewhere-list-ul{
     list-style: none;
     padding: 0px;
-}
-
-.posts-section-right-about{
-    background-color: #f8f9fa;
 }
 
 .post-right-span{

@@ -12,14 +12,14 @@
 
 <body>
     <div class="dropdown position-fixed">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight"
+        <button class="btn btn-secondary dropdown-toggle py-3" type="button" id="dropdownMenuButtonLight"
             data-bs-toggle="dropdown" aria-expanded="false">
             ☀️
         </button>
-        <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButtonLight">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLight">
             <li><a class="dropdown-item" id="switchToLight" href="#">☀️Light</a></li>
             <li><a class="dropdown-item" id="switchToDark" href="#">🌙Dark</a></li>
-            <li><a class="dropdown-item"  href="#">🌗Auto</a></li>
+            <li><a class="dropdown-item" id="switchToAuto" href="#">🌗Auto</a></li>
         </ul>
     </div>
     <div class="container p-0">
@@ -29,33 +29,48 @@
                     <a href="#" class="text-muted">Subscribe</a>
                 </div>
                 <div class="logo-bar-mainlogo col  fw-bold text-center p-0">
-                    <a class="justify-content-bottom m-0 fs-1 text-decoration-none text-dark">Large</a>
+                    <a class="justify-content-bottom m-0 fs-1 text-decoration-none text-body-emphasis">Large</a>
                 </div>
                 <div class="logo-bar-mainlogo col my-auto text-end">
-                    <button class="btn btn-light bg-white border-0">🔍</button>
+                    <a href="" class="link-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            class="mx-3" role="img" viewBox="0 0 24 24">
+                            <title>Search</title>
+                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                            <path d="M21 21l-5.2-5.2"></path>
+                        </svg></a>
                     <button class="btn btn-outline-secondary p-1 fs-6">SignUp</button>
                 </div>
             </div>
             <hr class="w-100 p-0" />
             <nav class="navbar p-0">
                 <ul class="navbar-ul p-0 w-100 d-flex justify-content-between">
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">World</a></li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">U.S.</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Technology</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Design</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Culture</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Business</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Politics</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Science</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Health</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Style</a> </li>
-                    <li class="navbar-ul-li"> <a class="navbar-ul-li-a" href="#">Travel</a> </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">World</a></li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">U.S.</a> </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Technology</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Design</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Culture</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Business</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Politics</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Science</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Health</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Style</a>
+                    </li>
+                    <li class="navbar-ul-li"> <a class="text-decoration-none text-body-emphasis" href="#">Travel</a>
+                    </li>
                 </ul>
             </nav>
             <hr class="w-100 mt-0" />
         </header>
-        <section class="hero-section row rounded">
-            <div class="left-hero-section col-12 col-lg-7 p-5">
+        <section class="bg-body-secondary hero-section row rounded">
+            <div class="col-12 col-lg-7 p-5">
                 <h1 class="left-hero-section-h1 fst-italic">Title of a longer featured blog post</h1>
                 <p class="fs-5">Multiple lines of text that form the lede, informing new readers quickly and efficiently
                     about what’s
@@ -264,8 +279,8 @@
                 </article>
             </div>
             <div class="col-lg-4 p-4">
-                <div class="posts-section-right position-sticky">
-                    <div class="posts-section-right-about card p-4">
+                <div class="position-sticky top-0">
+                    <div class="bg-body-tertiary card p-4">
                         <h3 class="fst-italic">About</h3>
                         <p>Customize this section to tell your visitors a little bit about your publication, writers,
                             content,
@@ -282,7 +297,7 @@
                                         <rect width="100%" height="100%" fill="#777"></rect>
                                     </svg></div>
                                 <div class="post-right col-lg-8 my-auto">
-                                    <p class="text-dark fw-bold p-0 m-0">Example blog post title</p>
+                                    <p class="text-body-emphasis fw-bold p-0 m-0">Example blog post title</p>
                                     <span class="text-muted post-right-span">January 15, 2024</span>
                                 </div>
                             </div>
@@ -296,7 +311,7 @@
                                         <rect width="100%" height="100%" fill="#777"></rect>
                                     </svg></div>
                                 <div class="post-right col-lg-8 my-auto">
-                                    <p class=" text-dark fw-bold m-0 p-0">This is another blog post title</p>
+                                    <p class="text-body-emphasis fw-bold m-0 p-0">This is another blog post title</p>
                                     <span class="text-muted post-right-span">January 14, 2024</span>
                                 </div>
                             </div>
@@ -310,7 +325,8 @@
                                         <rect width="100%" height="100%" fill="#777"></rect>
                                     </svg></div>
                                 <div class="post-right col-lg-8 my-auto">
-                                    <p class="text-dark fw-bold m-0 p-0">Longer blog post title: This one has multiple
+                                    <p class="text-body-emphasis fw-bold m-0 p-0">Longer blog post title: This one has
+                                        multiple
                                         line!
                                     </p>
                                     <span class="text-muted post-right-span">January 13, 2024</span>
@@ -351,7 +367,7 @@
         </section>
     </div>
 
-    <footer class="footer py-5 d-flex flex-column justify-content-center">
+    <footer class="footer bg-body-tertiary py-5 d-flex flex-column justify-content-center">
         <p class="text-center">Blog template built for <a href="#">Bootstrap</a> by <a href="#">@mdo</a>.</p>
         <p class="text-center m-0"><a href="#">Back to top</a></p>
     </footer>
@@ -368,6 +384,11 @@
         document.getElementById('switchToLight').addEventListener('click', () => {
             if (document.documentElement.getAttribute('data-bs-theme') !== 'light') {
                 document.documentElement.setAttribute('data-bs-theme', 'light')
+            }
+        })
+        document.getElementById('switchToAuto').addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-bs-theme') !== 'auto') {
+                document.documentElement.setAttribute('data-bs-theme', 'auto')
             }
         })
     </script>
