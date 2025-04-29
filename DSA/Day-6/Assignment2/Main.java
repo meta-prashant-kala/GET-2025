@@ -37,7 +37,9 @@ public class Main {
                     v1 = scanInput.nextLine();
                     System.out.println("Enter the second vertex");
                     v2 = scanInput.nextLine();
-                    edgeListGraphRepresentationObj.addToGraph(v1, v2, selectedOption);
+                    System.out.println("Enter the weight");
+                    int weight=Integer.parseInt(scanInput.nextLine());
+                    edgeListGraphRepresentationObj.addToGraph(v1, v2, weight);
                     break;
                 case 2:
                     boolean isConnected = edgeListGraphRepresentationObj.isConnected();

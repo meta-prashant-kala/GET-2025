@@ -11,3 +11,114 @@
 .card{
     flex: 1;
 }
+
+.accordion-button:not(.collapsed) {
+    color: #5b6be8;
+    background-color: white;
+    box-shadow: none;
+}
+
+.accordion-button:focus{
+    box-shadow: none;
+
+}
+
+.wrapper-left{
+    /* border: 2px solid black; */
+    align-self: flex-start;
+}
+
+.offcanvas-setter{
+    align-self: flex-start;
+    height: 100vh;
+    overflow: auto;
+    /* border: 2px solid black; */
+    position: fixed;
+    width: 15%;
+}
+
+.form-control{
+    height: 30px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.search-btn{
+    right: 10px;
+}
+
+.chart-section-right-more-info-btn{
+    font-size: x-small;
+}
+
+
+.user-section-right-table-container{
+    height: 350px;
+    overflow: auto;
+}
+
+
+.social-section-wolf-image{
+    /* box-sizing: border-box; */
+    width: 100%;
+    object-fit: contain;
+}
+
+.carousel-outer-holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid green; */
+    height: 200px;
+}
+
+
+.carousel-item-para{
+    font-size:smaller;
+}
+
+
+
+.wolf-div-span{
+    font-size: .6rem;
+    font-weight: bold;
+}
+
+.offcanvas-body, .accordion-button{
+    font-size: small    ;
+}
+
+.dd-container{
+    width: 400px;
+}
+
+.dd-heading{
+    background-color: #f0f4f4;
+}
+
+.accordion-button-no-arrow::after {
+    display: none;
+  }
+
+.list-group-item{
+    font-size: .8rem;
+}
+
+
+.wrapper-right-navbar{
+    background-color: #5b6be8;
+    font-size: small;
+}
+
+
+.user-section-right-table-city{
+    font-size: .8rem;
+}
+
+.user-section-right-table-status{
+    font-size: .7rem;
+}
+
+.bi-circle-fill{
+    font-size: .7rem;
+}
