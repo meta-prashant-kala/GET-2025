@@ -89,11 +89,23 @@
 }
 
 .dd-container{
-    width: 400px;
+    width: 250px;
 }
 
 .dd-heading{
     background-color: #f0f4f4;
+}
+
+.dd-container-head{
+    font-size: .8rem;
+}
+
+.dropdown-menu-names{
+    font-size: .8rem;
+}
+
+.dropdown-menu-about{
+    font-size: xx-small;
 }
 
 .accordion-button-no-arrow::after {
@@ -119,6 +131,39 @@
     font-size: .7rem;
 }
 
-.bi-circle-fill{
+.bi-circle-fill, .dropdown-menu-view{
     font-size: .7rem;
+}
+
+
+.dashboard-card-span{
+ font-size: .8rem;
+}
+
+.price-movement-span{
+    color: #5b6be8;
+}
+
+.search-bar input{
+    border: none;
+    color: #b6bdf5;
+    background-color: #6d7beb;
+}
+.search-bar input::placeholder{
+    color: #b6bdf5;
+    font-weight: bold;
+}
+.search-bar button{
+    color: #b6bdf5;
+}
+
+.dropdown-language{
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+.dropdown-notification{
+    font-size: .5rem;
+    position: absolute;
+    left: 50%;
 }

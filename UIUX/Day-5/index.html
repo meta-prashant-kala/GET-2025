@@ -18,7 +18,8 @@
             <div class="offcanvas offcanvas-start offcanvas-setter" data-bs-scroll="true" data-bs-backdrop="false"
                 tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header d-flex ">
-                    <h5 class="text-center m-auto py-5" id="offcanvasScrollingLabel"> <i class="bi bi-stars"></i> Annex</h5>
+                    <h5 class="text-center m-auto py-4 fw-bold" id="offcanvasScrollingLabel"> <i class="bi bi-stars"></i> ANNEX
+                    </h5>
                     <button type="button" class="d-lg-none btn-close position-absolute end" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
@@ -27,16 +28,16 @@
                         <p class="p-0 m-0">Main</p>
                         <div class="row g-0">
                             <div class="col-2 text-end mt-3"> <i class="bi bi-laptop"></i></div>
-                            <div class="col-10">
-                                <div class="accordion-item border-0 text-center p-3">
+                            <div class="col-10 text-start">
+                                <div class="accordion-item border-0 text-start p-3 d-flex justify-content-between">
                                     <a href="" class="link-dark  text-decoration-none ">
-                                        Dashboard 
-                                        <span class="badge bg-primary text-center ms-3">7</span>
+                                        Dashboard
                                     </a>
+                                    <span class="badge bg-primary">7</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="row g-0">
+                        <div class="row col g-0">
                             <div class="col-2 text-end mt-3"><i class="bi bi-layers"></i></div>
                             <div class="col-10">
                                 <div class="accordion-item border-0">
@@ -116,9 +117,10 @@
                             <div class="col-10">
                                 <div class="accordion-item border-0">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button accordion-button-no-arrow collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                        <button class="accordion-button accordion-button-no-arrow collapsed"
+                                            type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                            aria-controls="flush-collapseThree">
                                             Forms <span class="badge bg-primary ms-auto">8</span>
                                         </button>
                                     </h2>
@@ -227,10 +229,11 @@
                             <div class="col-10">
                                 <div class="accordion-item border-0">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button accordion-button-no-arrow collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven"
-                                            aria-expanded="false" aria-controls="flush-collapseSeven">
-                                            Maps 
+                                        <button class="accordion-button accordion-button-no-arrow collapsed"
+                                            type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseSeven" aria-expanded="false"
+                                            aria-controls="flush-collapseSeven">
+                                            Maps
                                             <span class="badge bg-danger ms-auto">2</span>
                                         </button>
                                     </h2>
@@ -296,54 +299,75 @@
                     </div>
                     <div class="d-flex text-light align-items-center gap-4">
                         <div class="dropdown">
-                            <div class="fs-6 fw-semibold" data-bs-toggle="dropdown" aria-expanded="false">English</div>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Italian</a></li>
-                                <li><a class="dropdown-item" href="#">French</a></li>
-                                <li><a class="dropdown-item" href="#">Spanish</a></li>
-                                <li><a class="dropdown-item" href="#">Russian</a></li>
+                            <div class="fs-6 fw-semibold" data-bs-toggle="dropdown" role="button" aria-expanded="false">English 🏳️‍🌈</div>
+                            <ul class="dropdown-menu dropdown-menu-end p-0">
+                                <li class="d-flex justify-content-between px-4">
+                                    <a class="dropdown-language dropdown-item" href="#">Italian</a>
+                                    <span class="my-auto">🏳️‍🌈</span>
+                                </li>
+                                <li class="d-flex justify-content-between px-4">
+                                    <a class="dropdown-language dropdown-item" href="#">French</a>
+                                    <span class="my-auto">🏳️‍🌈</span>
+                                </li>
+                                <li class=" d-flex justify-content-between px-4">
+                                    <a class="dropdown-language dropdown-item " href="#">Spanish</a>
+                                    <span class="my-auto">🏳️‍🌈</span>
+                                </li>
+                                <li class="d-flex justify-content-between px-4">
+                                    <a class="dropdown-language dropdown-item" href="#">Russian</a>
+                                    <span class="my-auto">🏳️‍🌈</span>
+                                </li>
                             </ul>
                         </div>
 
                         <div class="dropdown">
                             <div class="fs-6 fw-semibold" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi-envelope fs-6"></i>
+                                <span class="dropdown-notification badge bg-danger">5</span>
                             </div>
                             <ul class="dropdown-menu p-0">
                                 <div class="dd-container">
-                                    <div class="p-3 text-center fs-6 fw-semibold dd-heading">Messages</div>
+                                    <div
+                                        class="dd-container-head p-2 d-flex justify-content-between fw-semibold dd-heading">
+                                        <span>Messages</span>
+                                        <span class="badge bg-danger">745</span>
+                                    </div>
 
-                                    <div class="row px-4 py-2 menu-item">
-                                        <div class="col-auto">
-                                            <img class="circle-img" src="https://placehold.co/40x40" alt="User image">
+                                    <div class="row px-2 menu-item">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
                                         </div>
                                         <div class="col">
-                                            <h6>Charles M. Beverage</h6>
-                                            <p>Dummy text for printing and type setting industry.</p>
+                                            <h6 class="dropdown-menu-names">Charles M. Beverage</h6>
+                                            <p class="dropdown-menu-about">Dummy text for printing and type setting
+                                                industry.</p>
                                         </div>
                                     </div>
 
-                                    <div class="row  px-4 py-2">
-                                        <div class="col-auto">
-                                            <img class="circle-img" src="https://placehold.co/50x50" alt="User image">
+                                    <div class="row px-2">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
                                         </div>
                                         <div class="col">
-                                            <h6>Jha T. Unagi</h6>
-                                            <p>You have 69 new message.</p>
+                                            <h6 class="dropdown-menu-names"></h6>Jha T. Unagi</h6>
+                                            <p class="dropdown-menu-about">You have 69 new message.</p>
                                         </div>
                                     </div>
 
-                                    <div class="row  px-4 py-2">
-                                        <div class="col-auto">
-                                            <img class="circle-img" src="https://placehold.co/50x50" alt="User image">
+                                    <div class="row px-2">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
                                         </div>
                                         <div class="col">
-                                            <h6>Thomas J. Mimi</h6>
-                                            <p>Time to check notifications.</p>
+                                            <h6 class="dropdown-menu-names"></h6>Thomas J. Mimi</h6>
+                                            <p class="dropdown-menu-about">Time to check notifications.</p>
                                         </div>
                                     </div>
 
-                                    <p class="px-4 py-2">View all</p>
+                                    <p class="p-1 px-2 dropdown-menu-view">View all</p>
                                 </div>
 
                             </ul>
@@ -351,42 +375,50 @@
                         <div class="dropdown">
                             <div class="fs-5 fw-semibold" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi-bell fs-6"></i>
+                                <span class="dropdown-notification badge bg-success">23</span>
                             </div>
                             <ul class="dropdown-menu p-0">
                                 <div class="dd-container">
-                                    <div class="p-3 text-center fs-6 fw-semibold dd-heading">Notification</div>
-
-                                    <div class="row px-4 py-2 menu-item">
-                                        <div class="col-auto">
-                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40" alt="User image">
+                                    <div
+                                        class="dd-container-head p-2 d-flex justify-content-between fw-semibold dd-heading">
+                                        <span>Messages</span>
+                                        <span class="badge bg-danger">87</span>
+                                    </div>
+                                    <div class="row px-2 menu-item">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
                                         </div>
-                                        <div class="col">
-                                            <h6>Your order is placed</h6>
-                                            <p>Dummy text for printing and type setting industry.</p>
+                                        <div class="col my-auto">
+                                            <h6 class="dropdown-menu-names">Your order is placed</h6>
+                                            <p class="dropdown-menu-about">Dummy text for printing and type setting
+                                                industry.</p>
                                         </div>
                                     </div>
 
-                                    <div class="row  px-4 py-2">
-                                        <div class="col-auto">
-                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40" alt="User image">
+                                    <div class="row  px-2">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
                                         </div>
-                                        <div class="col">
-                                            <h6>New message received</h6>
-                                            <p>You have 69 new message.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row  px-4 py-2">
-                                        <div class="col-auto">
-                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40" alt="User image">
-                                        </div>
-                                        <div class="col">
-                                            <h6>Your item is shipped</h6>
-                                            <p>Time to check notifications.</p>
+                                        <div class="col my-auto">
+                                            <h6 class="dropdown-menu-names">New message received</h6>
+                                            <p class="dropdown-menu-about">You have 69 new message.</p>
                                         </div>
                                     </div>
 
-                                    <p class="px-4 py-2">View all</p>
+                                    <div class="row  px-2">
+                                        <div class="col-auto my-auto">
+                                            <img class="circle-img rounded-5" src="https://placehold.co/40x40"
+                                                alt="User image">
+                                        </div>
+                                        <div class="col my-auto">
+                                            <h6 class="dropdown-menu-names">Your item is shipped</h6>
+                                            <p class="dropdown-menu-about">Time to check notifications.</p>
+                                        </div>
+                                    </div>
+
+                                    <p class="p-1 px-2 dropdown-menu-view">View all</p>
                                 </div>
 
                             </ul>
@@ -397,29 +429,31 @@
                                 data-bs-toggle="dropdown" aria-expanded="false" alt="">
                             <ul class="dropdown-menu p-0">
                                 <div class="profile-container">
-                                    <div class="p-3 text-center fs-5 fw-semibold dd-heading">Welcome</div>
+                                    <div class="dd-container-head p-2 text-center fw-semibold dd-heading">
+                                        <span>Messages</span>
+                                    </div>
                                     <li>
-                                        <div class="dropdown-item d-flex gap-3">
+                                        <div class="dropdown-item  d-flex gap-3">
                                             <i class="bi-person-circle"></i>
-                                            <h6>Profile</h6>
+                                            <h6 class="dropdown-menu-names">Profile</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="dropdown-item d-flex gap-3">
                                             <i class="bi-wallet"></i>
-                                            <h6>My Wallet</h6>
+                                            <h6 class="dropdown-menu-names">My Wallet</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="dropdown-item d-flex gap-3">
                                             <i class="bi-gear"></i>
-                                            <h6>Settings</h6>
+                                            <h6 class="dropdown-menu-names">Settings</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="dropdown-item d-flex gap-3">
                                             <i class="bi-shield-lock"></i>
-                                            <h6>Lock Screen</h6>
+                                            <h6 class="dropdown-menu-names">Lock Screen</h6>
                                         </div>
                                     </li>
                                     <li>
@@ -428,7 +462,7 @@
                                     <li>
                                         <div class="dropdown-item d-flex gap-3">
                                             <i class="bi-door-open"></i>
-                                            <h6>Log Out</h6>
+                                            <h6 class="dropdown-menu-names">Log Out</h6>
                                         </div>
                                     </li>
                                 </div>
@@ -446,82 +480,82 @@
                     <div class="card mx-2 ">
                         <div class="row col g-0 p-3">
                             <div class="dashboard-card-left col-4 m-auto text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-webcam-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-webcam-fill price-movement-span" viewBox="0 0 16 16">
                                     <path
                                         d="M6.644 11.094a.5.5 0 0 1 .356-.15h2a.5.5 0 0 1 .356.15c.175.177.39.347.603.496a7 7 0 0 0 .752.456l.01.006h.003A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.224-.947l.002-.001.01-.006a4 4 0 0 0 .214-.116 8 8 0 0 0 .539-.34c.214-.15.428-.319.603-.496M7 6.5a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
                                     <path
                                         d="M2 3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm6 1.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4M12.5 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1" />
                                 </svg>
                             </div>
-                            <div class="dashboard-card-mid col-4">
+                            <div class="dashboard-card-mid col-4 d-flex flex-column align-items-center">
                                 <strong>$18090</strong>
-                                <span>New User</span>
+                                <span class="text-secondary dashboard-card-span">Visits Today</span>
                             </div>
                             <div class="price-movement d-flex flex-column align-items-center m-auto col-4">
-                                <span><i class="bi bi-arrow-down"></i></span>
-                                <span>2.35%</span>
+                                <span><i class="text-danger bi bi-arrow-down"></i></span>
+                                <span class="dashboard-card-span text-danger fw-bold">5.26%</span>
                             </div>
                         </div>
                     </div>
                     <div class="card mx-2">
                         <div class=" row col g-0 p-3">
                             <div class="dashboard-card-left col-4 m-auto text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-person-fill-add price-movement-span" viewBox="0 0 16 16">
                                     <path
                                         d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                     <path
                                         d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
                                 </svg>
                             </div>
-                            <div class="dashboard-card-mid col-4">
+                            <div class="dashboard-card-mid col-4 d-flex flex-column align-items-center">
                                 <strong>$1111</strong>
-                                <span>New User</span>
+                                <span class="text-secondary dashboard-card-span">New User</span>
                             </div>
                             <div class="price-movement d-flex flex-column align-items-center m-auto col-4">
-                                <span>⬆️</span>
-                                <span>2.35%</span>
+                                <span><i class="text-success bi bi-arrow-up"></i></span>
+                                <span class="dashboard-card-span text-success fw-bold">8.68%</span>
                             </div>
                         </div>
                     </div>
                     <div class="card mx-2">
                         <div class="row col g-0 p-3">
                             <div class="dashboard-card-left col-4 m-auto text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-bag-check-fill price-movement-span" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
                                 </svg>
                             </div>
-                            <div class="dashboard-card-mid col-4">
+                            <div class="dashboard-card-mid col-4 d-flex flex-column align-items-center">
                                 <strong>$1111</strong>
-                                <span>New User</span>
+                                <span class="text-secondary dashboard-card-span">New Orders</span>
                             </div>
                             <div class="price-movement d-flex flex-column align-items-center m-auto col-4">
-                                <span>⬆️</span>
-                                <span>2.35%</span>
+                                <span><i class="bi text-danger bi-arrow-down"></i></span>
+                                <span class="dashboard-card-span text-danger fw-bold">2.35%</span>
                             </div>
                         </div>
                     </div>
                     <div class="card mx-2">
                         <div class="row col g-0 p-3">
                             <div class="dashboard-card-left col-4 m-auto text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    class="bi bi-rocket-takeoff-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-rocket-takeoff-fill price-movement-span" viewBox="0 0 16 16">
                                     <path
                                         d="M12.17 9.53c2.307-2.592 3.278-4.684 3.641-6.218.21-.887.214-1.58.16-2.065a3.6 3.6 0 0 0-.108-.563 2 2 0 0 0-.078-.23V.453c-.073-.164-.168-.234-.352-.295a2 2 0 0 0-.16-.045 4 4 0 0 0-.57-.093c-.49-.044-1.19-.03-2.08.188-1.536.374-3.618 1.343-6.161 3.604l-2.4.238h-.006a2.55 2.55 0 0 0-1.524.734L.15 7.17a.512.512 0 0 0 .433.868l1.896-.271c.28-.04.592.013.955.132.232.076.437.16.655.248l.203.083c.196.816.66 1.58 1.275 2.195.613.614 1.376 1.08 2.191 1.277l.082.202c.089.218.173.424.249.657.118.363.172.676.132.956l-.271 1.9a.512.512 0 0 0 .867.433l2.382-2.386c.41-.41.668-.949.732-1.526zm.11-3.699c-.797.8-1.93.961-2.528.362-.598-.6-.436-1.733.361-2.532.798-.799 1.93-.96 2.528-.361s.437 1.732-.36 2.531Z" />
                                     <path
                                         d="M5.205 10.787a7.6 7.6 0 0 0 1.804 1.352c-1.118 1.007-4.929 2.028-5.054 1.903-.126-.127.737-4.189 1.839-5.18.346.69.837 1.35 1.411 1.925" />
                                 </svg>
                             </div>
-                            <div class="dashboard-card-mid col-4">
+                            <div class="dashboard-card-mid col-4 d-flex flex-column align-items-center">
                                 <strong>$1111</strong>
-                                <span>New User</span>
+                                <span class="text-secondary dashboard-card-span">Total Sales</span>
                             </div>
                             <div class="price-movement d-flex flex-column align-items-center m-auto col-4">
-                                <span>⬆️</span>
-                                <span>2.35%</span>
+                                <span><i class="bi text-success bi-arrow-up"></i></span>
+                                <span class="dashboard-card-span text-success fw-bold">2.35%</span>
                             </div>
                         </div>
                     </div>
@@ -980,7 +1014,7 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 40%"
                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
@@ -1000,7 +1034,7 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                            <div class="progress-bar bg-dark" role="progressbar" style="width: 60%"
                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
@@ -1020,7 +1054,7 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
@@ -1040,7 +1074,7 @@
                                     </td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                            <div class="progress-bar" role="progressbar" style="width: 20%"
                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </td>
@@ -1054,9 +1088,10 @@
                         <strong class="pb-2">New Users</strong>
                         <div class="user-section-right-table-container">
                             <table class="table h-50 overflow-auto">
-                                <tbody >
-                                    <tr >
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1067,7 +1102,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1078,7 +1114,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1089,7 +1126,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1100,7 +1138,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1111,7 +1150,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
@@ -1122,7 +1162,8 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40" alt=""></td>
+                                        <td class="border-0"><img class="rounded-5" src="https://placehold.co/40"
+                                                alt=""></td>
                                         <td class="border-0">
                                             <p class="p-0 m-0">Ruby T. Curd</p>
                                             <span class="user-section-right-table-city">newyork</span>
