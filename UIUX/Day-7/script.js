@@ -60,19 +60,22 @@ function handleEmpSectInputKeyPress(event) {
     } else if (event.target.id === 'password') {
         const passwordErrorTag = document.getElementById('emp-error-field');
         if (!(/[A-Z]/.test(currentVal))) {
-            console.log("1");
+            document.getElementById("password").style.boxShadow='0px 0px 10px red';
             passwordErrorTag.textContent = "Password must contain one upper case letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         } else if (!(/[a-z]/.test(currentVal))) {
+            document.getElementById("password").style.boxShadow='0px 0px 1px red';
             passwordErrorTag.textContent = "Password must contain one lower case letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         } else if (currentVal.length <= 8) {
+            document.getElementById("password").style.boxShadow='0px 0px 10px orange';
             passwordErrorTag.textContent = "Password must be longer than 8 letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         }
+        document.getElementById("password").style.boxShadow='0px 0px 10px green';
     } else if (event.target.id === 'confirmPassword') {
         if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
             document.getElementById("emp-error-field").textContent = "Password do not match";
@@ -91,7 +94,7 @@ function handleEmpSectInputKeyPress(event) {
         employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
         employeeFormInputDiv[employeeIndex].classList.add('d-none');
         if (employeeIndex == 0) {
-            ptag.innerText = `Hi ${employeeFormInputDiv[employeeIndex].lastElementChild.value}, what's your gender`
+            ptag.innerText = `Hi ${employeeFormInputDiv[employeeIndex].lastElementChild.value}, Can i know your gender`
             document.getElementById("genderDiv").classList.remove('d-none');
             document.getElementById("genderDiv").classList.add('d-flex');
             const radiobtn = document.querySelectorAll("input[name='gender']");
@@ -132,11 +135,14 @@ function handleVehcSectInputKeyPress(event) {
         document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
         return;
     }
-    if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal)) ) {
+    else if(event.target.id==='vType'){
+        document.getElementById('vTypeLabel').innerHTML="Which vehicle do you have";
+    }
+    else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal)) ) {
         document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
         return;
     }
-    if (event.target.id === 'vEmpId') {
+    else if (event.target.id === 'vEmpId') {
         employeeId=currentVal;
     }
 
