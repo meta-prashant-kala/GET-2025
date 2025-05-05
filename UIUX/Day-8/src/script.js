@@ -4,6 +4,9 @@ let employeeId;
 let selectedVehicleType;
 let rupeePriceList;
 let selectedPlan;
+let planDuration;
+let currencyType;
+let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
 document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
@@ -23,6 +26,13 @@ const generateEmployeeId = () => {
     return employeeId;
 }
 
+const convertYenToDollar=(currency)=>{
+    return (currency/143).toFixed(3)
+}
+
+const convertRupeeTodollar=(currency)=>{
+    return (currency/84).toFixed(3)
+}
 
 const handleGenderInput = (event) => {
     document.getElementById('genderDiv').classList.remove("d-flex");
@@ -105,17 +115,35 @@ const handleSelectedCurrency = (selectedCurrency) => {
 }
 
 const handleSelectedPlan = (element) => {
+    isPlanSelected=true
     const elementsList = document.getElementById("price-list").getElementsByTagName('div');
     for (const element of elementsList) {
         element.classList.remove('bg-custom-color');
     }
     element.classList.add('bg-custom-color');
-    selectedPlan = element.firstElementChild.lastElementChild.innerHTML;
+    selectedPlan = element.id;
+    planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
+    planPrice = element.getElementsByTagName('div')[0].lastElementChild.innerHTML;
+
+    if(currencyType=='rupee'){
+        selectedPlan=convertRupeeTodollar(planPrice);
+    }
+    else if(currencyType=='yen'){
+        selectedPlan=convertYenToDollar(planPrice)
+    }else {
+        selectedPlan=planPrice;
+    }
 }
 
 
 const generatePass = () => {
-    alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan);
+    if(!isPlanSelected){
+        alert("Please Select a plan");
+        return;
+    }
+    else{
+        alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan + "$" + " ( " + planDuration + " )");
+    }
 }
 
 
@@ -136,7 +164,11 @@ const handleVehcSectInputKeyPress = (event) => {
         document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
         return;
     }
-    else if (event.target.id === 'vEmpId') {
+    else if (event.target.id === 'vEmpId' ) {
+        if(currentVal.length<2){
+            document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+            return;
+        }
         employeeId = currentVal;
     }
 
@@ -157,7 +189,7 @@ const handleVehcSectInputKeyPress = (event) => {
             document.getElementById("price-section").classList.add('d-flex');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
-
+            currencyType='rupee';
             if (selectedVehicleType === 'cycle') {
                 document.getElementById("price-section-head").innerHTML += " Cycle"
             }

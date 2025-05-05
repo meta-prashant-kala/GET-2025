@@ -4,6 +4,9 @@ let employeeId;
 let selectedVehicleType;
 let rupeePriceList;
 let selectedPlan;
+let planDuration;
+let currencyType;
+let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
 document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
@@ -16,9 +19,9 @@ employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress"
 
 
 function generateEmployeeId() {
-    const formDivList=document.getElementById("employee-form").getElementsByTagName('div');
+    const formDivList = document.getElementById("employee-form").getElementsByTagName('div');
     console.log(document.getElementById('vEmpId').value);
-    employeeId=document.getElementById('vEmpId').value+Math.floor(Math.random() * 1000);
+    employeeId = document.getElementById('vEmpId').value + Math.floor(Math.random() * 1000);
     return employeeId;
 }
 
@@ -32,7 +35,7 @@ function setPricingOfPricingSection(priceList) {
 }
 
 
-function handleGenderInput(event){
+function handleGenderInput(event) {
     document.getElementById('genderDiv').classList.remove("d-flex");
     document.getElementById('genderDiv').classList.add("d-none");
     employeeIndex += 3;
@@ -41,7 +44,7 @@ function handleGenderInput(event){
     employeeFormInputDiv[employeeIndex].lastElementChild.focus();
     employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
     employeeFormInputDiv[0].setAttribute('style', 'display:none !important');
-    ptag.innerText="";
+    ptag.innerText = "";
 }
 
 
@@ -51,7 +54,7 @@ function handleEmpSectInputKeyPress(event) {
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
     console.log(currentVal);
 
-    if (event.target.id === 'fullName' && currentVal.length <= 2 ) {
+    if (event.target.id === 'fullName' && currentVal.length <= 2) {
         document.getElementById("emp-error-field").textContent = "Name cannot be this short";
         return;
     } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
@@ -60,22 +63,22 @@ function handleEmpSectInputKeyPress(event) {
     } else if (event.target.id === 'password') {
         const passwordErrorTag = document.getElementById('emp-error-field');
         if (!(/[A-Z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow='0px 0px 10px red';
+            document.getElementById("password").style.boxShadow = '0px 0px 10px red';
             passwordErrorTag.textContent = "Password must contain one upper case letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         } else if (!(/[a-z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow='0px 0px 1px red';
+            document.getElementById("password").style.boxShadow = '0px 0px 1px red';
             passwordErrorTag.textContent = "Password must contain one lower case letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         } else if (currentVal.length <= 8) {
-            document.getElementById("password").style.boxShadow='0px 0px 10px orange';
+            document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
             passwordErrorTag.textContent = "Password must be longer than 8 letter";
             passwordErrorTag.classList.add('text-danger');
             return;
         }
-        document.getElementById("password").style.boxShadow='0px 0px 10px green';
+        document.getElementById("password").style.boxShadow = '0px 0px 10px green';
     } else if (event.target.id === 'confirmPassword') {
         if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
             document.getElementById("emp-error-field").textContent = "Password do not match";
@@ -131,19 +134,23 @@ function handleVehcSectInputKeyPress(event) {
 
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
 
-    if (event.target.id === 'vName' && currentVal.length < 2 ) {
+    if (event.target.id === 'vName' && currentVal.length < 2) {
         document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
         return;
     }
-    else if(event.target.id==='vType'){
-        document.getElementById('vTypeLabel').innerHTML="Which vehicle do you have";
+    else if (event.target.id === 'vType') {
+        document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
     }
-    else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal)) ) {
+    else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
         document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
         return;
     }
-    else if (event.target.id === 'vEmpId') {
-        employeeId=currentVal;
+    else if (event.target.id === 'vEmpId' ) {
+        if(currentVal.length<2){
+            document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+            return;
+        }
+        employeeId = currentVal;
     }
 
     if (event.key === "Enter") {
@@ -163,6 +170,7 @@ function handleVehcSectInputKeyPress(event) {
             document.getElementById("price-section").classList.add('d-flex');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
+            currencyType='rupee';
             if (selectedVehicleType === 'cycle') {
                 document.getElementById("price-section-head").innerHTML += " Cycle"
             }
@@ -221,11 +229,19 @@ function handleEmployeeClick(element) {
     currentInput.lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
 }
 
+function convertYenToDollar(currency){
+    return (currency/143).toFixed(3)
+}
+
+function convertRupeeTodollar(currency){
+    return (currency/84).toFixed(3)
+}
 
 function handleSelectedCurrency(selectedCurrency) {
+    currencyType=selectedCurrency;
     let selectedCurrencyPriceList;
-    const currencyList=document.getElementById('currency-opions').getElementsByTagName('button');
-    for(const element of currencyList){ 
+    const currencyList = document.getElementById('currency-opions').getElementsByTagName('button');
+    for (const element of currencyList) {
         element.classList.add('btn-secondary')
         element.classList.remove('bg-custom-color')
     }
@@ -237,7 +253,6 @@ function handleSelectedCurrency(selectedCurrency) {
             selectedCurrencyPriceList = rupeePriceList;
             break;
         case 'dollar':
-            
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => +(rupeePrice / 83).toFixed(2))
             break;
         case 'yen':
@@ -247,16 +262,35 @@ function handleSelectedCurrency(selectedCurrency) {
     setPricingOfPricingSection(selectedCurrencyPriceList);
 }
 
-function handleSelectedPlan(element){
-    const elementsList=document.getElementById("price-list").getElementsByTagName('div');
-    for(const element of elementsList){ 
+function handleSelectedPlan(element) {
+    
+    isPlanSelected=true
+    const elementsList = document.getElementById("price-list").getElementsByTagName('div');
+    for (const element of elementsList) {
         element.classList.remove('bg-custom-color');
     }
     element.classList.add('bg-custom-color');
-    selectedPlan=element.firstElementChild.lastElementChild.innerHTML;
+    selectedPlan = element.id;
+    planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
+    planPrice = element.getElementsByTagName('div')[0].lastElementChild.innerHTML;
+
+    if(currencyType=='rupee'){
+        selectedPlan=convertRupeeTodollar(planPrice);
+    }
+    else if(currencyType=='yen'){
+        selectedPlan=convertYenToDollar(planPrice)
+    }else {
+        selectedPlan=planPrice;
+    }
 }
 
 
-function generatePass(){
-    alert("Congratualtion !! Your pass has been genrated\n"+ "Employee ID: "+employeeId + "\nSelected Plan: "+ selectedPlan);
+function generatePass() {
+    if(!isPlanSelected){
+        alert("Please Select a plan");
+        return;
+    }
+    else{
+        alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan + "$" + " ( " + planDuration + " )");
+    }
 }

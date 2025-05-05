@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- <header>
+        <nav class="navbar">
+            <ul style="list-style: none; display: flex; gap: 50px;">
+                <li><a href="#employee-section">Add Employee</a></li>
+                <li><a href="#vehicle-section">Add Vehicle</a></li>
+                <li><a href="#feedback-section">Give Feedback</a></li>
+                <li><a href="#price-section">Pricing</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <section class="hero-section">
+        <h1>Metacube Parking</h1>
+        <img src="./images//coverImg.jpg" alt="image">
+        <div class="opacity-cover"></div>
+    </section>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item" id="accordion-item-1" onclick="handleEmployeeClick()">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Employee Section
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse  bg-light"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body" id="accordion-body-1">
+                    <form class="d-flex flex-column" id="employee-form" action="POST">
+                        <p id="person-name" class="mx-auto"></p>
+                        <div id="fullnameDiv" class="d-none flex-column mx-auto employee-data input-field">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input class="form-control" type="text" id="fullName" value="" />
+                        </div>
+                        <div id="genderDiv" class="d-none flex-column employee-data input-field">
+                            <div class="gender-input mx-auto ">
+                                <label  for="male" class="form-label">Male</label>
+                                <input  name="gender" type="radio" id="male" value="male"/>
+                                <label  for="male" class="form-label">Female</label>
+                                <input  name="gender" type="radio" id="female/" value="female">
+                            </div>
+                        </div>
+                        <div class="d-none flex-column flex-column mx-auto employee-data input-field">
+                            <label for="email" class="form-label">Email ID</label>
+                            <input class="form-control" type="email" id="email" value="" />
+                        </div>
+                        <div class="d-none flex-column mx-auto employee-data input-field">
+                            <label for="password" class="form-label">Password</label>
+                            <input class="form-control" type="password" id="password" value="" />
+                        </div>
+                        <div class="d-none flex-column mx-auto employee-data input-field">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input class="form-control" type="password" id="confirmPassword" value="" />
+                        </div>
+                        <div class="d-none flex-column mx-auto employee-data input-field">
+                            <label for="contact-number" class="form-label">Contact number</label>
+                            <input class="form-control" type="number" id="contactNumber" value="" />
+                        </div>
+                        <button class="d-none" type="button" onclick="gen">Submit</button>
+                        <p id="emp-error-field" class="mx-auto text-danger"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item" id="accordion-item-2" onclick="handleVehicleClick()">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Add Vehicle
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body" id="accordion-body-2">
+                    <form id="vehicle-form" class="d-flex flex-column" action="POST">
+                        <div class="d-none flex-column mx-auto vehicle-data input-field">
+                            <label for="vName" class="form-label">Vehicle Name</label>
+                            <input id="vName" class="form-control" type="text" value="" />
+                        </div>
+                        <div class="d-none flex-column mx-auto vehicle-data input-field">
+                            <label for="vType" id="vTypeLabel" class="form-label">Which vehicle do you have</label>
+                            <select class="form-control" name="vModel" id="vType" aria-placeholder="Select Option">
+                                <option class="form-control" value="cycle">Cycle </option>
+                                <option class="form-control" value="motorCycle">Motor Cycle </option>
+                                <option class="form-control" value="fourWheeler">Four Wheeler</option>
+                            </select>
+                        </div>
+                        <div class="d-none flex-column mx-auto vehicle-data input-field">
+                            <label for="vNumber" class="form-label">Vehicle Number</label>
+                            <input class="form-control" id="vNumber" type="text" value="" />
+                        </div>
+                        <div class="d-none flex-column mx-auto vehicle-data input-field">
+                            <label for="vEmpId" class="form-label">Employee Id</label>
+                            <input class="form-control" id="vEmpId" type="number" />
+                        </div>
+                        <div class="d-none flex-column mx-auto vehicle-data input-field">
+                            <label for="identification" class="form-label">Identification</label>
+                            <textarea class="form-control" name="identification" id="identification"
+                                value=""></textarea>
+                        </div>
+                        <button class="d-none btn" type="button">Submit</button>
+                        <p id="veh-error-field" class="mx-auto text-danger"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="accordion-item" id="accordion-item-3">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Feedback
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <form class="d-flex flex-column" action="">
+                        <div class="Feedback-input flex-column mx-auto input-field">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" />
+                        </div>
+                        <div class="Feedback-input flex-column mx-auto input-field">
+                            <label for="email" class="form-label">Eamil</label>
+                            <input type="text" name="email" id="email" class="form-control" />
+                        </div>
+                        <div class="Feedback-input flex-column mx-auto input-field">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" name="subject" id="subject" class="form-control" />
+                        </div>
+                        <div class="Feedback-input flex-column mx-auto input-field">
+                            <label for="feedback" class="form-label">Feedback</label>
+                            <textarea name="feedback" id="feedback" class="form-control"></textarea>
+                        </div>
+                        <button class="btn btn-primary m-2 mx-auto" type="button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <section id="price-section" class="d-none flex-column p-3">
+        <h3 id="price-section-head" class="mx-auto p-2">Price List of </h3>
+        <div id="currencyOptions" class="d-flex justify-content-between">
+            <label for="selectCurrency">Select currency type</label>
+            <div id="currency-opions">
+                <button class="btn btn-secondary" id="rupee" onclick="handleSelectedCurrency('rupee')">Rupee</button>
+                <button class="btn btn-secondary" id="dollar" onclick="handleSelectedCurrency('dollar')">Dollar</button>
+                <button class="btn btn-secondary" id="yen" onclick="handleSelectedCurrency('yen')">Yen</button>
+            </div>
+        </div>
+        <div id="price-list" class="row g-0 pt-4">
+            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
+                <div class="card text-center py-4" id="daily-price">
+                    <p>Daily Plan</p>
+                    <span class="price-span mx-auto" id="per-day-price"></span>
+                </div>
+            </div>
+            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
+                <div class="card  text-center py-4" id="monthly-price">
+                    <p>Monthly Plan</p>
+                    <span class="price-span mx-auto" id="per-month-price"></span>
+                </div>
+            </div>
+            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-1 rounded">
+                <div class="card  text-center py-4" id="yearly-price">
+                    <p>Yearly Plan</p>
+                    <span class="price-span mx-auto" id="per-year-price"></span>
+                </div>
+            </div>
+        </div>
+        <button onclick="generatePass()" type="button" class="btn bg-custom-color text-light w-25 mx-auto mt-4">Get
+            Pass</button>
+        </div>
+
+    </section>
+
+    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

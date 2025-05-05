@@ -68,7 +68,6 @@
                             <label for="contact-number" class="form-label">Contact number</label>
                             <input class="form-control" type="number" id="contactNumber" value="" />
                         </div>
-                        <button class="d-none" type="button" onclick="gen">Submit</button>
                         <p id="emp-error-field" class="mx-auto text-danger"></p>
                     </form>
                 </div>
@@ -109,7 +108,6 @@
                             <textarea class="form-control" name="identification" id="identification"
                                 value=""></textarea>
                         </div>
-                        <button class="d-none btn" type="button">Submit</button>
                         <p id="veh-error-field" class="mx-auto text-danger"></p>
                     </form>
                 </div>
@@ -158,19 +156,19 @@
             </div>
         </div>
         <div id="price-list" class="row g-0 pt-4">
-            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
+            <div id="0" onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
                 <div class="card text-center py-4" id="daily-price">
                     <p>Daily Plan</p>
                     <span class="price-span mx-auto" id="per-day-price"></span>
                 </div>
             </div>
-            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
+            <div id="1" onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
                 <div class="card  text-center py-4" id="monthly-price">
                     <p>Monthly Plan</p>
                     <span class="price-span mx-auto" id="per-month-price"></span>
                 </div>
             </div>
-            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-1 rounded">
+            <div id="2" onclick="handleSelectedPlan(this)" class="price-list-item col p-1 rounded">
                 <div class="card  text-center py-4" id="yearly-price">
                     <p>Yearly Plan</p>
                     <span class="price-span mx-auto" id="per-year-price"></span>
