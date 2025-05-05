@@ -152,32 +152,32 @@
         <div id="currencyOptions" class="d-flex justify-content-between">
             <label for="selectCurrency">Select currency type</label>
             <div id="currency-opions">
-                <button class="btn btn-dark text-light" onclick="handleSelectedCurrency('rupee')">Rupee</button>
-                <button class="btn btn-dark text-light" onclick="handleSelectedCurrency('dollar')">Dollar</button>
-                <button class="btn btn-dark text-light" onclick="handleSelectedCurrency('yen')">Yen</button>
+                <button class="btn btn-secondary" id="rupee" onclick="handleSelectedCurrency('rupee')">Rupee</button>
+                <button class="btn btn-secondary" id="dollar" onclick="handleSelectedCurrency('dollar')">Dollar</button>
+                <button class="btn btn-secondary" id="yen" onclick="handleSelectedCurrency('yen')">Yen</button>
             </div>
         </div>
         <div id="price-list" class="row g-0 pt-4">
-            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-2">
+            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
                 <div class="card text-center py-4" id="daily-price">
                     <p>Daily Plan</p>
                     <span class="price-span mx-auto" id="per-day-price"></span>
                 </div>
             </div>
-            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-2">
+            <div onclick="handleSelectedPlan(this)" class="price-list-item rounded col p-1">
                 <div class="card  text-center py-4" id="monthly-price">
                     <p>Monthly Plan</p>
                     <span class="price-span mx-auto" id="per-month-price"></span>
                 </div>
             </div>
-            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-2">
+            <div onclick="handleSelectedPlan(this)" class="price-list-item col p-1 rounded">
                 <div class="card  text-center py-4" id="yearly-price">
                     <p>Yearly Plan</p>
                     <span class="price-span mx-auto" id="per-year-price"></span>
                 </div>
             </div>
         </div>
-        <button onclick="generatePass()" type="button" class="btn btn-dark text-light w-25 mx-auto mt-4">Get
+        <button onclick="generatePass()" type="button" class="btn bg-custom-color text-light w-25 mx-auto mt-4">Get
             Pass</button>
         </div>
 

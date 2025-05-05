@@ -161,6 +161,8 @@ function handleVehcSectInputKeyPress(event) {
             setPricingOfPricingSection(rupeePriceList);
             document.getElementById("price-section").classList.remove('d-none');
             document.getElementById("price-section").classList.add('d-flex');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
             if (selectedVehicleType === 'cycle') {
                 document.getElementById("price-section-head").innerHTML += " Cycle"
             }
@@ -222,14 +224,20 @@ function handleEmployeeClick(element) {
 
 function handleSelectedCurrency(selectedCurrency) {
     let selectedCurrencyPriceList;
+    const currencyList=document.getElementById('currency-opions').getElementsByTagName('button');
+    for(const element of currencyList){ 
+        element.classList.add('btn-secondary')
+        element.classList.remove('bg-custom-color')
+    }
+    document.getElementById(selectedCurrency).classList.remove('btn-secondary');
+    document.getElementById(selectedCurrency).classList.add('bg-custom-color');
 
-    console.log(selectedCurrency);
     switch (selectedCurrency) {
         case 'rupee':
             selectedCurrencyPriceList = rupeePriceList;
             break;
         case 'dollar':
-            console.log(rupeePriceList);
+            
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => +(rupeePrice / 83).toFixed(2))
             break;
         case 'yen':
@@ -240,7 +248,11 @@ function handleSelectedCurrency(selectedCurrency) {
 }
 
 function handleSelectedPlan(element){
-    element.classList.add('bg-dark');
+    const elementsList=document.getElementById("price-list").getElementsByTagName('div');
+    for(const element of elementsList){ 
+        element.classList.remove('bg-custom-color');
+    }
+    element.classList.add('bg-custom-color');
     selectedPlan=element.firstElementChild.lastElementChild.innerHTML;
 }
 

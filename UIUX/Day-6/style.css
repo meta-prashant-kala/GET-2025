@@ -61,7 +61,7 @@
 .price-span{
     width: 4rem;
     height: 4rem;
-    background-color: black;
+    background-color: #02256c;
     color: white;
     padding: 20px;
     border-radius: 50%;
@@ -77,6 +77,11 @@
 
 input.form-control:focus {
   box-shadow: inset 0 -1px 0 #ddd;
+}
+
+.bg-custom-color{
+    background-color:#02256c !important;
+    color: white !important;
 }
 
 /* Comman section properties */
