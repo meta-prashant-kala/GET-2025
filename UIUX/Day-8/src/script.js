@@ -9,6 +9,7 @@ let currencyType;
 let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
+
 document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
 const employeeFormInputDiv = employeeForm.getElementsByTagName("div");
@@ -35,14 +36,15 @@ const convertRupeeTodollar=(currency)=>{
 }
 
 const handleGenderInput = (event) => {
-    document.getElementById('genderDiv').classList.remove("d-flex");
-    document.getElementById('genderDiv').classList.add("d-none");
-    employeeIndex += 3;
+    employeeFormInputDiv[employeeIndex].classList.remove("d-flex");
+    employeeFormInputDiv[employeeIndex].classList.add("d-none");
+    employeeIndex++;
     employeeFormInputDiv[employeeIndex].classList.remove('d-none');
     employeeFormInputDiv[employeeIndex].classList.add('d-flex');
     employeeFormInputDiv[employeeIndex].lastElementChild.focus();
     employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
     employeeFormInputDiv[0].setAttribute('style', 'display:none !important');
+    employeeIndex=3;
     ptag.innerText = "";
 }
 
@@ -79,12 +81,12 @@ const handleVehicleClick = (element) => {
 }
 
 const handleEmployeeClick = (element) => {
-    const currentFocusedInput = vehicleFormInputDiv[employeeIndex];
+    const currentFocusedInput = vehicleFormInputDiv[vehicleIndex];
     currentFocusedInput.classList.remove('d-flex');
     currentFocusedInput.classList.add('d-none');
     currentFocusedInput.lastElementChild.removeEventListener("keypress", handleVehcSectInputKeyPress);
 
-    const currentInput = employeeFormInputDiv[vehicleIndex];
+    const currentInput = employeeFormInputDiv[employeeIndex];
     currentInput.classList.remove('d-none');
     currentInput.classList.add('d-flex');
     currentInput.lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
@@ -263,12 +265,14 @@ const handleEmpSectInputKeyPress = (event) => {
         }
         document.getElementById("emp-error-field").textContent = "";
         employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
+
         employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
         employeeFormInputDiv[employeeIndex].classList.add('d-none');
         if (employeeIndex == 0) {
             ptag.innerText = `Hi ${employeeFormInputDiv[employeeIndex].lastElementChild.value}, Can i know your gender`
             document.getElementById("genderDiv").classList.remove('d-none');
             document.getElementById("genderDiv").classList.add('d-flex');
+            employeeIndex++;
             const radiobtn = document.querySelectorAll("input[name='gender']");
             radiobtn.forEach(btn => btn.addEventListener("click", handleGenderInput));
             return;

@@ -10,6 +10,8 @@ const ptag = document.getElementById("person-name");
 (_a = document.getElementById('accordion-item-1')) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
 const employeeFormInputDiv = employeeForm === null || employeeForm === void 0 ? void 0 : employeeForm.getElementsByTagName("div");
+;
+const employeeData = {};
 if (employeeFormInputDiv) {
     employeeFormInputDiv[employeeIndex].classList.remove('d-none');
     employeeFormInputDiv[employeeIndex].classList.add('d-flex');
@@ -43,10 +45,10 @@ const handleGenderInput = (event) => {
         }
     }
 };
-const setPricingOfPricingSection = (priceList) => {
-    document.getElementById("per-day-price").innerHTML = priceList[0].toString();
-    document.getElementById("per-month-price").innerHTML = priceList[1].toString();
-    document.getElementById("per-year-price").innerHTML = priceList[2].toString();
+const setPricingOfPricingSection = (selectedCurrencyPriceList) => {
+    document.getElementById("per-day-price").innerHTML = selectedCurrencyPriceList[0].toString();
+    document.getElementById("per-month-price").innerHTML = selectedCurrencyPriceList[1].toString();
+    document.getElementById("per-year-price").innerHTML = selectedCurrencyPriceList[2].toString();
 };
 const getRupeePriceList = (selectedVehicleType) => {
     switch (selectedVehicleType) {
@@ -92,7 +94,7 @@ const handleEmployeeClick = (element) => {
 };
 const handleSelectedCurrency = (selectedCurrency) => {
     var _a, _b, _c;
-    let selectedCurrencyPriceList;
+    let selectedCurrencyPriceList = [];
     const currencyList = (_a = document.getElementById('currency-opions')) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('button');
     if (currencyList) {
         for (const element of currencyList) {
@@ -107,7 +109,6 @@ const handleSelectedCurrency = (selectedCurrency) => {
             selectedCurrencyPriceList = rupeePriceList;
             break;
         case 'dollar':
-            console.log(rupeePriceList);
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => +(rupeePrice / 83).toFixed(2));
             break;
         case 'yen':
@@ -243,7 +244,8 @@ const handleEmpSectInputKeyPress = (event) => {
         }
     }
     if (event.key === "Enter") {
-        document.getElementById("emp-error-field").textContent = "";
+        if (document.getElementById("emp-error-field"))
+            .textContent = "";
         if (employeeFormInputDiv) {
             employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
             employeeFormInputDiv[employeeIndex].classList.remove('d-flex');

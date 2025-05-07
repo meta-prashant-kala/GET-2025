@@ -1,56 +1,59 @@
 let employeeIndex = 0;
 let vehicleIndex = 0;
-let employeeId : string;
-let selectedVehicleType : string;
-let rupeePriceList : number[];
-let selectedPlan : string;
+let employeeId:string;
+let selectedVehicleType: string;
+let rupeePriceList:number[];
+let selectedPlan:number;
+let planDuration:number;
+let currencyType:string;
+let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
-document.getElementById('accordion-item-1')?.getElementsByTagName('div')[employeeIndex].classList.add('show');
+
+(document.getElementById('accordion-item-1') as HTMLDivElement).getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
 const employeeFormInputDiv = employeeForm?.getElementsByTagName("div");
-
-if (employeeFormInputDiv) {
+if(employeeFormInputDiv){
     employeeFormInputDiv[employeeIndex].classList.remove('d-none');
-    employeeFormInputDiv[employeeIndex].classList.add('d-flex');
-    const lastElementChild = employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement
-    lastElementChild.focus();
+employeeFormInputDiv[employeeIndex].classList.add('d-flex');
+(employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement).focus();
 }
-
 
 const vehicleForm = document.getElementById("vehicle-form");
 const vehicleFormInputDiv = vehicleForm?.getElementsByTagName("div");
 
 const generateEmployeeId = () => {
-    const formDivList = document.getElementById("employee-form")?.getElementsByTagName('div');
-    const vEmpId = document.getElementById('vEmpId') as HTMLInputElement;
-    employeeId = vEmpId?.value + Math.floor(Math.random() * 1000);
+    const formDivList = (document.getElementById("employee-form") as HTMLDivElement).getElementsByTagName('div');
+    employeeId = (document.getElementById('vEmpId') as HTMLInputElement).value + Math.floor(Math.random() * 1000);
     return employeeId;
 }
 
-
-const handleGenderInput = (event: Event) => {
-    document.getElementById('genderDiv')?.classList.remove("d-flex");
-    document.getElementById('genderDiv')?.classList.add("d-none");
-    employeeIndex += 3;
-    if (employeeFormInputDiv) {
-        const currentEmployeeFormInputDiv = employeeFormInputDiv[employeeIndex] as HTMLInputElement;
-        currentEmployeeFormInputDiv?.classList.remove('d-none');
-        currentEmployeeFormInputDiv?.classList.add('d-flex');
-        const currentEmployeeFormInputDivLastChild = currentEmployeeFormInputDiv?.lastElementChild as HTMLInputElement;
-        currentEmployeeFormInputDivLastChild?.focus();
-        currentEmployeeFormInputDivLastChild?.addEventListener("keypress", handleEmpSectInputKeyPress);
-        employeeFormInputDiv[0].setAttribute('style', 'display:none !important');
-        if (ptag) {
-            ptag.innerText = "";
-        }
-    }
+const convertYenToDollar=(currency: number)=>{
+    return (currency/143).toFixed(3)
 }
 
-const setPricingOfPricingSection = () => {
-    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = rupeePriceList[0].toString();
-    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = rupeePriceList[1].toString();
-    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = rupeePriceList[2].toString();
+const convertRupeeTodollar=(currency : number)=>{
+    return (currency/84).toFixed(3)
+}
+
+const handleGenderInput = (event: KeyboardEvent) => {
+    (document.getElementById('genderDiv') as HTMLDivElement).classList.remove("d-flex");
+    (document.getElementById('genderDiv') as HTMLDivElement).classList.add("d-none");
+    employeeIndex += 3;
+    if(employeeFormInputDiv){
+        employeeFormInputDiv[employeeIndex].classList.remove('d-none');
+    employeeFormInputDiv[employeeIndex].classList.add('d-flex');
+    (employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement).focus();
+    (employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement).addEventListener("keypress", handleEmpSectInputKeyPress);
+    employeeFormInputDiv[0].setAttribute('style', 'display:none !important');
+    }
+    ptag &&( ptag.innerText = "");
+}
+
+const setPricingOfPricingSection = (priceList) => {
+    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = priceList[0];
+    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = priceList[1];
+    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = priceList[2];
 }
 
 const getRupeePriceList = (selectedVehicleType: string) => {
@@ -65,52 +68,48 @@ const getRupeePriceList = (selectedVehicleType: string) => {
             return [20, 500, 3500];
             break;
     }
-    return []
 }
 
 const handleVehicleClick = (element: HTMLElement) => {
-    if (employeeFormInputDiv) {
-        const currentFocusedInput = employeeFormInputDiv[employeeIndex]
+    if(employeeFormInputDiv){
+        const currentFocusedInput = employeeFormInputDiv[employeeIndex];
         currentFocusedInput.classList.remove('d-flex');
         currentFocusedInput.classList.add('d-none');
-        (currentFocusedInput.lastElementChild as HTMLInputElement).removeEventListener("keypress", handleEmpSectInputKeyPress);
+        currentFocusedInput.lastElementChild?.removeEventListener("keypress", handleEmpSectInputKeyPress);
     }
 
-    if (vehicleFormInputDiv) {
-        const currentInput = vehicleFormInputDiv[vehicleIndex]
-        currentInput?.classList.remove('d-none');
-        currentInput?.classList.add('d-flex');
-        (currentInput?.lastElementChild as HTMLInputElement).addEventListener("keypress", handleVehcSectInputKeyPress);
+    if(vehicleFormInputDiv){
+        const currentInput = vehicleFormInputDiv[vehicleIndex];
+        currentInput.classList.remove('d-none');
+        currentInput.classList.add('d-flex');
+        currentInput.lastElementChild?.addEventListener("keypress", handleVehcSectInputKeyPress);
     }
 }
 
 const handleEmployeeClick = (element: HTMLElement) => {
-    if (vehicleFormInputDiv) {
+    if(vehicleFormInputDiv){
         const currentFocusedInput = vehicleFormInputDiv[employeeIndex];
         currentFocusedInput.classList.remove('d-flex');
         currentFocusedInput.classList.add('d-none');
-        (currentFocusedInput.lastElementChild as HTMLInputElement).removeEventListener("keypress", handleVehcSectInputKeyPress);
+        currentFocusedInput.lastElementChild?.removeEventListener("keypress", handleVehcSectInputKeyPress);
     }
-
-    if (employeeFormInputDiv) {
+    if(employeeFormInputDiv){
         const currentInput = employeeFormInputDiv[vehicleIndex];
         currentInput.classList.remove('d-none');
         currentInput.classList.add('d-flex');
-        (currentInput.lastElementChild as HTMLInputElement).addEventListener("keypress", handleEmpSectInputKeyPress);
+        currentInput.lastElementChild?.addEventListener("keypress", handleEmpSectInputKeyPress);
     }
 }
 
-const handleSelectedCurrency = (selectedCurrency: string) => {
+const handleSelectedCurrency = (selectedCurrency) => {
     let selectedCurrencyPriceList;
-    const currencyList = document.getElementById('currency-opions')?.getElementsByTagName('button');
-    if (currencyList) {
-        for (const element of currencyList) {
-            element.classList.add('btn-secondary')
-            element.classList.remove('bg-custom-color')
-        }
+    const currencyList = document.getElementById('currency-opions').getElementsByTagName('button');
+    for (const element of currencyList) {
+        element.classList.add('btn-secondary')
+        element.classList.remove('bg-custom-color')
     }
-    document.getElementById(selectedCurrency)?.classList.remove('btn-secondary');
-    document.getElementById(selectedCurrency)?.classList.add('bg-custom-color');
+    document.getElementById(selectedCurrency).classList.remove('btn-secondary');
+    document.getElementById(selectedCurrency).classList.add('bg-custom-color');
     switch (selectedCurrency) {
         case 'rupee':
             selectedCurrencyPriceList = rupeePriceList;
@@ -123,187 +122,193 @@ const handleSelectedCurrency = (selectedCurrency: string) => {
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => rupeePrice * 1.73);
             break;
     }
-    setPricingOfPricingSection();
+    setPricingOfPricingSection(selectedCurrencyPriceList);
 }
 
 const handleSelectedPlan = (element: HTMLElement) => {
-    const elementsList = document.getElementById("price-list")?.getElementsByTagName('div');
-    if (elementsList) {
-        for (const element of elementsList) {
-            element.classList.remove('bg-custom-color');
-        }
+    isPlanSelected=true
+    const elementsList = document.getElementById("price-list").getElementsByTagName('div');
+    for (const element of elementsList) {
+        element.classList.remove('bg-custom-color');
     }
     element.classList.add('bg-custom-color');
-    selectedPlan = element.firstElementChild?.lastElementChild?.innerHTML || "";
+    selectedPlan = element.id;
+    planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
+    planPrice = element.getElementsByTagName('div')[0].lastElementChild.innerHTML;
+
+    if(currencyType=='rupee'){
+        selectedPlan=convertRupeeTodollar(planPrice);
+    }
+    else if(currencyType=='yen'){
+        selectedPlan=convertYenToDollar(planPrice)
+    }else {
+        selectedPlan=planPrice;
+    }   
 }
 
 
 const generatePass = () => {
-    const employeeFormData=document.getElementById("employee-form");
-    const vehicleFormData=document.getElementById("vehicle-form");
-    console.log(employeeForm);
-    console.log(vehicleForm);
-    alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan);
+    if(!isPlanSelected){
+        alert("Please Select a plan");
+        return;
+    }
+    else{
+        document.getElementById('pass-emp-id').textContent+=employeeId;
+        document.getElementById('pass-veh-num').textContent+=document.getElementById('vNumber').value;
+        document.getElementById('pass-sel-plan').textContent+=selectedPlan + "$" + " ( " + planDuration + " )";
+        document.getElementById('generatePassBtn').classList.add('d-none');
+        document.querySelector('.pass-generated-section').classList.remove('d-none');
+        document.querySelector('.pass-generated-section').classList.add('d-flex');
+    }
 }
 
 
-const handleVehcSectInputKeyPress = (event: KeyboardEvent) => {
+const handleVehcSectInputKeyPress = (event) => {
+    document.getElementById("veh-error-field").textContent = "";
 
-    (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "";
-    const target = event.target as HTMLInputElement;
-
-    const currentVal = event.key.length === 1 ? target.value + event.key : target.value;
-
-    if (target.id === 'vName' && currentVal.length < 2) {
-        (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "Vehicle name cannot be this short";
-        return;
-    }
-    else if (target.id === 'vType') {
-        (document.getElementById('vTypeLabel') as HTMLParagraphElement).innerHTML = "Which vehicle do you have";
-    }
-    else if (target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
-        (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "Invalid Vehicle number";
-        return;
-    }
-    else if (target.id === 'vEmpId') {
-        employeeId = currentVal;
-    }
+    const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
 
     if (event.key === "Enter") {
-        if (vehicleFormInputDiv && (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLInputElement).id === 'vType') {
-            selectedVehicleType = (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLInputElement).value;
+
+    
+        if (event.target.id === 'vName' && currentVal.length < 2) {
+            document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
+            return;
         }
-        if (vehicleFormInputDiv) {
-            (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLInputElement).removeEventListener("keypress", handleVehcSectInputKeyPress);
-            vehicleFormInputDiv[vehicleIndex].classList.remove('d-flex');
-            vehicleFormInputDiv[vehicleIndex].classList.add('d-none');
+        else if (event.target.id === 'vType') {
+            document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
         }
+        else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
+            document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
+            return;
+        }
+        else if (event.target.id === 'vEmpId' ) {
+            if(currentVal.length<2){
+                document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+                return;
+            }
+            employeeId = currentVal;
+        }
+
+
+
+
+        if (vehicleFormInputDiv[vehicleIndex].lastElementChild.id === 'vType') {
+            selectedVehicleType = vehicleFormInputDiv[vehicleIndex].lastElementChild.value;
+        }
+        vehicleFormInputDiv[vehicleIndex].lastElementChild.removeEventListener("keypress", handleVehcSectInputKeyPress);
+        vehicleFormInputDiv[vehicleIndex].classList.remove('d-flex');
+        vehicleFormInputDiv[vehicleIndex].classList.add('d-none');
         vehicleIndex++;
-        if (vehicleIndex == vehicleFormInputDiv?.length) {
-            document.getElementById("flush-collapseTwo")?.classList.remove("show");
-            selectedVehicleType = (document.getElementById('vType') as HTMLSelectElement).value;
+        if (vehicleIndex == vehicleFormInputDiv.length) {
+            document.getElementById("flush-collapseTwo").classList.remove("show");
+            selectedVehicleType = document.getElementById('vType').value;
             rupeePriceList = getRupeePriceList(selectedVehicleType);
             setPricingOfPricingSection(rupeePriceList);
-            document.getElementById("price-section")?.classList.remove('d-none');
-            document.getElementById("price-section")?.classList.add('d-flex');
-            document.getElementById('currency-opions')?.getElementsByTagName('button')[0].classList.remove('btn-secondary');
-            document.getElementById('currency-opions')?.getElementsByTagName('button')[0].classList.add('bg-custom-color');
-
+            document.getElementById("price-section").classList.remove('d-none');
+            document.getElementById("price-section").classList.add('d-flex');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
+            currencyType='rupee';
             if (selectedVehicleType === 'cycle') {
-                (document.getElementById("price-section-head") as HTMLHeadingElement).innerHTML += " Cycle"
+                document.getElementById("price-section-head").innerHTML += " Cycle"
             }
             else if (selectedVehicleType === 'motorCycle') {
-                (document.getElementById("price-section-head") as HTMLHeadingElement).innerHTML += " Motor Cycle"
+                document.getElementById("price-section-head").innerHTML += " Motor Cycle"
             }
             else if (selectedVehicleType === 'fourWheeler') {
-                (document.getElementById("price-section-head") as HTMLHeadingElement).innerHTML += " Four Wheeler"
+                document.getElementById("price-section-head").innerHTML += " Four Wheeler"
             }
             return;
         } else {
-            if (vehicleFormInputDiv) {
-                vehicleFormInputDiv[vehicleIndex].classList.remove('d-none');
-                vehicleFormInputDiv[vehicleIndex].classList.add('d-flex');
-                (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLInputElement).focus();
-                (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLInputElement).addEventListener("keypress", handleVehcSectInputKeyPress);
-            }
+            vehicleFormInputDiv[vehicleIndex].classList.remove('d-none');
+            vehicleFormInputDiv[vehicleIndex].classList.add('d-flex');
+            vehicleFormInputDiv[vehicleIndex].lastElementChild.focus();
+            vehicleFormInputDiv[vehicleIndex].lastElementChild.addEventListener("keypress", handleVehcSectInputKeyPress);
         }
     }
 }
 
 
-const handleEmpSectInputKeyPress = (event: KeyboardEvent) => {
-    (document.getElementById("emp-error-field") as HTMLParagraphElement).textContent = "";
-    const target = event.target as HTMLInputElement;
-
-    const currentVal = event.key.length === 1 ? target.value + event.key : target.value;
-    console.log(currentVal);
-
-    if (target.id === 'fullName' && currentVal.length <= 2) {
-        (document.getElementById("emp-error-field") as HTMLParagraphElement).textContent = "Name cannot be this short";
-        return;
-    } else if (target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
-        (document.getElementById("emp-error-field") as HTMLParagraphElement).textContent = "Invalid email";
-        return;
-    } else if (target.id === 'password') {
-        const passwordErrorTag = document.getElementById('emp-error-field') as HTMLParagraphElement;
-        const passwordInputTag = document.getElementById("password") as HTMLInputElement;
-        if (!(/[A-Z]/.test(currentVal))) {
-            passwordInputTag.style.boxShadow = '0px 0px 10px red';
-            passwordErrorTag.textContent = "Password must contain one upper case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (!(/[a-z]/.test(currentVal))) {
-            passwordInputTag.style.boxShadow = '0px 0px 1px red';
-            passwordErrorTag.textContent = "Password must contain one lower case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (currentVal.length <= 8) {
-            passwordInputTag.style.boxShadow = '0px 0px 10px orange';
-            passwordErrorTag.textContent = "Password must be longer than 8 letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        (document.getElementById("password") as HTMLInputElement).style.boxShadow = '0px 0px 10px green';
-    } else if (target.id === 'confirmPassword') {
-        if ((document.getElementById("password") as HTMLInputElement).value.length > 0 && currentVal !== (document.getElementById("password") as HTMLInputElement).value) {
-            (document.getElementById("emp-error-field") as HTMLInputElement).textContent = "Password do not match";
-            return;
-        }
-    } else if (target.id === 'contactNumber') {
-        if (currentVal.length < 10) {
-            (document.getElementById("emp-error-field") as HTMLParagraphElement).textContent = "Invlid phone number";
-            return;
-        }
-    }
+const handleEmpSectInputKeyPress = (event) => {
+    document.getElementById("emp-error-field").textContent = "";
+    const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
 
     if (event.key === "Enter") {
-        (document.getElementById("emp-error-field") as HTMLParagraphElement).textContent = "";
-        if (employeeFormInputDiv) {
-            (employeeFormInputDiv[employeeIndex].lastElementChild as HTMLParagraphElement).removeEventListener("keypress", handleEmpSectInputKeyPress);
-            employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
-            employeeFormInputDiv[employeeIndex].classList.add('d-none');
-        }
-        if (employeeIndex === 0 && employeeFormInputDiv) {
-            const currEmployeeFormInputDiv = employeeFormInputDiv[employeeIndex] as HTMLDivElement;
-            if (ptag && currEmployeeFormInputDiv) {
-                ptag.innerText = `Hi ${(currEmployeeFormInputDiv.lastElementChild as HTMLInputElement).value}, Can i know your gender`
 
+        if (event.target.id === 'fullName' && currentVal.length <= 2) {
+            document.getElementById("emp-error-field").textContent = "Name cannot be this short";
+            return;
+        } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
+            document.getElementById("emp-error-field").textContent = "Invalid email";
+            return;
+        } else if (event.target.id === 'password') {
+            const passwordErrorTag = document.getElementById('emp-error-field');
+            if (!(/[A-Z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px red';
+                passwordErrorTag.textContent = "Password must contain one upper case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (!(/[a-z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 1px red';
+                passwordErrorTag.textContent = "Password must contain one lower case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (currentVal.length <= 8) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
+                passwordErrorTag.textContent = "Password must be longer than 8 letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
             }
-            document.getElementById("genderDiv")?.classList.remove('d-none');
-            document.getElementById("genderDiv")?.classList.add('d-flex');
+            document.getElementById("password").style.boxShadow = '0px 0px 10px green';
+        } else if (event.target.id === 'confirmPassword') {
+            if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
+                document.getElementById("emp-error-field").textContent = "Password do not match";
+                return;
+            }
+        } else if (event.target.id === 'contactNumber') {
+            if (currentVal.length < 10) {
+                document.getElementById("emp-error-field").textContent = "Invlid phone number";
+                return;
+            }
+        }
+        document.getElementById("emp-error-field").textContent = "";
+        employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
+        employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
+        employeeFormInputDiv[employeeIndex].classList.add('d-none');
+        if (employeeIndex == 0) {
+            ptag.innerText = `Hi ${employeeFormInputDiv[employeeIndex].lastElementChild.value}, Can i know your gender`
+            document.getElementById("genderDiv").classList.remove('d-none');
+            document.getElementById("genderDiv").classList.add('d-flex');
             const radiobtn = document.querySelectorAll("input[name='gender']");
             radiobtn.forEach(btn => btn.addEventListener("click", handleGenderInput));
             return;
         }
         employeeIndex++;
-        if (employeeFormInputDiv && employeeIndex == employeeFormInputDiv.length) {
-            document.getElementById("flush-collapseOne")?.classList.remove("show");
-            document.getElementById("flush-collapseTwo")?.classList.add("show");
-            if (vehicleFormInputDiv) {
-                vehicleFormInputDiv[vehicleIndex].classList.remove("d-none");
-                vehicleFormInputDiv[vehicleIndex].classList.add("d-flex");
-                (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLDivElement).focus();
-                (vehicleFormInputDiv[vehicleIndex].lastElementChild as HTMLDivElement).addEventListener("keypress", handleVehcSectInputKeyPress);
-            }
+        if (employeeIndex == employeeFormInputDiv.length) {
+            document.getElementById("flush-collapseOne").classList.remove("show");
+            document.getElementById("flush-collapseTwo").classList.add("show");
+            vehicleFormInputDiv[vehicleIndex].classList.remove("d-none");
+            vehicleFormInputDiv[vehicleIndex].classList.add("d-flex");
+            vehicleFormInputDiv[vehicleIndex].lastElementChild.focus();
+            vehicleFormInputDiv[vehicleIndex].lastElementChild.addEventListener("keypress", handleVehcSectInputKeyPress);
             const employeeID = generateEmployeeId();
-            ptag && (ptag.innerHTML = "Employee ID: " + employeeID);
-            (document.getElementById('vEmpId') as HTMLInputElement).value = employeeID;
+            ptag.innerHTML = "Employee ID: " + employeeID;
+            document.getElementById('vEmpId').value = employeeID;
             alert("Employee ID: " + employeeID);
             return;
         } else {
-            if (employeeFormInputDiv) {
-                employeeFormInputDiv[employeeIndex].classList.remove('d-none');
-                employeeFormInputDiv[employeeIndex].classList.add('d-flex');
-                (employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement).focus();
-                (employeeFormInputDiv[employeeIndex].lastElementChild as HTMLInputElement).addEventListener("keypress", handleEmpSectInputKeyPress);
-            }
+            employeeFormInputDiv[employeeIndex].classList.remove('d-none');
+            employeeFormInputDiv[employeeIndex].classList.add('d-flex');
+            employeeFormInputDiv[employeeIndex].lastElementChild.focus();
+            employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
         }
 
     }
 }
 
 
-employeeFormInputDiv && ((employeeFormInputDiv[employeeIndex] as HTMLInputElement).lastElementChild as HTMLInputElement).addEventListener("keypress", handleEmpSectInputKeyPress);
+employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
 
 
 
