@@ -132,7 +132,7 @@ const handleSelectedPlan = (element) => {
         selectedPlan=convertYenToDollar(planPrice)
     }else {
         selectedPlan=planPrice;
-    }
+    }   
 }
 
 
@@ -142,37 +142,46 @@ const generatePass = () => {
         return;
     }
     else{
-        alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan + "$" + " ( " + planDuration + " )");
+        document.getElementById('pass-emp-id').textContent+=employeeId;
+        document.getElementById('pass-veh-num').textContent+=document.getElementById('vNumber').value;
+        document.getElementById('pass-sel-plan').textContent+=selectedPlan + "$" + " ( " + planDuration + " )";
+        document.getElementById('generatePassBtn').classList.add('d-none');
+        document.querySelector('.pass-generated-section').classList.remove('d-none');
+        document.querySelector('.pass-generated-section').classList.add('d-flex');
     }
 }
 
 
 const handleVehcSectInputKeyPress = (event) => {
-
     document.getElementById("veh-error-field").textContent = "";
 
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
 
-    if (event.target.id === 'vName' && currentVal.length < 2) {
-        document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
-        return;
-    }
-    else if (event.target.id === 'vType') {
-        document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
-    }
-    else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
-        document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
-        return;
-    }
-    else if (event.target.id === 'vEmpId' ) {
-        if(currentVal.length<2){
-            document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+    if (event.key === "Enter") {
+
+    
+        if (event.target.id === 'vName' && currentVal.length < 2) {
+            document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
             return;
         }
-        employeeId = currentVal;
-    }
+        else if (event.target.id === 'vType') {
+            document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
+        }
+        else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
+            document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
+            return;
+        }
+        else if (event.target.id === 'vEmpId' ) {
+            if(currentVal.length<2){
+                document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+                return;
+            }
+            employeeId = currentVal;
+        }
 
-    if (event.key === "Enter") {
+
+
+
         if (vehicleFormInputDiv[vehicleIndex].lastElementChild.id === 'vType') {
             selectedVehicleType = vehicleFormInputDiv[vehicleIndex].lastElementChild.value;
         }
@@ -212,48 +221,46 @@ const handleVehcSectInputKeyPress = (event) => {
 
 const handleEmpSectInputKeyPress = (event) => {
     document.getElementById("emp-error-field").textContent = "";
-
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
-    console.log(currentVal);
-
-    if (event.target.id === 'fullName' && currentVal.length <= 2) {
-        document.getElementById("emp-error-field").textContent = "Name cannot be this short";
-        return;
-    } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
-        document.getElementById("emp-error-field").textContent = "Invalid email";
-        return;
-    } else if (event.target.id === 'password') {
-        const passwordErrorTag = document.getElementById('emp-error-field');
-        if (!(/[A-Z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow = '0px 0px 10px red';
-            passwordErrorTag.textContent = "Password must contain one upper case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (!(/[a-z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow = '0px 0px 1px red';
-            passwordErrorTag.textContent = "Password must contain one lower case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (currentVal.length <= 8) {
-            document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
-            passwordErrorTag.textContent = "Password must be longer than 8 letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        document.getElementById("password").style.boxShadow = '0px 0px 10px green';
-    } else if (event.target.id === 'confirmPassword') {
-        if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
-            document.getElementById("emp-error-field").textContent = "Password do not match";
-            return;
-        }
-    } else if (event.target.id === 'contactNumber') {
-        if (currentVal.length < 10) {
-            document.getElementById("emp-error-field").textContent = "Invlid phone number";
-            return;
-        }
-    }
 
     if (event.key === "Enter") {
+
+        if (event.target.id === 'fullName' && currentVal.length <= 2) {
+            document.getElementById("emp-error-field").textContent = "Name cannot be this short";
+            return;
+        } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
+            document.getElementById("emp-error-field").textContent = "Invalid email";
+            return;
+        } else if (event.target.id === 'password') {
+            const passwordErrorTag = document.getElementById('emp-error-field');
+            if (!(/[A-Z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px red';
+                passwordErrorTag.textContent = "Password must contain one upper case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (!(/[a-z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 1px red';
+                passwordErrorTag.textContent = "Password must contain one lower case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (currentVal.length <= 8) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
+                passwordErrorTag.textContent = "Password must be longer than 8 letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            }
+            document.getElementById("password").style.boxShadow = '0px 0px 10px green';
+        } else if (event.target.id === 'confirmPassword') {
+            if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
+                document.getElementById("emp-error-field").textContent = "Password do not match";
+                return;
+            }
+        } else if (event.target.id === 'contactNumber') {
+            if (currentVal.length < 10) {
+                document.getElementById("emp-error-field").textContent = "Invlid phone number";
+                return;
+            }
+        }
         document.getElementById("emp-error-field").textContent = "";
         employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
         employeeFormInputDiv[employeeIndex].classList.remove('d-flex');

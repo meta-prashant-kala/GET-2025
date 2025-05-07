@@ -47,10 +47,10 @@ const handleGenderInput = (event: Event) => {
     }
 }
 
-const setPricingOfPricingSection = (priceList: number[]) => {
-    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = priceList[0].toString();
-    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = priceList[1].toString();
-    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = priceList[2].toString();
+const setPricingOfPricingSection = () => {
+    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = rupeePriceList[0].toString();
+    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = rupeePriceList[1].toString();
+    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = rupeePriceList[2].toString();
 }
 
 const getRupeePriceList = (selectedVehicleType: string) => {
@@ -123,7 +123,7 @@ const handleSelectedCurrency = (selectedCurrency: string) => {
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => rupeePrice * 1.73);
             break;
     }
-    setPricingOfPricingSection(selectedCurrencyPriceList);
+    setPricingOfPricingSection();
 }
 
 const handleSelectedPlan = (element: HTMLElement) => {

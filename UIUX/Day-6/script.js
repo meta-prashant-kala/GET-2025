@@ -6,7 +6,7 @@ let rupeePriceList;
 let selectedPlan;
 let planDuration;
 let currencyType;
-let isPlanSelected=false;
+let isPlanSelected = false;
 const ptag = document.getElementById("person-name");
 
 document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
@@ -50,48 +50,46 @@ function handleGenderInput(event) {
 
 function handleEmpSectInputKeyPress(event) {
     document.getElementById("emp-error-field").textContent = "";
-
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
-    console.log(currentVal);
-
-    if (event.target.id === 'fullName' && currentVal.length <= 2) {
-        document.getElementById("emp-error-field").textContent = "Name cannot be this short";
-        return;
-    } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
-        document.getElementById("emp-error-field").textContent = "Invalid email";
-        return;
-    } else if (event.target.id === 'password') {
-        const passwordErrorTag = document.getElementById('emp-error-field');
-        if (!(/[A-Z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow = '0px 0px 10px red';
-            passwordErrorTag.textContent = "Password must contain one upper case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (!(/[a-z]/.test(currentVal))) {
-            document.getElementById("password").style.boxShadow = '0px 0px 1px red';
-            passwordErrorTag.textContent = "Password must contain one lower case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        } else if (currentVal.length <= 8) {
-            document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
-            passwordErrorTag.textContent = "Password must be longer than 8 letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        document.getElementById("password").style.boxShadow = '0px 0px 10px green';
-    } else if (event.target.id === 'confirmPassword') {
-        if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
-            document.getElementById("emp-error-field").textContent = "Password do not match";
-            return;
-        }
-    } else if (event.target.id === 'contactNumber') {
-        if (currentVal.length < 10) {
-            document.getElementById("emp-error-field").textContent = "Invlid phone number";
-            return;
-        }
-    }
 
     if (event.key === "Enter") {
+
+        if (event.target.id === 'fullName' && currentVal.length <= 2) {
+            document.getElementById("emp-error-field").textContent = "Name cannot be this short";
+            return;
+        } else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
+            document.getElementById("emp-error-field").textContent = "Invalid email";
+            return;
+        } else if (event.target.id === 'password') {
+            const passwordErrorTag = document.getElementById('emp-error-field');
+            if (!(/[A-Z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px red';
+                passwordErrorTag.textContent = "Password must contain one upper case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (!(/[a-z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 1px red';
+                passwordErrorTag.textContent = "Password must contain one lower case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            } else if (currentVal.length <= 8) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
+                passwordErrorTag.textContent = "Password must be longer than 8 letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            }
+            document.getElementById("password").style.boxShadow = '0px 0px 10px green';
+        } else if (event.target.id === 'confirmPassword') {
+            if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
+                document.getElementById("emp-error-field").textContent = "Password do not match";
+                return;
+            }
+        } else if (event.target.id === 'contactNumber') {
+            if (currentVal.length < 10) {
+                document.getElementById("emp-error-field").textContent = "Invlid phone number";
+                return;
+            }
+        }
         document.getElementById("emp-error-field").textContent = "";
         employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
         employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
@@ -129,31 +127,35 @@ function handleEmpSectInputKeyPress(event) {
 
 
 function handleVehcSectInputKeyPress(event) {
-
     document.getElementById("veh-error-field").textContent = "";
 
     const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
 
-    if (event.target.id === 'vName' && currentVal.length < 2) {
-        document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
-        return;
-    }
-    else if (event.target.id === 'vType') {
-        document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
-    }
-    else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
-        document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
-        return;
-    }
-    else if (event.target.id === 'vEmpId' ) {
-        if(currentVal.length<2){
-            document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+    if (event.key === "Enter") {
+
+
+        if (event.target.id === 'vName' && currentVal.length < 2) {
+            document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
             return;
         }
-        employeeId = currentVal;
-    }
+        else if (event.target.id === 'vType') {
+            document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
+        }
+        else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
+            document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
+            return;
+        }
+        else if (event.target.id === 'vEmpId') {
+            if (currentVal.length < 2) {
+                document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+                return;
+            }
+            employeeId = currentVal;
+        }
 
-    if (event.key === "Enter") {
+
+
+
         if (vehicleFormInputDiv[vehicleIndex].lastElementChild.id === 'vType') {
             selectedVehicleType = vehicleFormInputDiv[vehicleIndex].lastElementChild.value;
         }
@@ -170,7 +172,7 @@ function handleVehcSectInputKeyPress(event) {
             document.getElementById("price-section").classList.add('d-flex');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
             document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
-            currencyType='rupee';
+            currencyType = 'rupee';
             if (selectedVehicleType === 'cycle') {
                 document.getElementById("price-section-head").innerHTML += " Cycle"
             }
@@ -229,16 +231,16 @@ function handleEmployeeClick(element) {
     currentInput.lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
 }
 
-function convertYenToDollar(currency){
-    return (currency/143).toFixed(3)
+function convertYenToDollar(currency) {
+    return (currency / 143).toFixed(3)
 }
 
-function convertRupeeTodollar(currency){
-    return (currency/84).toFixed(3)
+function convertRupeeTodollar(currency) {
+    return (currency / 84).toFixed(3)
 }
 
 function handleSelectedCurrency(selectedCurrency) {
-    currencyType=selectedCurrency;
+    currencyType = selectedCurrency;
     let selectedCurrencyPriceList;
     const currencyList = document.getElementById('currency-opions').getElementsByTagName('button');
     for (const element of currencyList) {
@@ -263,8 +265,8 @@ function handleSelectedCurrency(selectedCurrency) {
 }
 
 function handleSelectedPlan(element) {
-    
-    isPlanSelected=true
+
+    isPlanSelected = true
     const elementsList = document.getElementById("price-list").getElementsByTagName('div');
     for (const element of elementsList) {
         element.classList.remove('bg-custom-color');
@@ -274,23 +276,28 @@ function handleSelectedPlan(element) {
     planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
     planPrice = element.getElementsByTagName('div')[0].lastElementChild.innerHTML;
 
-    if(currencyType=='rupee'){
-        selectedPlan=convertRupeeTodollar(planPrice);
+    if (currencyType == 'rupee') {
+        selectedPlan = convertRupeeTodollar(planPrice);
     }
-    else if(currencyType=='yen'){
-        selectedPlan=convertYenToDollar(planPrice)
-    }else {
-        selectedPlan=planPrice;
+    else if (currencyType == 'yen') {
+        selectedPlan = convertYenToDollar(planPrice)
+    } else {
+        selectedPlan = planPrice;
     }
 }
 
 
 function generatePass() {
-    if(!isPlanSelected){
+    if (!isPlanSelected) {
         alert("Please Select a plan");
         return;
     }
-    else{
-        alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan + "$" + " ( " + planDuration + " )");
+    else {
+        document.getElementById('pass-emp-id').textContent += employeeId;
+        document.getElementById('pass-veh-num').textContent += document.getElementById('vNumber').value;
+        document.getElementById('pass-sel-plan').textContent += selectedPlan + "$" + " ( " + planDuration + " )";
+        document.getElementById('generatePassBtn').classList.add('d-none');
+        document.querySelector('.pass-generated-section').classList.remove('d-none');
+        document.querySelector('.pass-generated-section').classList.add('d-flex');
     }
 }

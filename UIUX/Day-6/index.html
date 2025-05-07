@@ -175,10 +175,25 @@
                 </div>
             </div>
         </div>
-        <button onclick="generatePass()" type="button" class="btn bg-custom-color text-light w-25 mx-auto mt-4">Get
+        <button id="generatePassBtn" onclick="generatePass()" type="button" class="btn bg-custom-color text-light w-25 mx-auto mt-4">Get
             Pass</button>
         </div>
 
+    </section>
+
+    <section class="d-none pass-generated-section py-4">
+        <div class="card mx-auto" style="width: 20rem;">
+            <img src="https://placehold.co/60x40" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Metacube Parking Pass</h5>
+              <p class="card-text">Congratualation, your metacube parking pass has been generated.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="pass-emp-id">Employee ID: </li>
+              <li class="list-group-item " id="pass-veh-num">Vehicle Number: </li>
+              <li class="list-group-item " id="pass-sel-plan">Selected Plan: </li>
+            </ul>
+          </div>
     </section>
 
     <script src="/script.js"></script>

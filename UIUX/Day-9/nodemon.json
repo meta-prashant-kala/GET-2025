@@ -1,0 +1,5 @@
+{
+    "watch": ["./src"],
+    "type": "ts",
+    "exec": "tsc && ts-node ./app.ts"
+}
