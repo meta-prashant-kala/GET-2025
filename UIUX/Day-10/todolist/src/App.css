@@ -1,0 +1,12 @@
+body{
+    background-color: #eeede7;
+}
+
+.board-color{
+    background-color: #bbc0c3;
+}
+
+.board-content-color{
+    background-color: #e5e3ea;
+    min-height: 80vh;
+}

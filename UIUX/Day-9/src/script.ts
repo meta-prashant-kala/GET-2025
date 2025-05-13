@@ -4,11 +4,16 @@ let employeeId:string;
 let selectedVehicleType: string;
 let rupeePriceList:number[];
 let selectedPlan:number;
-let planDuration:number;
+let planDuration:String;
 let currencyType:string;
 let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
+interface Employee{
+    name:string
+}
+
+const employeeData: Partial<Employee>={};
 
 (document.getElementById('accordion-item-1') as HTMLDivElement).getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
@@ -50,10 +55,10 @@ const handleGenderInput = (event: KeyboardEvent) => {
     ptag &&( ptag.innerText = "");
 }
 
-const setPricingOfPricingSection = (priceList) => {
-    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = priceList[0];
-    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = priceList[1];
-    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = priceList[2];
+const setPricingOfPricingSection = (priceList:number[]) => {
+    (document.getElementById("per-day-price") as HTMLSpanElement).innerHTML = priceList[0].toString();
+    (document.getElementById("per-month-price") as HTMLSpanElement).innerHTML = priceList[1].toString();
+    (document.getElementById("per-year-price") as HTMLSpanElement).innerHTML = priceList[2].toString();
 }
 
 const getRupeePriceList = (selectedVehicleType: string) => {
@@ -101,15 +106,17 @@ const handleEmployeeClick = (element: HTMLElement) => {
     }
 }
 
-const handleSelectedCurrency = (selectedCurrency) => {
+const handleSelectedCurrency = (selectedCurrency: string) => {
     let selectedCurrencyPriceList;
-    const currencyList = document.getElementById('currency-opions').getElementsByTagName('button');
-    for (const element of currencyList) {
-        element.classList.add('btn-secondary')
-        element.classList.remove('bg-custom-color')
+    const currencyList = document.getElementById('currency-opions')?.getElementsByTagName('button');
+    if(currencyList){
+        for (const element of currencyList) {
+            element.classList.add('btn-secondary')
+            element.classList.remove('bg-custom-color')
+        }
     }
-    document.getElementById(selectedCurrency).classList.remove('btn-secondary');
-    document.getElementById(selectedCurrency).classList.add('bg-custom-color');
+    document.getElementById(selectedCurrency)?.classList.remove('btn-secondary');
+    document.getElementById(selectedCurrency)?.classList.add('bg-custom-color');
     switch (selectedCurrency) {
         case 'rupee':
             selectedCurrencyPriceList = rupeePriceList;
@@ -122,25 +129,27 @@ const handleSelectedCurrency = (selectedCurrency) => {
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => rupeePrice * 1.73);
             break;
     }
-    setPricingOfPricingSection(selectedCurrencyPriceList);
+    selectedCurrencyPriceList && setPricingOfPricingSection(selectedCurrencyPriceList);
 }
 
 const handleSelectedPlan = (element: HTMLElement) => {
     isPlanSelected=true
-    const elementsList = document.getElementById("price-list").getElementsByTagName('div');
-    for (const element of elementsList) {
-        element.classList.remove('bg-custom-color');
+    const elementsList = document.getElementById("price-list")?.getElementsByTagName('div');
+    if(elementsList){
+        for (const element of elementsList) {
+            element.classList.remove('bg-custom-color');
+        }
+        element.classList.add('bg-custom-color');
     }
-    element.classList.add('bg-custom-color');
-    selectedPlan = element.id;
-    planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
-    planPrice = element.getElementsByTagName('div')[0].lastElementChild.innerHTML;
+    selectedPlan = Number(element.id);
+    planDuration = (element.getElementsByTagName('div')[0].firstElementChild as HTMLElement).innerHTML;
+    const planPrice = Number(element.getElementsByTagName('div')[0].lastElementChild as HTMLElement).innerHTML;
 
     if(currencyType=='rupee'){
-        selectedPlan=convertRupeeTodollar(planPrice);
+        selectedPlan=Number(convertRupeeTodollar(planPrice));
     }
     else if(currencyType=='yen'){
-        selectedPlan=convertYenToDollar(planPrice)
+        selectedPlan=Number(convertYenToDollar(planPrice))
     }else {
         selectedPlan=planPrice;
     }   
@@ -153,38 +162,38 @@ const generatePass = () => {
         return;
     }
     else{
-        document.getElementById('pass-emp-id').textContent+=employeeId;
-        document.getElementById('pass-veh-num').textContent+=document.getElementById('vNumber').value;
-        document.getElementById('pass-sel-plan').textContent+=selectedPlan + "$" + " ( " + planDuration + " )";
-        document.getElementById('generatePassBtn').classList.add('d-none');
-        document.querySelector('.pass-generated-section').classList.remove('d-none');
-        document.querySelector('.pass-generated-section').classList.add('d-flex');
+        (document.getElementById('pass-emp-id') as HTMLSpanElement).textContent+=employeeId;
+        (document.getElementById('pass-veh-num')as HTMLSpanElement).textContent+=(document.getElementById('vNumber') as HTMLInputElement).value;
+        (document.getElementById('pass-sel-plan') as HTMLSpanElement).textContent+=selectedPlan + "$" + " ( " + planDuration + " )";
+        (document.getElementById('generatePassBtn') as HTMLSpanElement).classList.add('d-none');
+        (document.querySelector('.pass-generated-section') as HTMLSpanElement).classList.remove('d-none');
+        (document.querySelector('.pass-generated-section') as HTMLSpanElement).classList.add('d-flex');
     }
 }
 
 
-const handleVehcSectInputKeyPress = (event) => {
-    document.getElementById("veh-error-field").textContent = "";
+const handleVehcSectInputKeyPress = (event : KeyboardEvent) => {
+    (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "";
 
-    const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
+    const currentVal = event.key.length === 1 ? (event.target as HTMLInputElement).value + event.key : (event.target as HTMLInputElement).value;
 
     if (event.key === "Enter") {
 
     
-        if (event.target.id === 'vName' && currentVal.length < 2) {
-            document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
+        if ((event.target as HTMLDivElement).id === 'vName' && currentVal.length < 2) {
+            (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "Vehicle name cannot be this short";
             return;
         }
-        else if (event.target.id === 'vType') {
-            document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
+        else if ((event.target as HTMLDivElement).id === 'vType') {
+            (document.getElementById('vTypeLabel') as HTMLParagraphElement).innerHTML = "Which vehicle do you have";
         }
-        else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
-            document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
+        else if ((event.target as HTMLDivElement).id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
+            (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "Invalid Vehicle number";
             return;
         }
-        else if (event.target.id === 'vEmpId' ) {
+        else if ((event.target as HTMLDivElement).id === 'vEmpId' ) {
             if(currentVal.length<2){
-                document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+                (document.getElementById("veh-error-field") as HTMLParagraphElement).textContent = "Invalid Employee ID";
                 return;
             }
             employeeId = currentVal;
