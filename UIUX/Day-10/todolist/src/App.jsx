@@ -5,8 +5,13 @@ import TaskCreateModal from './components/TaskCreateModal'
 import Tasks from './components/Tasks';
 import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTask, deleteTask, editTask } from './taskslice/TaskSlice';
 
 function App() {
+
+  const dispatch=useDispatch();
+
   const [show, setShow] = useState(false);
 
   const [clickType, setClickType] = useState("new-task");
@@ -20,8 +25,8 @@ function App() {
     handleShow();
   }
 
-  const handleDeleteTask = (id, listType) => {
-    setTaskList(taskList.filter((task) => task.id !== id));
+  const handleDeleteTask = (id) => {
+    dispatch(deleteTask(id))
   };
 
   const handleInputChange = (event) => {
@@ -37,14 +42,10 @@ function App() {
     status: "newTask",
     creationDate: "",
     completionDate: "",
-    priority: ""
+    priority: "Low"
   })
 
-  const [taskList, setTaskList] = useState(() => {
-    const newData = localStorage.getItem("taskList");
-    if (newData !== null && newData.length > 0) return JSON.parse(newData)
-    else return []
-  })
+  const taskList = useSelector((state) => state.tasks)
 
   useEffect(() => {
     localStorage.setItem("taskList", JSON.stringify(taskList))
@@ -66,19 +67,13 @@ function App() {
       return;
     }
     if (clickType === 'new-task') {
-      taskDetails.creationDate = Date.now()
-      taskDetails.id = uuidv4();
-
-      setTaskList([...taskList, taskDetails]);
+      console.log(taskDetails);
+      dispatch(addTask(taskDetails));
     }
+    
+    if (clickType === 'edit-task') {
+      dispatch(editTask(taskDetails));
 
-    if (clickType == 'edit-task') {
-      const task = taskList.find((t) => t.id === taskDetails.id)
-      task.title = taskDetails.title;
-      task.description = taskDetails.description;
-      task.priority = taskDetails.priority;
-      task.status = taskDetails.status;
-      task.completionDate = taskDetails.completionDate
     }
 
     handleClose();
@@ -89,7 +84,7 @@ function App() {
       status: "newTask",
       creationDate: "",
       completionDate: "",
-      priority: ""
+      priority: "Low"
     })
     setClickType("new-task");
   }

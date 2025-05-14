@@ -18,7 +18,7 @@ function TaskCreateModal({ show, handleClose, handleCreateTask, handleInputChang
                             status: "newTask",
                             creationDate: "",
                             completionDate: "",
-                            priority: ""
+                            priority: "Low"
                           })
                     }}>
                         X
@@ -53,16 +53,26 @@ function TaskCreateModal({ show, handleClose, handleCreateTask, handleInputChang
                                 name="status"
                                 required
                             >
-                                <option value="newTask">New Task</option>
+                                <option value="newTask">New</option>
                                 {clickType!=='new-task'?
                                 <>
-                                <option value="inProgressTask">In Progress Task</option>
-                                <option value="completeTask">Complete Task</option>
+                                <option value="inProgressTask">In Progress</option>
+                                <option value="completeTask">Complete</option>
                                 </>:
                                 <>
                                 </>
                                 }
                             </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label>Creation Date </Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={clickType === 'new-task' ? (new Date().toISOString().split('T')[0]) : (taskDetails.creationDate)}
+                                onChange={handleInputChange}
+                                name="creationDate"
+                                disabled
+                            />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Completion Date </Form.Label>
@@ -82,10 +92,9 @@ function TaskCreateModal({ show, handleClose, handleCreateTask, handleInputChang
                                 onChange={handleInputChange}
                                 required
                             >
-                                <option value="" disabled>Select the Priority</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
                                 <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
 
                             </Form.Select>
                         </Form.Group>
