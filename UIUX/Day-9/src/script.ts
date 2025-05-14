@@ -10,23 +10,51 @@ let isPlanSelected=false;
 const ptag = document.getElementById("person-name");
 
 interface Employee{
-    empId:string,
-    name:string,
-    gender:string,
-    email:string,
-    password:string,
-    number:string
+    empId:string;
+    empName:string;
+    empGender:string;
+    empEmail:string;
+    empPassword:string;
+    empNumber:string;
+
 }
 interface Vehicle{
-    name:string,
-    type:string,
-    vehNumber:string,
-    empId:string,
-    identification:string
+    vehName:string;
+    vehType:string;
+    vehNumber:string;
+    vehIdentification:string;
+}
+class EmpVehPass implements Employee, Vehicle {
+    selectedPlan:string
+    planType:string
+    empId:string;
+    empName:string;
+    empGender:string;
+    empEmail:string;
+    empPassword:string;
+    empNumber:string;
+    vehName:string;
+    vehType:string;
+    vehNumber:string;
+    vehIdentification:string;
+    constructor(){
+        this.selectedPlan=""
+        this.planType=""
+        this.empId=""
+        this.empName=""
+        this.empGender=""
+        this.empEmail=""
+        this.empPassword=""
+        this.empNumber=""
+        this.vehName=""
+        this.vehType=""
+        this.vehNumber=""
+        this.vehIdentification=""
+    }
+    
 }
 
-const employeeData: Partial<Employee>={};
-const vehicleData: Partial<Vehicle>={};
+const empVehPassData: Partial<EmpVehPass>={};
 
 (document.getElementById('accordion-item-1') as HTMLDivElement).getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
@@ -43,7 +71,7 @@ const vehicleFormInputDiv = vehicleForm?.getElementsByTagName("div");
 const generateEmployeeId = () => {
     const formDivList = (document.getElementById("employee-form") as HTMLDivElement).getElementsByTagName('div');
     employeeId = (document.getElementById('vEmpId') as HTMLInputElement).value + Math.floor(Math.random() * 1000);
-    return employeeData.empId=employeeId;
+    return empVehPassData.empId=employeeId;
 }
 
 const convertYenToDollar=(currency: number)=>{
@@ -55,7 +83,7 @@ const convertRupeeTodollar=(currency : number)=>{
 }
 
 const handleGenderInput = (event: Event) => {
-    employeeData.gender=(event.target as HTMLInputElement).value;
+    empVehPassData.empGender=(event.target as HTMLInputElement).value;
     (document.getElementById('genderDiv') as HTMLDivElement).classList.remove("d-flex");
     (document.getElementById('genderDiv') as HTMLDivElement).classList.add("d-none");
     employeeIndex += 3;
@@ -107,17 +135,18 @@ const handleVehicleClick = (element: HTMLElement) => {
 
 const handleEmployeeClick = (element: HTMLElement) => {
     if(vehicleFormInputDiv){
-        const currentFocusedInput = vehicleFormInputDiv[employeeIndex];
+        const currentFocusedInput = vehicleFormInputDiv[vehicleIndex];
         currentFocusedInput.classList.remove('d-flex');
         currentFocusedInput.classList.add('d-none');
         (currentFocusedInput.lastElementChild as HTMLInputElement).removeEventListener("keypress", handleVehcSectInputKeyPress);
     }
     if(employeeFormInputDiv){
-        const currentInput = employeeFormInputDiv[vehicleIndex];
+        const currentInput = employeeFormInputDiv[employeeIndex];
         currentInput.classList.remove('d-none');
         currentInput.classList.add('d-flex');
         (currentInput.lastElementChild as HTMLInputElement).addEventListener("keypress", handleEmpSectInputKeyPress);
     }
+
 }
 
 const handleSelectedCurrency = (selectedCurrency: string) => {
@@ -176,24 +205,23 @@ const generatePass = () => {
         return;
     }
     else{
-        employeeData.name=(document.getElementById('fullName') as HTMLInputElement).value;
-        employeeData.email=(document.getElementById('email') as HTMLInputElement).value;
-        employeeData.number=(document.getElementById('contactNumber') as HTMLInputElement).value;
+        empVehPassData.empName=(document.getElementById('fullName') as HTMLInputElement).value;
+        empVehPassData.empEmail=(document.getElementById('email') as HTMLInputElement).value;
+        empVehPassData.empNumber=(document.getElementById('contactNumber') as HTMLInputElement).value;
 
-        vehicleData.name=(document.getElementById('vName') as HTMLInputElement).value ?? "";
-        vehicleData.type=(document.getElementById('vType') as HTMLSelectElement).value ?? "";
-        vehicleData.vehNumber=(document.getElementById('vNumber') as HTMLSelectElement).value ?? "";
-        vehicleData.identification=(document.getElementById('identification') as HTMLSelectElement).value ?? "";
+        empVehPassData.vehName=(document.getElementById('vName') as HTMLInputElement).value ?? "";
+        empVehPassData.vehType=(document.getElementById('vType') as HTMLSelectElement).value ?? "";
+        empVehPassData.vehNumber=(document.getElementById('vNumber') as HTMLSelectElement).value ?? "";
+        empVehPassData.vehIdentification=(document.getElementById('identification') as HTMLSelectElement).value ?? "";
 
-        (document.getElementById('pass-emp-id') as HTMLSpanElement).textContent+=employeeData.empId ?? "";
-        (document.getElementById('pass-veh-num')as HTMLSpanElement).textContent+=vehicleData.vehNumber;
+        (document.getElementById('pass-emp-id') as HTMLSpanElement).textContent+=empVehPassData.empId ?? "";
+        (document.getElementById('pass-veh-num')as HTMLSpanElement).textContent+=empVehPassData.vehNumber;
         (document.getElementById('pass-sel-plan') as HTMLSpanElement).textContent+=selectedPlan + "$" + " ( " + planDuration + " )";
         (document.getElementById('generatePassBtn') as HTMLSpanElement).classList.add('d-none');
         (document.querySelector('.pass-generated-section') as HTMLSpanElement).classList.remove('d-none');
         (document.querySelector('.pass-generated-section') as HTMLSpanElement).classList.add('d-flex');
 
-        localStorage.setItem("empData",JSON.stringify(employeeData));
-        localStorage.setItem("vehData",JSON.stringify(vehicleData));
+        localStorage.setItem("EmpVehPass",JSON.stringify(empVehPassData));
     }
 }
 

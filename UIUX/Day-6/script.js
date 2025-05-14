@@ -210,7 +210,6 @@ function getRupeePriceList(selectedVehicleType) {
 }
 
 function handleVehicleClick(element) {
-    // console.log(employeeIndex);
     const currentFocusedInput = employeeFormInputDiv[employeeIndex];
     currentFocusedInput.classList.remove('d-flex');
     currentFocusedInput.classList.add('d-none');

@@ -9,8 +9,23 @@ let planDuration;
 let currencyType;
 let isPlanSelected = false;
 const ptag = document.getElementById("person-name");
-const employeeData = {};
-const vehicleData = {};
+class EmpVehPass {
+    constructor() {
+        this.selectedPlan = "";
+        this.planType = "";
+        this.empId = "";
+        this.empName = "";
+        this.empGender = "";
+        this.empEmail = "";
+        this.empPassword = "";
+        this.empNumber = "";
+        this.vehName = "";
+        this.vehType = "";
+        this.vehNumber = "";
+        this.vehIdentification = "";
+    }
+}
+const empVehPassData = {};
 document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
 const employeeFormInputDiv = employeeForm === null || employeeForm === void 0 ? void 0 : employeeForm.getElementsByTagName("div");
@@ -24,7 +39,7 @@ const vehicleFormInputDiv = vehicleForm === null || vehicleForm === void 0 ? voi
 const generateEmployeeId = () => {
     const formDivList = document.getElementById("employee-form").getElementsByTagName('div');
     employeeId = document.getElementById('vEmpId').value + Math.floor(Math.random() * 1000);
-    return employeeData.empId = employeeId;
+    return empVehPassData.empId = employeeId;
 };
 const convertYenToDollar = (currency) => {
     return (currency / 143).toFixed(3);
@@ -33,7 +48,7 @@ const convertRupeeTodollar = (currency) => {
     return (currency / 84).toFixed(3);
 };
 const handleGenderInput = (event) => {
-    employeeData.gender = event.target.value;
+    empVehPassData.empGender = event.target.value;
     document.getElementById('genderDiv').classList.remove("d-flex");
     document.getElementById('genderDiv').classList.add("d-none");
     employeeIndex += 3;
@@ -80,13 +95,13 @@ const handleVehicleClick = (element) => {
 };
 const handleEmployeeClick = (element) => {
     if (vehicleFormInputDiv) {
-        const currentFocusedInput = vehicleFormInputDiv[employeeIndex];
+        const currentFocusedInput = vehicleFormInputDiv[vehicleIndex];
         currentFocusedInput.classList.remove('d-flex');
         currentFocusedInput.classList.add('d-none');
         currentFocusedInput.lastElementChild.removeEventListener("keypress", handleVehcSectInputKeyPress);
     }
     if (employeeFormInputDiv) {
-        const currentInput = employeeFormInputDiv[vehicleIndex];
+        const currentInput = employeeFormInputDiv[employeeIndex];
         currentInput.classList.remove('d-none');
         currentInput.classList.add('d-flex');
         currentInput.lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
@@ -148,21 +163,20 @@ const generatePass = () => {
         return;
     }
     else {
-        employeeData.name = document.getElementById('fullName').value;
-        employeeData.email = document.getElementById('email').value;
-        employeeData.number = document.getElementById('contactNumber').value;
-        vehicleData.name = (_a = document.getElementById('vName').value) !== null && _a !== void 0 ? _a : "";
-        vehicleData.type = (_b = document.getElementById('vType').value) !== null && _b !== void 0 ? _b : "";
-        vehicleData.vehNumber = (_c = document.getElementById('vNumber').value) !== null && _c !== void 0 ? _c : "";
-        vehicleData.identification = (_d = document.getElementById('identification').value) !== null && _d !== void 0 ? _d : "";
-        document.getElementById('pass-emp-id').textContent += (_e = employeeData.empId) !== null && _e !== void 0 ? _e : "";
-        document.getElementById('pass-veh-num').textContent += vehicleData.vehNumber;
+        empVehPassData.empName = document.getElementById('fullName').value;
+        empVehPassData.empEmail = document.getElementById('email').value;
+        empVehPassData.empNumber = document.getElementById('contactNumber').value;
+        empVehPassData.vehName = (_a = document.getElementById('vName').value) !== null && _a !== void 0 ? _a : "";
+        empVehPassData.vehType = (_b = document.getElementById('vType').value) !== null && _b !== void 0 ? _b : "";
+        empVehPassData.vehNumber = (_c = document.getElementById('vNumber').value) !== null && _c !== void 0 ? _c : "";
+        empVehPassData.vehIdentification = (_d = document.getElementById('identification').value) !== null && _d !== void 0 ? _d : "";
+        document.getElementById('pass-emp-id').textContent += (_e = empVehPassData.empId) !== null && _e !== void 0 ? _e : "";
+        document.getElementById('pass-veh-num').textContent += empVehPassData.vehNumber;
         document.getElementById('pass-sel-plan').textContent += selectedPlan + "$" + " ( " + planDuration + " )";
         document.getElementById('generatePassBtn').classList.add('d-none');
         document.querySelector('.pass-generated-section').classList.remove('d-none');
         document.querySelector('.pass-generated-section').classList.add('d-flex');
-        localStorage.setItem("empData", JSON.stringify(employeeData));
-        localStorage.setItem("vehData", JSON.stringify(vehicleData));
+        localStorage.setItem("EmpVehPass", JSON.stringify(empVehPassData));
     }
 };
 const handleVehcSectInputKeyPress = (event) => {
