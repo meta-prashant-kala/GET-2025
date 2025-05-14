@@ -1,54 +1,55 @@
 "use strict";
-var _a;
 let employeeIndex = 0;
 let vehicleIndex = 0;
 let employeeId;
 let selectedVehicleType;
 let rupeePriceList;
 let selectedPlan;
+let planDuration;
+let currencyType;
+let isPlanSelected = false;
 const ptag = document.getElementById("person-name");
-(_a = document.getElementById('accordion-item-1')) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('div')[employeeIndex].classList.add('show');
+const employeeData = {};
+const vehicleData = {};
+document.getElementById('accordion-item-1').getElementsByTagName('div')[employeeIndex].classList.add('show');
 const employeeForm = document.getElementById("employee-form");
 const employeeFormInputDiv = employeeForm === null || employeeForm === void 0 ? void 0 : employeeForm.getElementsByTagName("div");
-;
-const employeeData = {};
 if (employeeFormInputDiv) {
     employeeFormInputDiv[employeeIndex].classList.remove('d-none');
     employeeFormInputDiv[employeeIndex].classList.add('d-flex');
-    const lastElementChild = employeeFormInputDiv[employeeIndex].lastElementChild;
-    lastElementChild.focus();
+    employeeFormInputDiv[employeeIndex].lastElementChild.focus();
 }
 const vehicleForm = document.getElementById("vehicle-form");
 const vehicleFormInputDiv = vehicleForm === null || vehicleForm === void 0 ? void 0 : vehicleForm.getElementsByTagName("div");
 const generateEmployeeId = () => {
-    var _a;
-    const formDivList = (_a = document.getElementById("employee-form")) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('div');
-    const vEmpId = document.getElementById('vEmpId');
-    employeeId = (vEmpId === null || vEmpId === void 0 ? void 0 : vEmpId.value) + Math.floor(Math.random() * 1000);
-    return employeeId;
+    const formDivList = document.getElementById("employee-form").getElementsByTagName('div');
+    employeeId = document.getElementById('vEmpId').value + Math.floor(Math.random() * 1000);
+    return employeeData.empId = employeeId;
+};
+const convertYenToDollar = (currency) => {
+    return (currency / 143).toFixed(3);
+};
+const convertRupeeTodollar = (currency) => {
+    return (currency / 84).toFixed(3);
 };
 const handleGenderInput = (event) => {
-    var _a, _b;
-    (_a = document.getElementById('genderDiv')) === null || _a === void 0 ? void 0 : _a.classList.remove("d-flex");
-    (_b = document.getElementById('genderDiv')) === null || _b === void 0 ? void 0 : _b.classList.add("d-none");
+    employeeData.gender = event.target.value;
+    document.getElementById('genderDiv').classList.remove("d-flex");
+    document.getElementById('genderDiv').classList.add("d-none");
     employeeIndex += 3;
     if (employeeFormInputDiv) {
-        const currentEmployeeFormInputDiv = employeeFormInputDiv[employeeIndex];
-        currentEmployeeFormInputDiv === null || currentEmployeeFormInputDiv === void 0 ? void 0 : currentEmployeeFormInputDiv.classList.remove('d-none');
-        currentEmployeeFormInputDiv === null || currentEmployeeFormInputDiv === void 0 ? void 0 : currentEmployeeFormInputDiv.classList.add('d-flex');
-        const currentEmployeeFormInputDivLastChild = currentEmployeeFormInputDiv === null || currentEmployeeFormInputDiv === void 0 ? void 0 : currentEmployeeFormInputDiv.lastElementChild;
-        currentEmployeeFormInputDivLastChild === null || currentEmployeeFormInputDivLastChild === void 0 ? void 0 : currentEmployeeFormInputDivLastChild.focus();
-        currentEmployeeFormInputDivLastChild === null || currentEmployeeFormInputDivLastChild === void 0 ? void 0 : currentEmployeeFormInputDivLastChild.addEventListener("keypress", handleEmpSectInputKeyPress);
+        employeeFormInputDiv[employeeIndex].classList.remove('d-none');
+        employeeFormInputDiv[employeeIndex].classList.add('d-flex');
+        employeeFormInputDiv[employeeIndex].lastElementChild.focus();
+        employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
         employeeFormInputDiv[0].setAttribute('style', 'display:none !important');
-        if (ptag) {
-            ptag.innerText = "";
-        }
     }
+    ptag && (ptag.innerText = "");
 };
-const setPricingOfPricingSection = (selectedCurrencyPriceList) => {
-    document.getElementById("per-day-price").innerHTML = selectedCurrencyPriceList[0].toString();
-    document.getElementById("per-month-price").innerHTML = selectedCurrencyPriceList[1].toString();
-    document.getElementById("per-year-price").innerHTML = selectedCurrencyPriceList[2].toString();
+const setPricingOfPricingSection = (priceList) => {
+    document.getElementById("per-day-price").innerHTML = priceList[0].toString();
+    document.getElementById("per-month-price").innerHTML = priceList[1].toString();
+    document.getElementById("per-year-price").innerHTML = priceList[2].toString();
 };
 const getRupeePriceList = (selectedVehicleType) => {
     switch (selectedVehicleType) {
@@ -62,7 +63,6 @@ const getRupeePriceList = (selectedVehicleType) => {
             return [20, 500, 3500];
             break;
     }
-    return [];
 };
 const handleVehicleClick = (element) => {
     if (employeeFormInputDiv) {
@@ -73,9 +73,9 @@ const handleVehicleClick = (element) => {
     }
     if (vehicleFormInputDiv) {
         const currentInput = vehicleFormInputDiv[vehicleIndex];
-        currentInput === null || currentInput === void 0 ? void 0 : currentInput.classList.remove('d-none');
-        currentInput === null || currentInput === void 0 ? void 0 : currentInput.classList.add('d-flex');
-        (currentInput === null || currentInput === void 0 ? void 0 : currentInput.lastElementChild).addEventListener("keypress", handleVehcSectInputKeyPress);
+        currentInput.classList.remove('d-none');
+        currentInput.classList.add('d-flex');
+        currentInput.lastElementChild.addEventListener("keypress", handleVehcSectInputKeyPress);
     }
 };
 const handleEmployeeClick = (element) => {
@@ -94,7 +94,7 @@ const handleEmployeeClick = (element) => {
 };
 const handleSelectedCurrency = (selectedCurrency) => {
     var _a, _b, _c;
-    let selectedCurrencyPriceList = [];
+    let selectedCurrencyPriceList;
     const currencyList = (_a = document.getElementById('currency-opions')) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('button');
     if (currencyList) {
         for (const element of currencyList) {
@@ -109,52 +109,85 @@ const handleSelectedCurrency = (selectedCurrency) => {
             selectedCurrencyPriceList = rupeePriceList;
             break;
         case 'dollar':
+            console.log(rupeePriceList);
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => +(rupeePrice / 83).toFixed(2));
             break;
         case 'yen':
             selectedCurrencyPriceList = rupeePriceList.map(rupeePrice => rupeePrice * 1.73);
             break;
     }
-    setPricingOfPricingSection(selectedCurrencyPriceList);
+    selectedCurrencyPriceList && setPricingOfPricingSection(selectedCurrencyPriceList);
 };
 const handleSelectedPlan = (element) => {
-    var _a, _b, _c;
+    var _a;
+    isPlanSelected = true;
     const elementsList = (_a = document.getElementById("price-list")) === null || _a === void 0 ? void 0 : _a.getElementsByTagName('div');
     if (elementsList) {
         for (const element of elementsList) {
             element.classList.remove('bg-custom-color');
         }
+        element.classList.add('bg-custom-color');
     }
-    element.classList.add('bg-custom-color');
-    selectedPlan = ((_c = (_b = element.firstElementChild) === null || _b === void 0 ? void 0 : _b.lastElementChild) === null || _c === void 0 ? void 0 : _c.innerHTML) || "";
+    selectedPlan = Number(element.id);
+    planDuration = element.getElementsByTagName('div')[0].firstElementChild.innerHTML;
+    const planPrice = Number(element.getElementsByTagName('div')[0].lastElementChild.innerHTML);
+    if (currencyType == 'rupee') {
+        selectedPlan = Number(convertRupeeTodollar(planPrice));
+    }
+    else if (currencyType == 'yen') {
+        selectedPlan = Number(convertYenToDollar(planPrice));
+    }
+    else {
+        selectedPlan = planPrice;
+    }
 };
 const generatePass = () => {
-    const employeeFormData = document.getElementById("employee-form");
-    const vehicleFormData = document.getElementById("vehicle-form");
-    console.log(employeeForm);
-    console.log(vehicleForm);
-    alert("Congratualtion !! Your pass has been genrated\n" + "Employee ID: " + employeeId + "\nSelected Plan: " + selectedPlan);
+    var _a, _b, _c, _d, _e;
+    if (!isPlanSelected) {
+        alert("Please Select a plan");
+        return;
+    }
+    else {
+        employeeData.name = document.getElementById('fullName').value;
+        employeeData.email = document.getElementById('email').value;
+        employeeData.number = document.getElementById('contactNumber').value;
+        vehicleData.name = (_a = document.getElementById('vName').value) !== null && _a !== void 0 ? _a : "";
+        vehicleData.type = (_b = document.getElementById('vType').value) !== null && _b !== void 0 ? _b : "";
+        vehicleData.vehNumber = (_c = document.getElementById('vNumber').value) !== null && _c !== void 0 ? _c : "";
+        vehicleData.identification = (_d = document.getElementById('identification').value) !== null && _d !== void 0 ? _d : "";
+        document.getElementById('pass-emp-id').textContent += (_e = employeeData.empId) !== null && _e !== void 0 ? _e : "";
+        document.getElementById('pass-veh-num').textContent += vehicleData.vehNumber;
+        document.getElementById('pass-sel-plan').textContent += selectedPlan + "$" + " ( " + planDuration + " )";
+        document.getElementById('generatePassBtn').classList.add('d-none');
+        document.querySelector('.pass-generated-section').classList.remove('d-none');
+        document.querySelector('.pass-generated-section').classList.add('d-flex');
+        localStorage.setItem("empData", JSON.stringify(employeeData));
+        localStorage.setItem("vehData", JSON.stringify(vehicleData));
+    }
 };
 const handleVehcSectInputKeyPress = (event) => {
-    var _a, _b, _c, _d, _e;
+    var _a;
     document.getElementById("veh-error-field").textContent = "";
-    const target = event.target;
-    const currentVal = event.key.length === 1 ? target.value + event.key : target.value;
-    if (target.id === 'vName' && currentVal.length < 2) {
-        document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
-        return;
-    }
-    else if (target.id === 'vType') {
-        document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
-    }
-    else if (target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
-        document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
-        return;
-    }
-    else if (target.id === 'vEmpId') {
-        employeeId = currentVal;
-    }
+    const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
     if (event.key === "Enter") {
+        if (event.target.id === 'vName' && currentVal.length < 2) {
+            document.getElementById("veh-error-field").textContent = "Vehicle name cannot be this short";
+            return;
+        }
+        else if (event.target.id === 'vType') {
+            document.getElementById('vTypeLabel').innerHTML = "Which vehicle do you have";
+        }
+        else if (event.target.id === 'vNumber' && !(/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/i.test(currentVal))) {
+            document.getElementById("veh-error-field").textContent = "Invalid Vehicle number";
+            return;
+        }
+        else if (event.target.id === 'vEmpId') {
+            if (currentVal.length < 2) {
+                document.getElementById("veh-error-field").textContent = "Invalid Employee ID";
+                return;
+            }
+            employeeId = currentVal;
+        }
         if (vehicleFormInputDiv && vehicleFormInputDiv[vehicleIndex].lastElementChild.id === 'vType') {
             selectedVehicleType = vehicleFormInputDiv[vehicleIndex].lastElementChild.value;
         }
@@ -164,15 +197,16 @@ const handleVehcSectInputKeyPress = (event) => {
             vehicleFormInputDiv[vehicleIndex].classList.add('d-none');
         }
         vehicleIndex++;
-        if (vehicleIndex == (vehicleFormInputDiv === null || vehicleFormInputDiv === void 0 ? void 0 : vehicleFormInputDiv.length)) {
-            (_a = document.getElementById("flush-collapseTwo")) === null || _a === void 0 ? void 0 : _a.classList.remove("show");
+        if (vehicleFormInputDiv && vehicleIndex == vehicleFormInputDiv.length) {
+            document.getElementById("flush-collapseTwo").classList.remove("show");
             selectedVehicleType = document.getElementById('vType').value;
-            rupeePriceList = getRupeePriceList(selectedVehicleType);
+            rupeePriceList = (_a = getRupeePriceList(selectedVehicleType)) !== null && _a !== void 0 ? _a : [];
             setPricingOfPricingSection(rupeePriceList);
-            (_b = document.getElementById("price-section")) === null || _b === void 0 ? void 0 : _b.classList.remove('d-none');
-            (_c = document.getElementById("price-section")) === null || _c === void 0 ? void 0 : _c.classList.add('d-flex');
-            (_d = document.getElementById('currency-opions')) === null || _d === void 0 ? void 0 : _d.getElementsByTagName('button')[0].classList.remove('btn-secondary');
-            (_e = document.getElementById('currency-opions')) === null || _e === void 0 ? void 0 : _e.getElementsByTagName('button')[0].classList.add('bg-custom-color');
+            document.getElementById("price-section").classList.remove('d-none');
+            document.getElementById("price-section").classList.add('d-flex');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.remove('btn-secondary');
+            document.getElementById('currency-opions').getElementsByTagName('button')[0].classList.add('bg-custom-color');
+            currencyType = 'rupee';
             if (selectedVehicleType === 'cycle') {
                 document.getElementById("price-section-head").innerHTML += " Cycle";
             }
@@ -197,65 +231,58 @@ const handleVehcSectInputKeyPress = (event) => {
 const handleEmpSectInputKeyPress = (event) => {
     var _a, _b, _c, _d;
     document.getElementById("emp-error-field").textContent = "";
-    const target = event.target;
-    const currentVal = event.key.length === 1 ? target.value + event.key : target.value;
-    console.log(currentVal);
-    if (target.id === 'fullName' && currentVal.length <= 2) {
-        document.getElementById("emp-error-field").textContent = "Name cannot be this short";
-        return;
-    }
-    else if (target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
-        document.getElementById("emp-error-field").textContent = "Invalid email";
-        return;
-    }
-    else if (target.id === 'password') {
-        const passwordErrorTag = document.getElementById('emp-error-field');
-        const passwordInputTag = document.getElementById("password");
-        if (!(/[A-Z]/.test(currentVal))) {
-            passwordInputTag.style.boxShadow = '0px 0px 10px red';
-            passwordErrorTag.textContent = "Password must contain one upper case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        else if (!(/[a-z]/.test(currentVal))) {
-            passwordInputTag.style.boxShadow = '0px 0px 1px red';
-            passwordErrorTag.textContent = "Password must contain one lower case letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        else if (currentVal.length <= 8) {
-            passwordInputTag.style.boxShadow = '0px 0px 10px orange';
-            passwordErrorTag.textContent = "Password must be longer than 8 letter";
-            passwordErrorTag.classList.add('text-danger');
-            return;
-        }
-        document.getElementById("password").style.boxShadow = '0px 0px 10px green';
-    }
-    else if (target.id === 'confirmPassword') {
-        if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
-            document.getElementById("emp-error-field").textContent = "Password do not match";
-            return;
-        }
-    }
-    else if (target.id === 'contactNumber') {
-        if (currentVal.length < 10) {
-            document.getElementById("emp-error-field").textContent = "Invlid phone number";
-            return;
-        }
-    }
+    const currentVal = event.key.length === 1 ? event.target.value + event.key : event.target.value;
     if (event.key === "Enter") {
-        if (document.getElementById("emp-error-field"))
-            .textContent = "";
+        if (event.target.id === 'fullName' && currentVal.length <= 2) {
+            document.getElementById("emp-error-field").textContent = "Name cannot be this short";
+            return;
+        }
+        else if (event.target.id === 'email' && !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentVal))) {
+            document.getElementById("emp-error-field").textContent = "Invalid email";
+            return;
+        }
+        else if (event.target.id === 'password') {
+            const passwordErrorTag = document.getElementById('emp-error-field');
+            if (!(/[A-Z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px red';
+                passwordErrorTag.textContent = "Password must contain one upper case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            }
+            else if (!(/[a-z]/.test(currentVal))) {
+                document.getElementById("password").style.boxShadow = '0px 0px 1px red';
+                passwordErrorTag.textContent = "Password must contain one lower case letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            }
+            else if (currentVal.length <= 8) {
+                document.getElementById("password").style.boxShadow = '0px 0px 10px orange';
+                passwordErrorTag.textContent = "Password must be longer than 8 letter";
+                passwordErrorTag.classList.add('text-danger');
+                return;
+            }
+            document.getElementById("password").style.boxShadow = '0px 0px 10px green';
+        }
+        else if (event.target.id === 'confirmPassword') {
+            if (document.getElementById("password").value.length > 0 && currentVal !== document.getElementById("password").value) {
+                document.getElementById("emp-error-field").textContent = "Password do not match";
+                return;
+            }
+        }
+        else if (event.target.id === 'contactNumber') {
+            if (currentVal.length < 10) {
+                document.getElementById("emp-error-field").textContent = "Invlid phone number";
+                return;
+            }
+        }
+        document.getElementById("emp-error-field").textContent = "";
         if (employeeFormInputDiv) {
             employeeFormInputDiv[employeeIndex].lastElementChild.removeEventListener("keypress", handleEmpSectInputKeyPress);
             employeeFormInputDiv[employeeIndex].classList.remove('d-flex');
             employeeFormInputDiv[employeeIndex].classList.add('d-none');
         }
-        if (employeeIndex === 0 && employeeFormInputDiv) {
-            const currEmployeeFormInputDiv = employeeFormInputDiv[employeeIndex];
-            if (ptag && currEmployeeFormInputDiv) {
-                ptag.innerText = `Hi ${currEmployeeFormInputDiv.lastElementChild.value}, Can i know your gender`;
-            }
+        if (employeeIndex == 0) {
+            ptag.innerText = `Hi ${(employeeFormInputDiv && employeeFormInputDiv[employeeIndex].lastElementChild.value)}, Can i know your gender`;
             (_a = document.getElementById("genderDiv")) === null || _a === void 0 ? void 0 : _a.classList.remove('d-none');
             (_b = document.getElementById("genderDiv")) === null || _b === void 0 ? void 0 : _b.classList.add('d-flex');
             const radiobtn = document.querySelectorAll("input[name='gender']");
@@ -273,7 +300,7 @@ const handleEmpSectInputKeyPress = (event) => {
                 vehicleFormInputDiv[vehicleIndex].lastElementChild.addEventListener("keypress", handleVehcSectInputKeyPress);
             }
             const employeeID = generateEmployeeId();
-            ptag && (ptag.innerHTML = "Employee ID: " + employeeID);
+            ptag.innerHTML = "Employee ID: " + employeeID;
             document.getElementById('vEmpId').value = employeeID;
             alert("Employee ID: " + employeeID);
             return;
@@ -288,4 +315,6 @@ const handleEmpSectInputKeyPress = (event) => {
         }
     }
 };
-employeeFormInputDiv && employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
+if (employeeFormInputDiv) {
+    employeeFormInputDiv[employeeIndex].lastElementChild.addEventListener("keypress", handleEmpSectInputKeyPress);
+}
